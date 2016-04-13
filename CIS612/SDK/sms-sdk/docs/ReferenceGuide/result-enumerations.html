@@ -1,0 +1,248 @@
+<html>
+<head>
+<!--
+19-Mar-2009 kwiseth; sms documentation attribute spec
+27-Mar-2009; strip out extraneous information. wonderful. 
+-->
+
+
+<title>VMware vCenter Storage Monitoring Service API Reference Documentation</title>
+
+<script language="JavaScript" src="./commonRes.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="doc-style.css"/>
+
+
+<style type="text/css">
+.code {    
+	font-size: 11px; font-family: 
+	"Courier New", Courier, monospace;
+	}
+.codelgr {    
+  font-size: 12px; font-family: 
+	"Courier New", Courier, monospace;
+	}
+
+.BoldRedText {
+	FONT-WEIGHT: bold; COLOR: #CC0000; TEXT-DECORATION: none
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3366AA;
+  margin-top: 25px;
+  padding-bottom: 10px;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+}
+h3 {
+  margin-top: 25px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  
+}
+
+table {
+  border-collapse:collapse;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  width:100%;
+  margin-right: 4px; 
+  margin-left: 4px;
+}
+
+table.navcontainer, topnavcontainer {
+border:0; margin-right: 2px; margin-left: 2px; padding:0;vertical-align:bottom;
+
+}
+
+table.nested {
+  border-collapse:collapse;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+th {
+  background-color: #555555;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-align: center;
+  vertical-align:middle;
+  
+}
+th.nested {
+border:0; padding:0; text-align: center;
+}
+
+
+td {
+  font-size: 11px;
+  vertical-align: top;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
+td.no {font-size: 12px;}
+td.blue { background-color: #E6EDF6;}
+
+
+a.white:link {color: #ffffff}
+a.white:visited {color: #ffffff}
+a.white:hover {color: #ffffff; cursor:hand;}
+a.white:active {color: #ffffff}
+
+a.noline:link {color: #3366AA; text-decoration:none; }
+a.noline:visited {color: #3366AA; text-decoration:none;}
+a.noline:hover {color: #3366AA; cursor:hand; text-decoration:none;}
+a.noline:active {color: #3366AA; text-decoration:none;}
+
+
+p {font-size:12px; margin: 12px 72px 5px 0px; }
+p.nolead {margin: 3px 72px 5px 0px}
+
+.back {
+	font-size:9px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA; 
+}
+.back:link {color: #ffffff; text-decoration: none;}
+.back:visited {color: #ffffff}
+.back:hover {color: #ffffff; cursor:hand;}
+.back:active {color: #ffffff}
+
+.back2 {
+	font-size:11px; text-transform: none; FONT-WEIGHT: bold; COLOR: #3366AA; 
+}
+
+
+.top {
+	font-size:10px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA;
+}
+
+ul {
+  font-size: 12px;
+  vertical-align: top;
+}
+ul.small{font-size: 11px;}
+
+
+.blue {
+	background-color: #E6EDF6;
+}
+
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+<!-- ///*** start of content area ***/// -->
+
+<p class="back"><a href="using_QueryList_operation.html">Overview</a> | <a href="result-contextEntity_relationships.html">1</a> |<a href="result-entities.html">
+ 2
+</a> | 3</p>
+
+
+<h1>Enumerations</h1>
+
+
+
+
+<table width="70%">
+<tr><th>Enumeration</th><th>Type</th><th>Description</th></tr>
+
+<tr><td rowspan="4" vAlign="top"><a name="datastoreStatus"></a><strong>Datastore Status</strong></td><td>up</td><td>Accessible from all connected hosts</td></tr>
+<tr><td>down</td><td>Not accessible from all connected hosts</td></tr>
+<tr><td>degraded</td><td>Accessible from some connected hosts</td></tr>
+<tr><td>unknown</td><td>Unknown</td></tr>
+
+
+<tr><td rowspan="3" class="blue" vAlign="top"><a name="datastoreType"></a><strong>Datastore Volume Type</strong></td><td class="blue">local</td><td class="blue">Local file system</td></tr>
+<tr><td class="blue">nas</td><td class="blue">Network Attached Storage</td></tr>
+<tr><td class="blue">vmfs</td><td class="blue">VMware file system</td></tr>
+
+
+<tr><td rowspan="4" vAlign="top"><a name="multipathingStatus"></a><strong>Multipathing Status</strong></td>
+<td>up</td><td>Full redundancy</td></tr>
+<tr><td>degraded</td><td>Partial/No redundancy</td></tr>
+<tr><td>down</td><td>All paths down</td></tr>
+
+
+<tr><td>unknown</td><td>Unknown</td></tr>
+
+<tr><td rowspan="2" vAlign="top" class="blue"><a name="nasMountType"></a><strong>NAS Mount Type</strong></td><td class="blue">nfs</td><td class="blue">Network File System</td></tr>
+<tr><td class="blue">cifs</td><td class="blue">Common Internet File System</td></tr>
+
+<tr><td rowspan="3" vAlign="top"><a name="nasMountStatus"></a><strong>NAS Mount Status</strong></td><td>up</td><td>Accessible</td></tr>
+<tr><td>down</td><td>Not accessible</td></tr>
+<tr><td>unknown</td><td>Unknown</td></tr>
+
+<tr><td rowspan="5" vAlign="top" class="blue"><a name="scsiAdapterType"></a><strong>SCSI Adapter Type</strong></td><td class="blue">parallelScsi</td><td class="blue">Parallel SCSI</td></tr>
+<tr><td class="blue">fc</td><td class="blue">Fibre Channel</td></tr>
+<tr><td class="blue">fcoe</td><td class="blue">Fibre Channel over Ethernet</td></tr>
+<tr><td class="blue">iscsi</td><td class="blue">iSCSI</td></tr>
+<tr><td class="blue">block</td><td class="blue">Block devices</td></tr>
+
+<tr><td rowspan="3" vAlign="top"><a name="scsiAdapterStatus"></a><strong>SCSI Adapter Status</strong></td><td>up</td><td>Operational</td></tr>
+<tr><td>down</td><td>Not operational</td></tr>
+<tr><td>unknown</td><td>Unknown</td></tr>
+
+<tr><td rowspan="5" vAlign="top" class="blue"><a name="scsiPathActivityState"></a><strong>SCSI Path Activity State</strong></td><td class="blue">active</td><td class="blue">Operational and in use</td></tr>
+<tr><td class="blue">standby</td><td class="blue">Operational but not in use</td></tr>
+<tr><td class="blue">disabled</td><td class="blue">Disabled for operation</td></tr>
+<tr><td class="blue">dead</td><td class="blue">Dead and cannot be used for operation</td></tr>
+<tr><td class="blue">unknown</td><td class="blue">Unknown</td></tr>
+
+<tr><td rowspan="3" vAlign="top"><a name="scsiPathUsage"></a><strong>SCSI Path Usage</strong></td><td>up</td><td>Operational</td></tr>
+<tr><td>down</td><td>Not operational</td></tr>
+<tr><td>unknown</td><td>Unknown</td></tr>
+
+<tr><td rowspan="3" class="blue"><a name="scsiTargetStatus"></a><strong>SCSI Target Status</strong></td><td class="blue">up</td><td class="blue">Accessible</td></tr>
+<tr><td class="blue">down</td><td class="blue">Not accessible</td></tr>
+<tr><td class="blue">unknown</td><td class="blue">Unknown</td></tr>
+
+
+<tr><td rowspan="3" vAlign="top"><a name="scsiPathPreferred"></a><strong>SCSI Path Preferred</strong></td><td>yes</td><td>Preferred</td></tr>
+<tr><td>no</td><td>Not preferred</td></tr>
+<tr><td>unknown</td><td>Unknown</td></tr>
+
+
+
+<tr><td rowspan="4" vAlign="top"><a name="scsiVolumeStatus"></a><strong>Status of SCSI Volume</strong></td><td>up</td><td>Accessible from all connected hosts</td></tr>
+<tr><td>down</td><td>Not accessible from all connected hosts</td></tr>
+<tr><td>degraded</td><td>Accessible from some connected hosts</td></tr>
+<tr><td>unknown</td><td>Unknown</td></tr>
+
+<tr><td rowspan="13" vAlign="top" class="blue"><a name="vmFileType"></a><strong>VM File Type</strong></td><td class="blue">config</td><td class="blue">Config (vmx) file</td></tr>
+<tr><td class="blue">core</td><td class="blue">Core (core) file</td></tr>
+<tr><td class="blue">diskDescriptor</td><td class="blue">Disk descriptor (vmdk) file</td></tr>
+<tr><td class="blue">diskExtent</td><td class="blue">Disk extent (-flat/-delta/-s/-rdm/-rdmp.vmdk) file</td></tr>
+<tr><td class="blue">extendedConfig</td><td class="blue">Extended config (vmxf) file</td></tr>
+<tr><td class="blue">log</td><td class="blue">Log (log) file</td></tr>
+<tr><td class="blue">nvram</td><td class="blue">Non-volatile RAM (nvram) file</td></tr>
+<tr><td class="blue">screenshot</td><td class="blue">Screenshot file</td></tr>
+<tr><td class="blue">snapshotData</td><td class="blue">Snapshot data (vmsn) file</td></tr>
+<tr><td class="blue">snapshotList</td><td class="blue">Snapshot metadata (vmsd) file</td></tr>
+<tr><td class="blue">stat</td><td class="blue">Virtual machine statistics (stat) file</td></tr>
+<tr><td class="blue">suspend</td><td class="blue">Suspend (vmss) file</td></tr>
+<tr><td class="blue">swap</td><td class="blue">Swap (vswp/vmem) file</td></tr>
+</table>
+
+
+
+
+<p class="mini"><script language="javascript" type="text/javascript">document.write(ID_Copyright);</script><br/>
+<script language="javascript" type="text/javascript">document.write(ID_VersionInformation);</script></p>
+</p>
+
+
+
+</body>
+</html>

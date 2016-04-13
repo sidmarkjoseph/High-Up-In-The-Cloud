@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>vSphere WebServices SMS SDK JAX-WS Samples Readme</title>
+</head>
+<body>
+
+    <h1>
+        <span lang="en-us">vSphere WebServices SMS SDK JAX-WS Samples Readme</span></h1>
+    <ul>
+        <li><span lang="en-us"><a href="#build_run">Building and running samples</a></span><ul>
+            <li><span lang="en-us"><a href="#linux_firsttime">Linux first-time build notes</a></span></li>
+            <li><span lang="en-us"><a href="#using_smsjar">Using bundled sms.jar</a></span></li>
+            </ul>
+        </li>
+        <li><span lang="en-us"><a href="#samples_usage">Samples usage</a></span></li>
+    </ul>
+    <a name="build_run"></a><h3>
+        <span lang="en-us">Building and running samples</span></h3>
+    <p>
+        <span lang="en-us">The samples contained here are compiled and built to work 
+        with JAX-WS bundled with the JDK 1.6.</span></p>
+    <p>
+        <span lang="en-us">The environment variable JAVAHOME must be set to the base 
+        directory of a JDK 1.6 preferably b22</span></p>
+    <a name="linux_firsttime"></a><h4>
+        <span lang="en-us">Linux - build.sh, run.sh and clean.sh for Line Endings 
+        and Execute permission:</span></h4>
+    <p>
+        build.sh, run.sh and clean.sh have DOS-style line endings and this does not work 
+        when running these scripts on Linux.</p>
+    <p>
+        Please run dos2unix on these before attempting to use them.</p>
+    <p>
+        Please set Execute permission on these &quot;.sh&quot; files using &quot;chmod u+awx *.sh&quot;
+    </p>
+    <a name="using_smsjar"></a><h4>
+        <span lang="en-us">Using the sms.jar if you use the sms.jar bundled 
+        here</span></h4>
+    <p>
+        JAX-WS introduces a dependency on the WSDL used to generate the stubs, and 
+        requires the WSDL be present. If -wsdlLocation is specified, then WSDL must be 
+        present in the exact location specified by -wsdlLocation when the stubs were 
+        generated.</p>
+    <p>
+        Note: WSDL implies WSDL files and associated XSD files.</p>
+    <p>
+        For the purpose of the SDK, the -wsdlLocation is smsService.wsdl, and, the WSDL 
+        is copied into the sms.jar so it is always available.</p>
+    <p>
+        This can be seen in the build.bat and build.sh files that are used to build the 
+        samples.
+    </p>
+    <a name="samples_usage"><h3>
+        <span lang="en-us">Samples usage</span></h3>
+    <p>
+        <span lang="en-us">Usage information for all samples is present in javadoc 
+        for the main sample class here:</span></p>
+    <p>
+        <span lang="en-us"><a href="../../docs/java/JAXWS/samples/javadoc/index.html">
+        JAX-WS Samples Javadoc</a></span></p>
+
+</body>
+</html>

@@ -1,0 +1,2998 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+   Copyright 2005-2013 VMware, Inc.  All rights reserved.
+-->
+<definitions targetNamespace="urn:eam"
+   xmlns="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:eam="urn:eam"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+   <types>
+      <schema
+         targetNamespace="urn:eam"
+         xmlns="http://www.w3.org/2001/XMLSchema"
+         xmlns:eam="urn:eam"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:vim25="urn:vim25"
+         xmlns:reflect="urn:reflect"
+         elementFormDefault="qualified"
+      >
+         <import namespace="urn:vim25" schemaLocation="query-types.xsd" />
+         <import namespace="urn:vim25" schemaLocation="vim-types.xsd" />
+         <import namespace="urn:vim25" schemaLocation="core-types.xsd" />
+         <import namespace="urn:reflect" schemaLocation="reflect-types.xsd" />
+         <include schemaLocation="eam-messagetypes.xsd" />
+         <element name="versionURI" type="xsd:string" />
+         <element name="QuerySolutionId"  type="eam:QuerySolutionIdRequestType" />
+         <element name="QuerySolutionIdResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="QueryConfig"  type="eam:QueryConfigRequestType" />
+         <element name="QueryConfigResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="eam:AgencyConfigInfo" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="Update"  type="eam:UpdateRequestType" />
+         <element name="UpdateResponse">
+            <complexType />
+         </element>
+         <element name="AgencyQueryRuntime"  type="eam:AgencyQueryRuntimeRequestType" />
+         <element name="AgencyQueryRuntimeResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="eam:EamObjectRuntimeInfo" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="QueryAgent"  type="eam:QueryAgentRequestType" />
+         <element name="QueryAgentResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="RegisterAgentVm"  type="eam:RegisterAgentVmRequestType" />
+         <element name="RegisterAgentVmResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:ManagedObjectReference" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="UnregisterAgentVm"  type="eam:UnregisterAgentVmRequestType" />
+         <element name="UnregisterAgentVmResponse">
+            <complexType />
+         </element>
+         <element name="Enable"  type="eam:EnableRequestType" />
+         <element name="EnableResponse">
+            <complexType />
+         </element>
+         <element name="Disable"  type="eam:DisableRequestType" />
+         <element name="DisableResponse">
+            <complexType />
+         </element>
+         <element name="Uninstall"  type="eam:UninstallRequestType" />
+         <element name="UninstallResponse">
+            <complexType />
+         </element>
+         <element name="DestroyAgency"  type="eam:DestroyAgencyRequestType" />
+         <element name="DestroyAgencyResponse">
+            <complexType />
+         </element>
+         <element name="AddIssue"  type="eam:AddIssueRequestType" />
+         <element name="AddIssueResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="eam:Issue" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="AgentQueryRuntime"  type="eam:AgentQueryRuntimeRequestType" />
+         <element name="AgentQueryRuntimeResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="eam:AgentRuntimeInfo" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="MarkAsAvailable"  type="eam:MarkAsAvailableRequestType" />
+         <element name="MarkAsAvailableResponse">
+            <complexType />
+         </element>
+         <element name="AgentQueryConfig"  type="eam:AgentQueryConfigRequestType" />
+         <element name="AgentQueryConfigResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="eam:AgentConfigInfo" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="Resolve"  type="eam:ResolveRequestType" />
+         <element name="ResolveResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:int" minOccurs="0" maxOccurs="unbounded" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="ResolveAll"  type="eam:ResolveAllRequestType" />
+         <element name="ResolveAllResponse">
+            <complexType />
+         </element>
+         <element name="QueryIssue"  type="eam:QueryIssueRequestType" />
+         <element name="QueryIssueResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="eam:Issue" minOccurs="0" maxOccurs="unbounded" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="QueryAgency"  type="eam:QueryAgencyRequestType" />
+         <element name="QueryAgencyResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="CreateAgency"  type="eam:CreateAgencyRequestType" />
+         <element name="CreateAgencyResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:ManagedObjectReference" />
+               </sequence>
+            </complexType>
+         </element>
+         <element name="ScanForUnknownAgentVm"  type="eam:ScanForUnknownAgentVmRequestType" />
+         <element name="ScanForUnknownAgentVmResponse">
+            <complexType />
+         </element>
+         <element name="EamFaultFault" type="eam:EamFault"/>
+         <element name="EamRuntimeFaultFault" type="eam:EamRuntimeFault"/>
+         <element name="InvalidAgencyScopeFault" type="eam:InvalidAgencyScope"/>
+         <element name="InvalidAgentConfigurationFault" type="eam:InvalidAgentConfiguration"/>
+         <element name="EamInvalidLoginFault" type="eam:EamInvalidLogin"/>
+         <element name="InvalidUrlFault" type="eam:InvalidUrl"/>
+         <element name="NoConnectionToVCenterFault" type="eam:NoConnectionToVCenter"/>
+         <element name="NotAuthorizedFault" type="eam:NotAuthorized"/>
+         <element name="ActiveDirectoryFaultFault" type="vim25:ActiveDirectoryFault"/>
+         <element name="AdminDisabledFault" type="vim25:AdminDisabled"/>
+         <element name="AdminNotDisabledFault" type="vim25:AdminNotDisabled"/>
+         <element name="AffinityConfiguredFault" type="vim25:AffinityConfigured"/>
+         <element name="AgentInstallFailedFault" type="vim25:AgentInstallFailed"/>
+         <element name="AlreadyBeingManagedFault" type="vim25:AlreadyBeingManaged"/>
+         <element name="AlreadyConnectedFault" type="vim25:AlreadyConnected"/>
+         <element name="AlreadyExistsFault" type="vim25:AlreadyExists"/>
+         <element name="AlreadyUpgradedFault" type="vim25:AlreadyUpgraded"/>
+         <element name="AnswerFileUpdateFailedFault" type="vim25:AnswerFileUpdateFailed"/>
+         <element name="ApplicationQuiesceFaultFault" type="vim25:ApplicationQuiesceFault"/>
+         <element name="AuthMinimumAdminPermissionFault" type="vim25:AuthMinimumAdminPermission"/>
+         <element name="BlockedByFirewallFault" type="vim25:BlockedByFirewall"/>
+         <element name="CAMServerRefusedConnectionFault" type="vim25:CAMServerRefusedConnection"/>
+         <element name="CannotAccessFileFault" type="vim25:CannotAccessFile"/>
+         <element name="CannotAccessLocalSourceFault" type="vim25:CannotAccessLocalSource"/>
+         <element name="CannotAccessNetworkFault" type="vim25:CannotAccessNetwork"/>
+         <element name="CannotAccessVmComponentFault" type="vim25:CannotAccessVmComponent"/>
+         <element name="CannotAccessVmConfigFault" type="vim25:CannotAccessVmConfig"/>
+         <element name="CannotAccessVmDeviceFault" type="vim25:CannotAccessVmDevice"/>
+         <element name="CannotAccessVmDiskFault" type="vim25:CannotAccessVmDisk"/>
+         <element name="CannotAddHostWithFTVmAsStandaloneFault" type="vim25:CannotAddHostWithFTVmAsStandalone"/>
+         <element name="CannotAddHostWithFTVmToDifferentClusterFault" type="vim25:CannotAddHostWithFTVmToDifferentCluster"/>
+         <element name="CannotAddHostWithFTVmToNonHAClusterFault" type="vim25:CannotAddHostWithFTVmToNonHACluster"/>
+         <element name="CannotChangeDrsBehaviorForFtSecondaryFault" type="vim25:CannotChangeDrsBehaviorForFtSecondary"/>
+         <element name="CannotChangeHaSettingsForFtSecondaryFault" type="vim25:CannotChangeHaSettingsForFtSecondary"/>
+         <element name="CannotCreateFileFault" type="vim25:CannotCreateFile"/>
+         <element name="CannotDecryptPasswordsFault" type="vim25:CannotDecryptPasswords"/>
+         <element name="CannotDeleteFileFault" type="vim25:CannotDeleteFile"/>
+         <element name="CannotDisableDrsOnClustersWithVAppsFault" type="vim25:CannotDisableDrsOnClustersWithVApps"/>
+         <element name="CannotDisableSnapshotFault" type="vim25:CannotDisableSnapshot"/>
+         <element name="CannotDisconnectHostWithFaultToleranceVmFault" type="vim25:CannotDisconnectHostWithFaultToleranceVm"/>
+         <element name="CannotModifyConfigCpuRequirementsFault" type="vim25:CannotModifyConfigCpuRequirements"/>
+         <element name="CannotMoveFaultToleranceVmFault" type="vim25:CannotMoveFaultToleranceVm"/>
+         <element name="CannotMoveHostWithFaultToleranceVmFault" type="vim25:CannotMoveHostWithFaultToleranceVm"/>
+         <element name="CannotMoveVmWithDeltaDiskFault" type="vim25:CannotMoveVmWithDeltaDisk"/>
+         <element name="CannotMoveVmWithNativeDeltaDiskFault" type="vim25:CannotMoveVmWithNativeDeltaDisk"/>
+         <element name="CannotPowerOffVmInClusterFault" type="vim25:CannotPowerOffVmInCluster"/>
+         <element name="ClockSkewFault" type="vim25:ClockSkew"/>
+         <element name="CloneFromSnapshotNotSupportedFault" type="vim25:CloneFromSnapshotNotSupported"/>
+         <element name="ConcurrentAccessFault" type="vim25:ConcurrentAccess"/>
+         <element name="ConnectedIsoFault" type="vim25:ConnectedIso"/>
+         <element name="CpuCompatibilityUnknownFault" type="vim25:CpuCompatibilityUnknown"/>
+         <element name="CpuHotPlugNotSupportedFault" type="vim25:CpuHotPlugNotSupported"/>
+         <element name="CpuIncompatibleFault" type="vim25:CpuIncompatible"/>
+         <element name="CpuIncompatible1ECXFault" type="vim25:CpuIncompatible1ECX"/>
+         <element name="CpuIncompatible81EDXFault" type="vim25:CpuIncompatible81EDX"/>
+         <element name="CustomizationFaultFault" type="vim25:CustomizationFault"/>
+         <element name="CustomizationPendingFault" type="vim25:CustomizationPending"/>
+         <element name="DVPortNotSupportedFault" type="vim25:DVPortNotSupported"/>
+         <element name="DasConfigFaultFault" type="vim25:DasConfigFault"/>
+         <element name="DatabaseErrorFault" type="vim25:DatabaseError"/>
+         <element name="DatacenterMismatchFault" type="vim25:DatacenterMismatch"/>
+         <element name="DatastoreNotWritableOnHostFault" type="vim25:DatastoreNotWritableOnHost"/>
+         <element name="DeltaDiskFormatNotSupportedFault" type="vim25:DeltaDiskFormatNotSupported"/>
+         <element name="DestinationSwitchFullFault" type="vim25:DestinationSwitchFull"/>
+         <element name="DeviceBackingNotSupportedFault" type="vim25:DeviceBackingNotSupported"/>
+         <element name="DeviceControllerNotSupportedFault" type="vim25:DeviceControllerNotSupported"/>
+         <element name="DeviceHotPlugNotSupportedFault" type="vim25:DeviceHotPlugNotSupported"/>
+         <element name="DeviceNotFoundFault" type="vim25:DeviceNotFound"/>
+         <element name="DeviceNotSupportedFault" type="vim25:DeviceNotSupported"/>
+         <element name="DeviceUnsupportedForVmPlatformFault" type="vim25:DeviceUnsupportedForVmPlatform"/>
+         <element name="DeviceUnsupportedForVmVersionFault" type="vim25:DeviceUnsupportedForVmVersion"/>
+         <element name="DirectoryNotEmptyFault" type="vim25:DirectoryNotEmpty"/>
+         <element name="DisableAdminNotSupportedFault" type="vim25:DisableAdminNotSupported"/>
+         <element name="DisallowedChangeByServiceFault" type="vim25:DisallowedChangeByService"/>
+         <element name="DisallowedDiskModeChangeFault" type="vim25:DisallowedDiskModeChange"/>
+         <element name="DisallowedMigrationDeviceAttachedFault" type="vim25:DisallowedMigrationDeviceAttached"/>
+         <element name="DisallowedOperationOnFailoverHostFault" type="vim25:DisallowedOperationOnFailoverHost"/>
+         <element name="DiskMoveTypeNotSupportedFault" type="vim25:DiskMoveTypeNotSupported"/>
+         <element name="DiskNotSupportedFault" type="vim25:DiskNotSupported"/>
+         <element name="DomainNotFoundFault" type="vim25:DomainNotFound"/>
+         <element name="DrsDisabledOnVmFault" type="vim25:DrsDisabledOnVm"/>
+         <element name="DrsVmotionIncompatibleFaultFault" type="vim25:DrsVmotionIncompatibleFault"/>
+         <element name="DuplicateNameFault" type="vim25:DuplicateName"/>
+         <element name="DvsFaultFault" type="vim25:DvsFault"/>
+         <element name="DvsNotAuthorizedFault" type="vim25:DvsNotAuthorized"/>
+         <element name="DvsOperationBulkFaultFault" type="vim25:DvsOperationBulkFault"/>
+         <element name="DvsScopeViolatedFault" type="vim25:DvsScopeViolated"/>
+         <element name="EVCAdmissionFailedFault" type="vim25:EVCAdmissionFailed"/>
+         <element name="EVCAdmissionFailedCPUFeaturesForModeFault" type="vim25:EVCAdmissionFailedCPUFeaturesForMode"/>
+         <element name="EVCAdmissionFailedCPUModelFault" type="vim25:EVCAdmissionFailedCPUModel"/>
+         <element name="EVCAdmissionFailedCPUModelForModeFault" type="vim25:EVCAdmissionFailedCPUModelForMode"/>
+         <element name="EVCAdmissionFailedCPUVendorFault" type="vim25:EVCAdmissionFailedCPUVendor"/>
+         <element name="EVCAdmissionFailedCPUVendorUnknownFault" type="vim25:EVCAdmissionFailedCPUVendorUnknown"/>
+         <element name="EVCAdmissionFailedHostDisconnectedFault" type="vim25:EVCAdmissionFailedHostDisconnected"/>
+         <element name="EVCAdmissionFailedHostSoftwareFault" type="vim25:EVCAdmissionFailedHostSoftware"/>
+         <element name="EVCAdmissionFailedHostSoftwareForModeFault" type="vim25:EVCAdmissionFailedHostSoftwareForMode"/>
+         <element name="EVCAdmissionFailedVmActiveFault" type="vim25:EVCAdmissionFailedVmActive"/>
+         <element name="EightHostLimitViolatedFault" type="vim25:EightHostLimitViolated"/>
+         <element name="ExpiredAddonLicenseFault" type="vim25:ExpiredAddonLicense"/>
+         <element name="ExpiredEditionLicenseFault" type="vim25:ExpiredEditionLicense"/>
+         <element name="ExpiredFeatureLicenseFault" type="vim25:ExpiredFeatureLicense"/>
+         <element name="ExtendedFaultFault" type="vim25:ExtendedFault"/>
+         <element name="FailToEnableSPBMFault" type="vim25:FailToEnableSPBM"/>
+         <element name="FailToLockFaultToleranceVMsFault" type="vim25:FailToLockFaultToleranceVMs"/>
+         <element name="FaultToleranceAntiAffinityViolatedFault" type="vim25:FaultToleranceAntiAffinityViolated"/>
+         <element name="FaultToleranceCannotEditMemFault" type="vim25:FaultToleranceCannotEditMem"/>
+         <element name="FaultToleranceCpuIncompatibleFault" type="vim25:FaultToleranceCpuIncompatible"/>
+         <element name="FaultToleranceNeedsThickDiskFault" type="vim25:FaultToleranceNeedsThickDisk"/>
+         <element name="FaultToleranceNotLicensedFault" type="vim25:FaultToleranceNotLicensed"/>
+         <element name="FaultToleranceNotSameBuildFault" type="vim25:FaultToleranceNotSameBuild"/>
+         <element name="FaultTolerancePrimaryPowerOnNotAttemptedFault" type="vim25:FaultTolerancePrimaryPowerOnNotAttempted"/>
+         <element name="FaultToleranceVmNotDasProtectedFault" type="vim25:FaultToleranceVmNotDasProtected"/>
+         <element name="FcoeFaultFault" type="vim25:FcoeFault"/>
+         <element name="FcoeFaultPnicHasNoPortSetFault" type="vim25:FcoeFaultPnicHasNoPortSet"/>
+         <element name="FileAlreadyExistsFault" type="vim25:FileAlreadyExists"/>
+         <element name="FileBackedPortNotSupportedFault" type="vim25:FileBackedPortNotSupported"/>
+         <element name="FileFaultFault" type="vim25:FileFault"/>
+         <element name="FileLockedFault" type="vim25:FileLocked"/>
+         <element name="FileNameTooLongFault" type="vim25:FileNameTooLong"/>
+         <element name="FileNotFoundFault" type="vim25:FileNotFound"/>
+         <element name="FileNotWritableFault" type="vim25:FileNotWritable"/>
+         <element name="FileTooLargeFault" type="vim25:FileTooLarge"/>
+         <element name="FilesystemQuiesceFaultFault" type="vim25:FilesystemQuiesceFault"/>
+         <element name="FtIssuesOnHostFault" type="vim25:FtIssuesOnHost"/>
+         <element name="FullStorageVMotionNotSupportedFault" type="vim25:FullStorageVMotionNotSupported"/>
+         <element name="GenericDrsFaultFault" type="vim25:GenericDrsFault"/>
+         <element name="GenericVmConfigFaultFault" type="vim25:GenericVmConfigFault"/>
+         <element name="GuestAuthenticationChallengeFault" type="vim25:GuestAuthenticationChallenge"/>
+         <element name="GuestComponentsOutOfDateFault" type="vim25:GuestComponentsOutOfDate"/>
+         <element name="GuestOperationsFaultFault" type="vim25:GuestOperationsFault"/>
+         <element name="GuestOperationsUnavailableFault" type="vim25:GuestOperationsUnavailable"/>
+         <element name="GuestPermissionDeniedFault" type="vim25:GuestPermissionDenied"/>
+         <element name="GuestProcessNotFoundFault" type="vim25:GuestProcessNotFound"/>
+         <element name="HAErrorsAtDestFault" type="vim25:HAErrorsAtDest"/>
+         <element name="HostAccessRestrictedToManagementServerFault" type="vim25:HostAccessRestrictedToManagementServer"/>
+         <element name="HostConfigFailedFault" type="vim25:HostConfigFailed"/>
+         <element name="HostConfigFaultFault" type="vim25:HostConfigFault"/>
+         <element name="HostConnectFaultFault" type="vim25:HostConnectFault"/>
+         <element name="HostInDomainFault" type="vim25:HostInDomain"/>
+         <element name="HostIncompatibleForFaultToleranceFault" type="vim25:HostIncompatibleForFaultTolerance"/>
+         <element name="HostIncompatibleForRecordReplayFault" type="vim25:HostIncompatibleForRecordReplay"/>
+         <element name="HostInventoryFullFault" type="vim25:HostInventoryFull"/>
+         <element name="HostPowerOpFailedFault" type="vim25:HostPowerOpFailed"/>
+         <element name="HotSnapshotMoveNotSupportedFault" type="vim25:HotSnapshotMoveNotSupported"/>
+         <element name="IDEDiskNotSupportedFault" type="vim25:IDEDiskNotSupported"/>
+         <element name="IORMNotSupportedHostOnDatastoreFault" type="vim25:IORMNotSupportedHostOnDatastore"/>
+         <element name="InUseFeatureManipulationDisallowedFault" type="vim25:InUseFeatureManipulationDisallowed"/>
+         <element name="InaccessibleDatastoreFault" type="vim25:InaccessibleDatastore"/>
+         <element name="IncompatibleDefaultDeviceFault" type="vim25:IncompatibleDefaultDevice"/>
+         <element name="IncompatibleHostForFtSecondaryFault" type="vim25:IncompatibleHostForFtSecondary"/>
+         <element name="IncompatibleSettingFault" type="vim25:IncompatibleSetting"/>
+         <element name="IncorrectFileTypeFault" type="vim25:IncorrectFileType"/>
+         <element name="IncorrectHostInformationFault" type="vim25:IncorrectHostInformation"/>
+         <element name="IndependentDiskVMotionNotSupportedFault" type="vim25:IndependentDiskVMotionNotSupported"/>
+         <element name="InsufficientAgentVmsDeployedFault" type="vim25:InsufficientAgentVmsDeployed"/>
+         <element name="InsufficientCpuResourcesFaultFault" type="vim25:InsufficientCpuResourcesFault"/>
+         <element name="InsufficientFailoverResourcesFaultFault" type="vim25:InsufficientFailoverResourcesFault"/>
+         <element name="InsufficientHostCapacityFaultFault" type="vim25:InsufficientHostCapacityFault"/>
+         <element name="InsufficientHostCpuCapacityFaultFault" type="vim25:InsufficientHostCpuCapacityFault"/>
+         <element name="InsufficientHostMemoryCapacityFaultFault" type="vim25:InsufficientHostMemoryCapacityFault"/>
+         <element name="InsufficientMemoryResourcesFaultFault" type="vim25:InsufficientMemoryResourcesFault"/>
+         <element name="InsufficientPerCpuCapacityFault" type="vim25:InsufficientPerCpuCapacity"/>
+         <element name="InsufficientResourcesFaultFault" type="vim25:InsufficientResourcesFault"/>
+         <element name="InsufficientStandbyCpuResourceFault" type="vim25:InsufficientStandbyCpuResource"/>
+         <element name="InsufficientStandbyMemoryResourceFault" type="vim25:InsufficientStandbyMemoryResource"/>
+         <element name="InsufficientStandbyResourceFault" type="vim25:InsufficientStandbyResource"/>
+         <element name="InsufficientStorageSpaceFault" type="vim25:InsufficientStorageSpace"/>
+         <element name="InvalidAffinitySettingFaultFault" type="vim25:InvalidAffinitySettingFault"/>
+         <element name="InvalidBmcRoleFault" type="vim25:InvalidBmcRole"/>
+         <element name="InvalidBundleFault" type="vim25:InvalidBundle"/>
+         <element name="InvalidCAMCertificateFault" type="vim25:InvalidCAMCertificate"/>
+         <element name="InvalidCAMServerFault" type="vim25:InvalidCAMServer"/>
+         <element name="InvalidClientCertificateFault" type="vim25:InvalidClientCertificate"/>
+         <element name="InvalidControllerFault" type="vim25:InvalidController"/>
+         <element name="InvalidDasRestartPriorityForFtVmFault" type="vim25:InvalidDasRestartPriorityForFtVm"/>
+         <element name="InvalidDatastoreFault" type="vim25:InvalidDatastore"/>
+         <element name="InvalidDatastorePathFault" type="vim25:InvalidDatastorePath"/>
+         <element name="InvalidDatastoreStateFault" type="vim25:InvalidDatastoreState"/>
+         <element name="InvalidDeviceBackingFault" type="vim25:InvalidDeviceBacking"/>
+         <element name="InvalidDeviceOperationFault" type="vim25:InvalidDeviceOperation"/>
+         <element name="InvalidDeviceSpecFault" type="vim25:InvalidDeviceSpec"/>
+         <element name="InvalidDiskFormatFault" type="vim25:InvalidDiskFormat"/>
+         <element name="InvalidDrsBehaviorForFtVmFault" type="vim25:InvalidDrsBehaviorForFtVm"/>
+         <element name="InvalidEditionLicenseFault" type="vim25:InvalidEditionLicense"/>
+         <element name="InvalidEventFault" type="vim25:InvalidEvent"/>
+         <element name="InvalidFolderFault" type="vim25:InvalidFolder"/>
+         <element name="InvalidFormatFault" type="vim25:InvalidFormat"/>
+         <element name="InvalidGuestLoginFault" type="vim25:InvalidGuestLogin"/>
+         <element name="InvalidHostNameFault" type="vim25:InvalidHostName"/>
+         <element name="InvalidHostStateFault" type="vim25:InvalidHostState"/>
+         <element name="InvalidIndexArgumentFault" type="vim25:InvalidIndexArgument"/>
+         <element name="InvalidIpmiLoginInfoFault" type="vim25:InvalidIpmiLoginInfo"/>
+         <element name="InvalidIpmiMacAddressFault" type="vim25:InvalidIpmiMacAddress"/>
+         <element name="InvalidLicenseFault" type="vim25:InvalidLicense"/>
+         <element name="InvalidLocaleFault" type="vim25:InvalidLocale"/>
+         <element name="InvalidLoginFault" type="vim25:InvalidLogin"/>
+         <element name="InvalidNameFault" type="vim25:InvalidName"/>
+         <element name="InvalidNasCredentialsFault" type="vim25:InvalidNasCredentials"/>
+         <element name="InvalidNetworkInTypeFault" type="vim25:InvalidNetworkInType"/>
+         <element name="InvalidNetworkResourceFault" type="vim25:InvalidNetworkResource"/>
+         <element name="InvalidOperationOnSecondaryVmFault" type="vim25:InvalidOperationOnSecondaryVm"/>
+         <element name="InvalidPowerStateFault" type="vim25:InvalidPowerState"/>
+         <element name="InvalidPrivilegeFault" type="vim25:InvalidPrivilege"/>
+         <element name="InvalidProfileReferenceHostFault" type="vim25:InvalidProfileReferenceHost"/>
+         <element name="InvalidPropertyTypeFault" type="vim25:InvalidPropertyType"/>
+         <element name="InvalidPropertyValueFault" type="vim25:InvalidPropertyValue"/>
+         <element name="InvalidResourcePoolStructureFaultFault" type="vim25:InvalidResourcePoolStructureFault"/>
+         <element name="InvalidSnapshotFormatFault" type="vim25:InvalidSnapshotFormat"/>
+         <element name="InvalidStateFault" type="vim25:InvalidState"/>
+         <element name="InvalidVmConfigFault" type="vim25:InvalidVmConfig"/>
+         <element name="InventoryHasStandardAloneHostsFault" type="vim25:InventoryHasStandardAloneHosts"/>
+         <element name="IpHostnameGeneratorErrorFault" type="vim25:IpHostnameGeneratorError"/>
+         <element name="IscsiFaultFault" type="vim25:IscsiFault"/>
+         <element name="IscsiFaultInvalidVnicFault" type="vim25:IscsiFaultInvalidVnic"/>
+         <element name="IscsiFaultPnicInUseFault" type="vim25:IscsiFaultPnicInUse"/>
+         <element name="IscsiFaultVnicAlreadyBoundFault" type="vim25:IscsiFaultVnicAlreadyBound"/>
+         <element name="IscsiFaultVnicHasActivePathsFault" type="vim25:IscsiFaultVnicHasActivePaths"/>
+         <element name="IscsiFaultVnicHasMultipleUplinksFault" type="vim25:IscsiFaultVnicHasMultipleUplinks"/>
+         <element name="IscsiFaultVnicHasNoUplinksFault" type="vim25:IscsiFaultVnicHasNoUplinks"/>
+         <element name="IscsiFaultVnicHasWrongUplinkFault" type="vim25:IscsiFaultVnicHasWrongUplink"/>
+         <element name="IscsiFaultVnicInUseFault" type="vim25:IscsiFaultVnicInUse"/>
+         <element name="IscsiFaultVnicIsLastPathFault" type="vim25:IscsiFaultVnicIsLastPath"/>
+         <element name="IscsiFaultVnicNotBoundFault" type="vim25:IscsiFaultVnicNotBound"/>
+         <element name="IscsiFaultVnicNotFoundFault" type="vim25:IscsiFaultVnicNotFound"/>
+         <element name="LargeRDMConversionNotSupportedFault" type="vim25:LargeRDMConversionNotSupported"/>
+         <element name="LargeRDMNotSupportedOnDatastoreFault" type="vim25:LargeRDMNotSupportedOnDatastore"/>
+         <element name="LegacyNetworkInterfaceInUseFault" type="vim25:LegacyNetworkInterfaceInUse"/>
+         <element name="LicenseAssignmentFailedFault" type="vim25:LicenseAssignmentFailed"/>
+         <element name="LicenseDowngradeDisallowedFault" type="vim25:LicenseDowngradeDisallowed"/>
+         <element name="LicenseEntityNotFoundFault" type="vim25:LicenseEntityNotFound"/>
+         <element name="LicenseExpiredFault" type="vim25:LicenseExpired"/>
+         <element name="LicenseKeyEntityMismatchFault" type="vim25:LicenseKeyEntityMismatch"/>
+         <element name="LicenseRestrictedFault" type="vim25:LicenseRestricted"/>
+         <element name="LicenseServerUnavailableFault" type="vim25:LicenseServerUnavailable"/>
+         <element name="LicenseSourceUnavailableFault" type="vim25:LicenseSourceUnavailable"/>
+         <element name="LimitExceededFault" type="vim25:LimitExceeded"/>
+         <element name="LinuxVolumeNotCleanFault" type="vim25:LinuxVolumeNotClean"/>
+         <element name="LogBundlingFailedFault" type="vim25:LogBundlingFailed"/>
+         <element name="MaintenanceModeFileMoveFault" type="vim25:MaintenanceModeFileMove"/>
+         <element name="MemoryHotPlugNotSupportedFault" type="vim25:MemoryHotPlugNotSupported"/>
+         <element name="MemorySizeNotRecommendedFault" type="vim25:MemorySizeNotRecommended"/>
+         <element name="MemorySizeNotSupportedFault" type="vim25:MemorySizeNotSupported"/>
+         <element name="MemorySizeNotSupportedByDatastoreFault" type="vim25:MemorySizeNotSupportedByDatastore"/>
+         <element name="MemorySnapshotOnIndependentDiskFault" type="vim25:MemorySnapshotOnIndependentDisk"/>
+         <element name="MethodAlreadyDisabledFaultFault" type="vim25:MethodAlreadyDisabledFault"/>
+         <element name="MethodDisabledFault" type="vim25:MethodDisabled"/>
+         <element name="MigrationDisabledFault" type="vim25:MigrationDisabled"/>
+         <element name="MigrationFaultFault" type="vim25:MigrationFault"/>
+         <element name="MigrationFeatureNotSupportedFault" type="vim25:MigrationFeatureNotSupported"/>
+         <element name="MigrationNotReadyFault" type="vim25:MigrationNotReady"/>
+         <element name="MismatchedBundleFault" type="vim25:MismatchedBundle"/>
+         <element name="MismatchedNetworkPoliciesFault" type="vim25:MismatchedNetworkPolicies"/>
+         <element name="MismatchedVMotionNetworkNamesFault" type="vim25:MismatchedVMotionNetworkNames"/>
+         <element name="MissingBmcSupportFault" type="vim25:MissingBmcSupport"/>
+         <element name="MissingControllerFault" type="vim25:MissingController"/>
+         <element name="MissingIpPoolFault" type="vim25:MissingIpPool"/>
+         <element name="MissingLinuxCustResourcesFault" type="vim25:MissingLinuxCustResources"/>
+         <element name="MissingNetworkIpConfigFault" type="vim25:MissingNetworkIpConfig"/>
+         <element name="MissingPowerOffConfigurationFault" type="vim25:MissingPowerOffConfiguration"/>
+         <element name="MissingPowerOnConfigurationFault" type="vim25:MissingPowerOnConfiguration"/>
+         <element name="MissingWindowsCustResourcesFault" type="vim25:MissingWindowsCustResources"/>
+         <element name="MksConnectionLimitReachedFault" type="vim25:MksConnectionLimitReached"/>
+         <element name="MountErrorFault" type="vim25:MountError"/>
+         <element name="MultipleCertificatesVerifyFaultFault" type="vim25:MultipleCertificatesVerifyFault"/>
+         <element name="MultipleSnapshotsNotSupportedFault" type="vim25:MultipleSnapshotsNotSupported"/>
+         <element name="NasConfigFaultFault" type="vim25:NasConfigFault"/>
+         <element name="NasConnectionLimitReachedFault" type="vim25:NasConnectionLimitReached"/>
+         <element name="NasSessionCredentialConflictFault" type="vim25:NasSessionCredentialConflict"/>
+         <element name="NasVolumeNotMountedFault" type="vim25:NasVolumeNotMounted"/>
+         <element name="NetworkCopyFaultFault" type="vim25:NetworkCopyFault"/>
+         <element name="NetworkInaccessibleFault" type="vim25:NetworkInaccessible"/>
+         <element name="NetworksMayNotBeTheSameFault" type="vim25:NetworksMayNotBeTheSame"/>
+         <element name="NicSettingMismatchFault" type="vim25:NicSettingMismatch"/>
+         <element name="NoActiveHostInClusterFault" type="vim25:NoActiveHostInCluster"/>
+         <element name="NoAvailableIpFault" type="vim25:NoAvailableIp"/>
+         <element name="NoClientCertificateFault" type="vim25:NoClientCertificate"/>
+         <element name="NoCompatibleDatastoreFault" type="vim25:NoCompatibleDatastore"/>
+         <element name="NoCompatibleHardAffinityHostFault" type="vim25:NoCompatibleHardAffinityHost"/>
+         <element name="NoCompatibleHostFault" type="vim25:NoCompatibleHost"/>
+         <element name="NoCompatibleHostWithAccessToDeviceFault" type="vim25:NoCompatibleHostWithAccessToDevice"/>
+         <element name="NoCompatibleSoftAffinityHostFault" type="vim25:NoCompatibleSoftAffinityHost"/>
+         <element name="NoConnectedDatastoreFault" type="vim25:NoConnectedDatastore"/>
+         <element name="NoDiskFoundFault" type="vim25:NoDiskFound"/>
+         <element name="NoDiskSpaceFault" type="vim25:NoDiskSpace"/>
+         <element name="NoDisksToCustomizeFault" type="vim25:NoDisksToCustomize"/>
+         <element name="NoGatewayFault" type="vim25:NoGateway"/>
+         <element name="NoGuestHeartbeatFault" type="vim25:NoGuestHeartbeat"/>
+         <element name="NoHostFault" type="vim25:NoHost"/>
+         <element name="NoHostSuitableForFtSecondaryFault" type="vim25:NoHostSuitableForFtSecondary"/>
+         <element name="NoLicenseServerConfiguredFault" type="vim25:NoLicenseServerConfigured"/>
+         <element name="NoPeerHostFoundFault" type="vim25:NoPeerHostFound"/>
+         <element name="NoPermissionFault" type="vim25:NoPermission"/>
+         <element name="NoPermissionOnADFault" type="vim25:NoPermissionOnAD"/>
+         <element name="NoPermissionOnHostFault" type="vim25:NoPermissionOnHost"/>
+         <element name="NoPermissionOnNasVolumeFault" type="vim25:NoPermissionOnNasVolume"/>
+         <element name="NoSubjectNameFault" type="vim25:NoSubjectName"/>
+         <element name="NoVcManagedIpConfiguredFault" type="vim25:NoVcManagedIpConfigured"/>
+         <element name="NoVirtualNicFault" type="vim25:NoVirtualNic"/>
+         <element name="NoVmInVAppFault" type="vim25:NoVmInVApp"/>
+         <element name="NonADUserRequiredFault" type="vim25:NonADUserRequired"/>
+         <element name="NonHomeRDMVMotionNotSupportedFault" type="vim25:NonHomeRDMVMotionNotSupported"/>
+         <element name="NonPersistentDisksNotSupportedFault" type="vim25:NonPersistentDisksNotSupported"/>
+         <element name="NotADirectoryFault" type="vim25:NotADirectory"/>
+         <element name="NotAFileFault" type="vim25:NotAFile"/>
+         <element name="NotAuthenticatedFault" type="vim25:NotAuthenticated"/>
+         <element name="NotEnoughCpusFault" type="vim25:NotEnoughCpus"/>
+         <element name="NotEnoughLogicalCpusFault" type="vim25:NotEnoughLogicalCpus"/>
+         <element name="NotFoundFault" type="vim25:NotFound"/>
+         <element name="NotSupportedDeviceForFTFault" type="vim25:NotSupportedDeviceForFT"/>
+         <element name="NotSupportedHostFault" type="vim25:NotSupportedHost"/>
+         <element name="NotSupportedHostInClusterFault" type="vim25:NotSupportedHostInCluster"/>
+         <element name="NotSupportedHostInDvsFault" type="vim25:NotSupportedHostInDvs"/>
+         <element name="NotSupportedHostInHAClusterFault" type="vim25:NotSupportedHostInHACluster"/>
+         <element name="NotUserConfigurablePropertyFault" type="vim25:NotUserConfigurableProperty"/>
+         <element name="NumVirtualCoresPerSocketNotSupportedFault" type="vim25:NumVirtualCoresPerSocketNotSupported"/>
+         <element name="NumVirtualCpusExceedsLimitFault" type="vim25:NumVirtualCpusExceedsLimit"/>
+         <element name="NumVirtualCpusIncompatibleFault" type="vim25:NumVirtualCpusIncompatible"/>
+         <element name="NumVirtualCpusNotSupportedFault" type="vim25:NumVirtualCpusNotSupported"/>
+         <element name="OperationDisabledByGuestFault" type="vim25:OperationDisabledByGuest"/>
+         <element name="OperationDisallowedOnHostFault" type="vim25:OperationDisallowedOnHost"/>
+         <element name="OperationNotSupportedByGuestFault" type="vim25:OperationNotSupportedByGuest"/>
+         <element name="OutOfBoundsFault" type="vim25:OutOfBounds"/>
+         <element name="OvfAttributeFault" type="vim25:OvfAttribute"/>
+         <element name="OvfConnectedDeviceFault" type="vim25:OvfConnectedDevice"/>
+         <element name="OvfConnectedDeviceFloppyFault" type="vim25:OvfConnectedDeviceFloppy"/>
+         <element name="OvfConnectedDeviceIsoFault" type="vim25:OvfConnectedDeviceIso"/>
+         <element name="OvfConstraintFault" type="vim25:OvfConstraint"/>
+         <element name="OvfConsumerCallbackFaultFault" type="vim25:OvfConsumerCallbackFault"/>
+         <element name="OvfConsumerCommunicationErrorFault" type="vim25:OvfConsumerCommunicationError"/>
+         <element name="OvfConsumerFaultFault" type="vim25:OvfConsumerFault"/>
+         <element name="OvfConsumerInvalidSectionFault" type="vim25:OvfConsumerInvalidSection"/>
+         <element name="OvfConsumerPowerOnFaultFault" type="vim25:OvfConsumerPowerOnFault"/>
+         <element name="OvfConsumerUndeclaredSectionFault" type="vim25:OvfConsumerUndeclaredSection"/>
+         <element name="OvfConsumerUndefinedPrefixFault" type="vim25:OvfConsumerUndefinedPrefix"/>
+         <element name="OvfConsumerValidationFaultFault" type="vim25:OvfConsumerValidationFault"/>
+         <element name="OvfCpuCompatibilityFault" type="vim25:OvfCpuCompatibility"/>
+         <element name="OvfCpuCompatibilityCheckNotSupportedFault" type="vim25:OvfCpuCompatibilityCheckNotSupported"/>
+         <element name="OvfDiskMappingNotFoundFault" type="vim25:OvfDiskMappingNotFound"/>
+         <element name="OvfDiskOrderConstraintFault" type="vim25:OvfDiskOrderConstraint"/>
+         <element name="OvfDuplicateElementFault" type="vim25:OvfDuplicateElement"/>
+         <element name="OvfDuplicatedElementBoundaryFault" type="vim25:OvfDuplicatedElementBoundary"/>
+         <element name="OvfDuplicatedPropertyIdExportFault" type="vim25:OvfDuplicatedPropertyIdExport"/>
+         <element name="OvfDuplicatedPropertyIdImportFault" type="vim25:OvfDuplicatedPropertyIdImport"/>
+         <element name="OvfElementFault" type="vim25:OvfElement"/>
+         <element name="OvfElementInvalidValueFault" type="vim25:OvfElementInvalidValue"/>
+         <element name="OvfExportFault" type="vim25:OvfExport"/>
+         <element name="OvfExportFailedFault" type="vim25:OvfExportFailed"/>
+         <element name="OvfFaultFault" type="vim25:OvfFault"/>
+         <element name="OvfHardwareCheckFault" type="vim25:OvfHardwareCheck"/>
+         <element name="OvfHardwareExportFault" type="vim25:OvfHardwareExport"/>
+         <element name="OvfHostResourceConstraintFault" type="vim25:OvfHostResourceConstraint"/>
+         <element name="OvfHostValueNotParsedFault" type="vim25:OvfHostValueNotParsed"/>
+         <element name="OvfImportFault" type="vim25:OvfImport"/>
+         <element name="OvfImportFailedFault" type="vim25:OvfImportFailed"/>
+         <element name="OvfInternalErrorFault" type="vim25:OvfInternalError"/>
+         <element name="OvfInvalidPackageFault" type="vim25:OvfInvalidPackage"/>
+         <element name="OvfInvalidValueFault" type="vim25:OvfInvalidValue"/>
+         <element name="OvfInvalidValueConfigurationFault" type="vim25:OvfInvalidValueConfiguration"/>
+         <element name="OvfInvalidValueEmptyFault" type="vim25:OvfInvalidValueEmpty"/>
+         <element name="OvfInvalidValueFormatMalformedFault" type="vim25:OvfInvalidValueFormatMalformed"/>
+         <element name="OvfInvalidValueReferenceFault" type="vim25:OvfInvalidValueReference"/>
+         <element name="OvfInvalidVmNameFault" type="vim25:OvfInvalidVmName"/>
+         <element name="OvfMappedOsIdFault" type="vim25:OvfMappedOsId"/>
+         <element name="OvfMissingAttributeFault" type="vim25:OvfMissingAttribute"/>
+         <element name="OvfMissingElementFault" type="vim25:OvfMissingElement"/>
+         <element name="OvfMissingElementNormalBoundaryFault" type="vim25:OvfMissingElementNormalBoundary"/>
+         <element name="OvfMissingHardwareFault" type="vim25:OvfMissingHardware"/>
+         <element name="OvfNoHostNicFault" type="vim25:OvfNoHostNic"/>
+         <element name="OvfNoSpaceOnControllerFault" type="vim25:OvfNoSpaceOnController"/>
+         <element name="OvfNoSupportedHardwareFamilyFault" type="vim25:OvfNoSupportedHardwareFamily"/>
+         <element name="OvfPropertyFault" type="vim25:OvfProperty"/>
+         <element name="OvfPropertyExportFault" type="vim25:OvfPropertyExport"/>
+         <element name="OvfPropertyNetworkFault" type="vim25:OvfPropertyNetwork"/>
+         <element name="OvfPropertyNetworkExportFault" type="vim25:OvfPropertyNetworkExport"/>
+         <element name="OvfPropertyQualifierFault" type="vim25:OvfPropertyQualifier"/>
+         <element name="OvfPropertyQualifierDuplicateFault" type="vim25:OvfPropertyQualifierDuplicate"/>
+         <element name="OvfPropertyQualifierIgnoredFault" type="vim25:OvfPropertyQualifierIgnored"/>
+         <element name="OvfPropertyTypeFault" type="vim25:OvfPropertyType"/>
+         <element name="OvfPropertyValueFault" type="vim25:OvfPropertyValue"/>
+         <element name="OvfSystemFaultFault" type="vim25:OvfSystemFault"/>
+         <element name="OvfToXmlUnsupportedElementFault" type="vim25:OvfToXmlUnsupportedElement"/>
+         <element name="OvfUnableToExportDiskFault" type="vim25:OvfUnableToExportDisk"/>
+         <element name="OvfUnexpectedElementFault" type="vim25:OvfUnexpectedElement"/>
+         <element name="OvfUnknownDeviceFault" type="vim25:OvfUnknownDevice"/>
+         <element name="OvfUnknownDeviceBackingFault" type="vim25:OvfUnknownDeviceBacking"/>
+         <element name="OvfUnknownEntityFault" type="vim25:OvfUnknownEntity"/>
+         <element name="OvfUnsupportedAttributeFault" type="vim25:OvfUnsupportedAttribute"/>
+         <element name="OvfUnsupportedAttributeValueFault" type="vim25:OvfUnsupportedAttributeValue"/>
+         <element name="OvfUnsupportedDeviceBackingInfoFault" type="vim25:OvfUnsupportedDeviceBackingInfo"/>
+         <element name="OvfUnsupportedDeviceBackingOptionFault" type="vim25:OvfUnsupportedDeviceBackingOption"/>
+         <element name="OvfUnsupportedDeviceExportFault" type="vim25:OvfUnsupportedDeviceExport"/>
+         <element name="OvfUnsupportedDiskProvisioningFault" type="vim25:OvfUnsupportedDiskProvisioning"/>
+         <element name="OvfUnsupportedElementFault" type="vim25:OvfUnsupportedElement"/>
+         <element name="OvfUnsupportedElementValueFault" type="vim25:OvfUnsupportedElementValue"/>
+         <element name="OvfUnsupportedPackageFault" type="vim25:OvfUnsupportedPackage"/>
+         <element name="OvfUnsupportedSectionFault" type="vim25:OvfUnsupportedSection"/>
+         <element name="OvfUnsupportedSubTypeFault" type="vim25:OvfUnsupportedSubType"/>
+         <element name="OvfUnsupportedTypeFault" type="vim25:OvfUnsupportedType"/>
+         <element name="OvfWrongElementFault" type="vim25:OvfWrongElement"/>
+         <element name="OvfWrongNamespaceFault" type="vim25:OvfWrongNamespace"/>
+         <element name="OvfXmlFormatFault" type="vim25:OvfXmlFormat"/>
+         <element name="PatchAlreadyInstalledFault" type="vim25:PatchAlreadyInstalled"/>
+         <element name="PatchBinariesNotFoundFault" type="vim25:PatchBinariesNotFound"/>
+         <element name="PatchInstallFailedFault" type="vim25:PatchInstallFailed"/>
+         <element name="PatchIntegrityErrorFault" type="vim25:PatchIntegrityError"/>
+         <element name="PatchMetadataCorruptedFault" type="vim25:PatchMetadataCorrupted"/>
+         <element name="PatchMetadataInvalidFault" type="vim25:PatchMetadataInvalid"/>
+         <element name="PatchMetadataNotFoundFault" type="vim25:PatchMetadataNotFound"/>
+         <element name="PatchMissingDependenciesFault" type="vim25:PatchMissingDependencies"/>
+         <element name="PatchNotApplicableFault" type="vim25:PatchNotApplicable"/>
+         <element name="PatchSupersededFault" type="vim25:PatchSuperseded"/>
+         <element name="PhysCompatRDMNotSupportedFault" type="vim25:PhysCompatRDMNotSupported"/>
+         <element name="PlatformConfigFaultFault" type="vim25:PlatformConfigFault"/>
+         <element name="PowerOnFtSecondaryFailedFault" type="vim25:PowerOnFtSecondaryFailed"/>
+         <element name="PowerOnFtSecondaryTimedoutFault" type="vim25:PowerOnFtSecondaryTimedout"/>
+         <element name="ProfileUpdateFailedFault" type="vim25:ProfileUpdateFailed"/>
+         <element name="QuestionPendingFault" type="vim25:QuestionPending"/>
+         <element name="QuiesceDatastoreIOForHAFailedFault" type="vim25:QuiesceDatastoreIOForHAFailed"/>
+         <element name="RDMConversionNotSupportedFault" type="vim25:RDMConversionNotSupported"/>
+         <element name="RDMNotPreservedFault" type="vim25:RDMNotPreserved"/>
+         <element name="RDMNotSupportedFault" type="vim25:RDMNotSupported"/>
+         <element name="RDMNotSupportedOnDatastoreFault" type="vim25:RDMNotSupportedOnDatastore"/>
+         <element name="RDMPointsToInaccessibleDiskFault" type="vim25:RDMPointsToInaccessibleDisk"/>
+         <element name="RawDiskNotSupportedFault" type="vim25:RawDiskNotSupported"/>
+         <element name="ReadHostResourcePoolTreeFailedFault" type="vim25:ReadHostResourcePoolTreeFailed"/>
+         <element name="ReadOnlyDisksWithLegacyDestinationFault" type="vim25:ReadOnlyDisksWithLegacyDestination"/>
+         <element name="RebootRequiredFault" type="vim25:RebootRequired"/>
+         <element name="RecordReplayDisabledFault" type="vim25:RecordReplayDisabled"/>
+         <element name="RemoteDeviceNotSupportedFault" type="vim25:RemoteDeviceNotSupported"/>
+         <element name="RemoveFailedFault" type="vim25:RemoveFailed"/>
+         <element name="ReplicationConfigFaultFault" type="vim25:ReplicationConfigFault"/>
+         <element name="ReplicationDiskConfigFaultFault" type="vim25:ReplicationDiskConfigFault"/>
+         <element name="ReplicationFaultFault" type="vim25:ReplicationFault"/>
+         <element name="ReplicationIncompatibleWithFTFault" type="vim25:ReplicationIncompatibleWithFT"/>
+         <element name="ReplicationInvalidOptionsFault" type="vim25:ReplicationInvalidOptions"/>
+         <element name="ReplicationNotSupportedOnHostFault" type="vim25:ReplicationNotSupportedOnHost"/>
+         <element name="ReplicationVmConfigFaultFault" type="vim25:ReplicationVmConfigFault"/>
+         <element name="ReplicationVmFaultFault" type="vim25:ReplicationVmFault"/>
+         <element name="ResourceInUseFault" type="vim25:ResourceInUse"/>
+         <element name="ResourceNotAvailableFault" type="vim25:ResourceNotAvailable"/>
+         <element name="RestrictedVersionFault" type="vim25:RestrictedVersion"/>
+         <element name="RuleViolationFault" type="vim25:RuleViolation"/>
+         <element name="SSLDisabledFaultFault" type="vim25:SSLDisabledFault"/>
+         <element name="SSLVerifyFaultFault" type="vim25:SSLVerifyFault"/>
+         <element name="SSPIChallengeFault" type="vim25:SSPIChallenge"/>
+         <element name="SecondaryVmAlreadyDisabledFault" type="vim25:SecondaryVmAlreadyDisabled"/>
+         <element name="SecondaryVmAlreadyEnabledFault" type="vim25:SecondaryVmAlreadyEnabled"/>
+         <element name="SecondaryVmAlreadyRegisteredFault" type="vim25:SecondaryVmAlreadyRegistered"/>
+         <element name="SecondaryVmNotRegisteredFault" type="vim25:SecondaryVmNotRegistered"/>
+         <element name="SharedBusControllerNotSupportedFault" type="vim25:SharedBusControllerNotSupported"/>
+         <element name="SnapshotCloneNotSupportedFault" type="vim25:SnapshotCloneNotSupported"/>
+         <element name="SnapshotCopyNotSupportedFault" type="vim25:SnapshotCopyNotSupported"/>
+         <element name="SnapshotDisabledFault" type="vim25:SnapshotDisabled"/>
+         <element name="SnapshotFaultFault" type="vim25:SnapshotFault"/>
+         <element name="SnapshotIncompatibleDeviceInVmFault" type="vim25:SnapshotIncompatibleDeviceInVm"/>
+         <element name="SnapshotLockedFault" type="vim25:SnapshotLocked"/>
+         <element name="SnapshotMoveFromNonHomeNotSupportedFault" type="vim25:SnapshotMoveFromNonHomeNotSupported"/>
+         <element name="SnapshotMoveNotSupportedFault" type="vim25:SnapshotMoveNotSupported"/>
+         <element name="SnapshotMoveToNonHomeNotSupportedFault" type="vim25:SnapshotMoveToNonHomeNotSupported"/>
+         <element name="SnapshotNoChangeFault" type="vim25:SnapshotNoChange"/>
+         <element name="SnapshotRevertIssueFault" type="vim25:SnapshotRevertIssue"/>
+         <element name="SoftRuleVioCorrectionDisallowedFault" type="vim25:SoftRuleVioCorrectionDisallowed"/>
+         <element name="SoftRuleVioCorrectionImpactFault" type="vim25:SoftRuleVioCorrectionImpact"/>
+         <element name="StorageDrsDisabledOnVmFault" type="vim25:StorageDrsDisabledOnVm"/>
+         <element name="StorageDrsIolbDisabledInternallyFault" type="vim25:StorageDrsIolbDisabledInternally"/>
+         <element name="StorageVMotionNotSupportedFault" type="vim25:StorageVMotionNotSupported"/>
+         <element name="StorageVmotionIncompatibleFault" type="vim25:StorageVmotionIncompatible"/>
+         <element name="SuspendedRelocateNotSupportedFault" type="vim25:SuspendedRelocateNotSupported"/>
+         <element name="SwapDatastoreNotWritableOnHostFault" type="vim25:SwapDatastoreNotWritableOnHost"/>
+         <element name="SwapDatastoreUnsetFault" type="vim25:SwapDatastoreUnset"/>
+         <element name="SwapPlacementOverrideNotSupportedFault" type="vim25:SwapPlacementOverrideNotSupported"/>
+         <element name="SwitchNotInUpgradeModeFault" type="vim25:SwitchNotInUpgradeMode"/>
+         <element name="TaskInProgressFault" type="vim25:TaskInProgress"/>
+         <element name="ThirdPartyLicenseAssignmentFailedFault" type="vim25:ThirdPartyLicenseAssignmentFailed"/>
+         <element name="TimedoutFault" type="vim25:Timedout"/>
+         <element name="TooManyConcurrentNativeClonesFault" type="vim25:TooManyConcurrentNativeClones"/>
+         <element name="TooManyConsecutiveOverridesFault" type="vim25:TooManyConsecutiveOverrides"/>
+         <element name="TooManyDevicesFault" type="vim25:TooManyDevices"/>
+         <element name="TooManyDisksOnLegacyHostFault" type="vim25:TooManyDisksOnLegacyHost"/>
+         <element name="TooManyGuestLogonsFault" type="vim25:TooManyGuestLogons"/>
+         <element name="TooManyHostsFault" type="vim25:TooManyHosts"/>
+         <element name="TooManyNativeCloneLevelsFault" type="vim25:TooManyNativeCloneLevels"/>
+         <element name="TooManyNativeClonesOnFileFault" type="vim25:TooManyNativeClonesOnFile"/>
+         <element name="TooManySnapshotLevelsFault" type="vim25:TooManySnapshotLevels"/>
+         <element name="ToolsAlreadyUpgradedFault" type="vim25:ToolsAlreadyUpgraded"/>
+         <element name="ToolsAutoUpgradeNotSupportedFault" type="vim25:ToolsAutoUpgradeNotSupported"/>
+         <element name="ToolsImageNotAvailableFault" type="vim25:ToolsImageNotAvailable"/>
+         <element name="ToolsImageSignatureCheckFailedFault" type="vim25:ToolsImageSignatureCheckFailed"/>
+         <element name="ToolsInstallationInProgressFault" type="vim25:ToolsInstallationInProgress"/>
+         <element name="ToolsUnavailableFault" type="vim25:ToolsUnavailable"/>
+         <element name="ToolsUpgradeCancelledFault" type="vim25:ToolsUpgradeCancelled"/>
+         <element name="UncommittedUndoableDiskFault" type="vim25:UncommittedUndoableDisk"/>
+         <element name="UnconfiguredPropertyValueFault" type="vim25:UnconfiguredPropertyValue"/>
+         <element name="UncustomizableGuestFault" type="vim25:UncustomizableGuest"/>
+         <element name="UnexpectedCustomizationFaultFault" type="vim25:UnexpectedCustomizationFault"/>
+         <element name="UnrecognizedHostFault" type="vim25:UnrecognizedHost"/>
+         <element name="UnsharedSwapVMotionNotSupportedFault" type="vim25:UnsharedSwapVMotionNotSupported"/>
+         <element name="UnsupportedDatastoreFault" type="vim25:UnsupportedDatastore"/>
+         <element name="UnsupportedGuestFault" type="vim25:UnsupportedGuest"/>
+         <element name="UnsupportedVimApiVersionFault" type="vim25:UnsupportedVimApiVersion"/>
+         <element name="UnsupportedVmxLocationFault" type="vim25:UnsupportedVmxLocation"/>
+         <element name="UnusedVirtualDiskBlocksNotScrubbedFault" type="vim25:UnusedVirtualDiskBlocksNotScrubbed"/>
+         <element name="UserNotFoundFault" type="vim25:UserNotFound"/>
+         <element name="VAppConfigFaultFault" type="vim25:VAppConfigFault"/>
+         <element name="VAppNotRunningFault" type="vim25:VAppNotRunning"/>
+         <element name="VAppOperationInProgressFault" type="vim25:VAppOperationInProgress"/>
+         <element name="VAppPropertyFaultFault" type="vim25:VAppPropertyFault"/>
+         <element name="VAppTaskInProgressFault" type="vim25:VAppTaskInProgress"/>
+         <element name="VMINotSupportedFault" type="vim25:VMINotSupported"/>
+         <element name="VMOnConflictDVPortFault" type="vim25:VMOnConflictDVPort"/>
+         <element name="VMOnVirtualIntranetFault" type="vim25:VMOnVirtualIntranet"/>
+         <element name="VMotionInterfaceIssueFault" type="vim25:VMotionInterfaceIssue"/>
+         <element name="VMotionLinkCapacityLowFault" type="vim25:VMotionLinkCapacityLow"/>
+         <element name="VMotionLinkDownFault" type="vim25:VMotionLinkDown"/>
+         <element name="VMotionNotConfiguredFault" type="vim25:VMotionNotConfigured"/>
+         <element name="VMotionNotLicensedFault" type="vim25:VMotionNotLicensed"/>
+         <element name="VMotionNotSupportedFault" type="vim25:VMotionNotSupported"/>
+         <element name="VMotionProtocolIncompatibleFault" type="vim25:VMotionProtocolIncompatible"/>
+         <element name="VimFaultFault" type="vim25:VimFault"/>
+         <element name="VirtualDiskBlocksNotFullyProvisionedFault" type="vim25:VirtualDiskBlocksNotFullyProvisioned"/>
+         <element name="VirtualDiskModeNotSupportedFault" type="vim25:VirtualDiskModeNotSupported"/>
+         <element name="VirtualEthernetCardNotSupportedFault" type="vim25:VirtualEthernetCardNotSupported"/>
+         <element name="VirtualHardwareCompatibilityIssueFault" type="vim25:VirtualHardwareCompatibilityIssue"/>
+         <element name="VirtualHardwareVersionNotSupportedFault" type="vim25:VirtualHardwareVersionNotSupported"/>
+         <element name="VmAlreadyExistsInDatacenterFault" type="vim25:VmAlreadyExistsInDatacenter"/>
+         <element name="VmConfigFaultFault" type="vim25:VmConfigFault"/>
+         <element name="VmConfigIncompatibleForFaultToleranceFault" type="vim25:VmConfigIncompatibleForFaultTolerance"/>
+         <element name="VmConfigIncompatibleForRecordReplayFault" type="vim25:VmConfigIncompatibleForRecordReplay"/>
+         <element name="VmFaultToleranceConfigIssueFault" type="vim25:VmFaultToleranceConfigIssue"/>
+         <element name="VmFaultToleranceConfigIssueWrapperFault" type="vim25:VmFaultToleranceConfigIssueWrapper"/>
+         <element name="VmFaultToleranceInvalidFileBackingFault" type="vim25:VmFaultToleranceInvalidFileBacking"/>
+         <element name="VmFaultToleranceIssueFault" type="vim25:VmFaultToleranceIssue"/>
+         <element name="VmFaultToleranceOpIssuesListFault" type="vim25:VmFaultToleranceOpIssuesList"/>
+         <element name="VmFaultToleranceTooManyVMsOnHostFault" type="vim25:VmFaultToleranceTooManyVMsOnHost"/>
+         <element name="VmHostAffinityRuleViolationFault" type="vim25:VmHostAffinityRuleViolation"/>
+         <element name="VmLimitLicenseFault" type="vim25:VmLimitLicense"/>
+         <element name="VmMonitorIncompatibleForFaultToleranceFault" type="vim25:VmMonitorIncompatibleForFaultTolerance"/>
+         <element name="VmPowerOnDisabledFault" type="vim25:VmPowerOnDisabled"/>
+         <element name="VmToolsUpgradeFaultFault" type="vim25:VmToolsUpgradeFault"/>
+         <element name="VmValidateMaxDeviceFault" type="vim25:VmValidateMaxDevice"/>
+         <element name="VmWwnConflictFault" type="vim25:VmWwnConflict"/>
+         <element name="VmfsAlreadyMountedFault" type="vim25:VmfsAlreadyMounted"/>
+         <element name="VmfsAmbiguousMountFault" type="vim25:VmfsAmbiguousMount"/>
+         <element name="VmfsMountFaultFault" type="vim25:VmfsMountFault"/>
+         <element name="VmotionInterfaceNotEnabledFault" type="vim25:VmotionInterfaceNotEnabled"/>
+         <element name="VolumeEditorErrorFault" type="vim25:VolumeEditorError"/>
+         <element name="VramLimitLicenseFault" type="vim25:VramLimitLicense"/>
+         <element name="VspanDestPortConflictFault" type="vim25:VspanDestPortConflict"/>
+         <element name="VspanPortConflictFault" type="vim25:VspanPortConflict"/>
+         <element name="VspanPortMoveFaultFault" type="vim25:VspanPortMoveFault"/>
+         <element name="VspanPortPromiscChangeFaultFault" type="vim25:VspanPortPromiscChangeFault"/>
+         <element name="VspanPortgroupPromiscChangeFaultFault" type="vim25:VspanPortgroupPromiscChangeFault"/>
+         <element name="VspanPortgroupTypeChangeFaultFault" type="vim25:VspanPortgroupTypeChangeFault"/>
+         <element name="VspanPromiscuousPortNotSupportedFault" type="vim25:VspanPromiscuousPortNotSupported"/>
+         <element name="VspanSameSessionPortConflictFault" type="vim25:VspanSameSessionPortConflict"/>
+         <element name="WakeOnLanNotSupportedFault" type="vim25:WakeOnLanNotSupported"/>
+         <element name="WakeOnLanNotSupportedByVmotionNICFault" type="vim25:WakeOnLanNotSupportedByVmotionNIC"/>
+         <element name="WillLoseHAProtectionFault" type="vim25:WillLoseHAProtection"/>
+         <element name="WillModifyConfigCpuRequirementsFault" type="vim25:WillModifyConfigCpuRequirements"/>
+         <element name="WillResetSnapshotDirectoryFault" type="vim25:WillResetSnapshotDirectory"/>
+         <element name="InvalidCollectorVersionFault" type="vim25:InvalidCollectorVersion"/>
+         <element name="InvalidPropertyFault" type="vim25:InvalidProperty"/>
+         <element name="MethodFaultFault" type="vim25:MethodFault"/>
+         <element name="RuntimeFaultFault" type="vim25:RuntimeFault"/>
+         <element name="HostCommunicationFault" type="vim25:HostCommunication"/>
+         <element name="HostNotConnectedFault" type="vim25:HostNotConnected"/>
+         <element name="HostNotReachableFault" type="vim25:HostNotReachable"/>
+         <element name="InvalidArgumentFault" type="vim25:InvalidArgument"/>
+         <element name="InvalidRequestFault" type="vim25:InvalidRequest"/>
+         <element name="InvalidTypeFault" type="vim25:InvalidType"/>
+         <element name="ManagedObjectNotFoundFault" type="vim25:ManagedObjectNotFound"/>
+         <element name="MethodNotFoundFault" type="vim25:MethodNotFound"/>
+         <element name="NotEnoughLicensesFault" type="vim25:NotEnoughLicenses"/>
+         <element name="NotImplementedFault" type="vim25:NotImplemented"/>
+         <element name="NotSupportedFault" type="vim25:NotSupported"/>
+         <element name="RequestCanceledFault" type="vim25:RequestCanceled"/>
+         <element name="SecurityErrorFault" type="vim25:SecurityError"/>
+         <element name="SystemErrorFault" type="vim25:SystemError"/>
+         <element name="UnexpectedFaultFault" type="vim25:UnexpectedFault"/>
+      </schema>
+   </types>
+   <message name="QuerySolutionIdRequestMsg">
+      <part name="parameters" element="eam:QuerySolutionId" />
+   </message>
+   <message name="QuerySolutionIdResponseMsg">
+      <part name="parameters" element="eam:QuerySolutionIdResponse" />
+   </message>
+   <message name="QueryConfigRequestMsg">
+      <part name="parameters" element="eam:QueryConfig" />
+   </message>
+   <message name="QueryConfigResponseMsg">
+      <part name="parameters" element="eam:QueryConfigResponse" />
+   </message>
+   <message name="UpdateRequestMsg">
+      <part name="parameters" element="eam:Update" />
+   </message>
+   <message name="UpdateResponseMsg">
+      <part name="parameters" element="eam:UpdateResponse" />
+   </message>
+   <message name="AgencyQueryRuntimeRequestMsg">
+      <part name="parameters" element="eam:AgencyQueryRuntime" />
+   </message>
+   <message name="AgencyQueryRuntimeResponseMsg">
+      <part name="parameters" element="eam:AgencyQueryRuntimeResponse" />
+   </message>
+   <message name="QueryAgentRequestMsg">
+      <part name="parameters" element="eam:QueryAgent" />
+   </message>
+   <message name="QueryAgentResponseMsg">
+      <part name="parameters" element="eam:QueryAgentResponse" />
+   </message>
+   <message name="RegisterAgentVmRequestMsg">
+      <part name="parameters" element="eam:RegisterAgentVm" />
+   </message>
+   <message name="RegisterAgentVmResponseMsg">
+      <part name="parameters" element="eam:RegisterAgentVmResponse" />
+   </message>
+   <message name="UnregisterAgentVmRequestMsg">
+      <part name="parameters" element="eam:UnregisterAgentVm" />
+   </message>
+   <message name="UnregisterAgentVmResponseMsg">
+      <part name="parameters" element="eam:UnregisterAgentVmResponse" />
+   </message>
+   <message name="EnableRequestMsg">
+      <part name="parameters" element="eam:Enable" />
+   </message>
+   <message name="EnableResponseMsg">
+      <part name="parameters" element="eam:EnableResponse" />
+   </message>
+   <message name="DisableRequestMsg">
+      <part name="parameters" element="eam:Disable" />
+   </message>
+   <message name="DisableResponseMsg">
+      <part name="parameters" element="eam:DisableResponse" />
+   </message>
+   <message name="UninstallRequestMsg">
+      <part name="parameters" element="eam:Uninstall" />
+   </message>
+   <message name="UninstallResponseMsg">
+      <part name="parameters" element="eam:UninstallResponse" />
+   </message>
+   <message name="DestroyAgencyRequestMsg">
+      <part name="parameters" element="eam:DestroyAgency" />
+   </message>
+   <message name="DestroyAgencyResponseMsg">
+      <part name="parameters" element="eam:DestroyAgencyResponse" />
+   </message>
+   <message name="AddIssueRequestMsg">
+      <part name="parameters" element="eam:AddIssue" />
+   </message>
+   <message name="AddIssueResponseMsg">
+      <part name="parameters" element="eam:AddIssueResponse" />
+   </message>
+   <message name="AgentQueryRuntimeRequestMsg">
+      <part name="parameters" element="eam:AgentQueryRuntime" />
+   </message>
+   <message name="AgentQueryRuntimeResponseMsg">
+      <part name="parameters" element="eam:AgentQueryRuntimeResponse" />
+   </message>
+   <message name="MarkAsAvailableRequestMsg">
+      <part name="parameters" element="eam:MarkAsAvailable" />
+   </message>
+   <message name="MarkAsAvailableResponseMsg">
+      <part name="parameters" element="eam:MarkAsAvailableResponse" />
+   </message>
+   <message name="AgentQueryConfigRequestMsg">
+      <part name="parameters" element="eam:AgentQueryConfig" />
+   </message>
+   <message name="AgentQueryConfigResponseMsg">
+      <part name="parameters" element="eam:AgentQueryConfigResponse" />
+   </message>
+   <message name="ResolveRequestMsg">
+      <part name="parameters" element="eam:Resolve" />
+   </message>
+   <message name="ResolveResponseMsg">
+      <part name="parameters" element="eam:ResolveResponse" />
+   </message>
+   <message name="ResolveAllRequestMsg">
+      <part name="parameters" element="eam:ResolveAll" />
+   </message>
+   <message name="ResolveAllResponseMsg">
+      <part name="parameters" element="eam:ResolveAllResponse" />
+   </message>
+   <message name="QueryIssueRequestMsg">
+      <part name="parameters" element="eam:QueryIssue" />
+   </message>
+   <message name="QueryIssueResponseMsg">
+      <part name="parameters" element="eam:QueryIssueResponse" />
+   </message>
+   <message name="QueryAgencyRequestMsg">
+      <part name="parameters" element="eam:QueryAgency" />
+   </message>
+   <message name="QueryAgencyResponseMsg">
+      <part name="parameters" element="eam:QueryAgencyResponse" />
+   </message>
+   <message name="CreateAgencyRequestMsg">
+      <part name="parameters" element="eam:CreateAgency" />
+   </message>
+   <message name="CreateAgencyResponseMsg">
+      <part name="parameters" element="eam:CreateAgencyResponse" />
+   </message>
+   <message name="ScanForUnknownAgentVmRequestMsg">
+      <part name="parameters" element="eam:ScanForUnknownAgentVm" />
+   </message>
+   <message name="ScanForUnknownAgentVmResponseMsg">
+      <part name="parameters" element="eam:ScanForUnknownAgentVmResponse" />
+   </message>
+   <message name="EamFaultFaultMsg">
+      <part name="fault" element="eam:EamFaultFault" />
+   </message>
+   <message name="EamRuntimeFaultFaultMsg">
+      <part name="fault" element="eam:EamRuntimeFaultFault" />
+   </message>
+   <message name="InvalidAgencyScopeFaultMsg">
+      <part name="fault" element="eam:InvalidAgencyScopeFault" />
+   </message>
+   <message name="InvalidAgentConfigurationFaultMsg">
+      <part name="fault" element="eam:InvalidAgentConfigurationFault" />
+   </message>
+   <message name="EamInvalidLoginFaultMsg">
+      <part name="fault" element="eam:EamInvalidLoginFault" />
+   </message>
+   <message name="InvalidUrlFaultMsg">
+      <part name="fault" element="eam:InvalidUrlFault" />
+   </message>
+   <message name="NoConnectionToVCenterFaultMsg">
+      <part name="fault" element="eam:NoConnectionToVCenterFault" />
+   </message>
+   <message name="NotAuthorizedFaultMsg">
+      <part name="fault" element="eam:NotAuthorizedFault" />
+   </message>
+   <message name="ActiveDirectoryFaultFaultMsg">
+      <part name="fault" element="eam:ActiveDirectoryFaultFault" />
+   </message>
+   <message name="AdminDisabledFaultMsg">
+      <part name="fault" element="eam:AdminDisabledFault" />
+   </message>
+   <message name="AdminNotDisabledFaultMsg">
+      <part name="fault" element="eam:AdminNotDisabledFault" />
+   </message>
+   <message name="AffinityConfiguredFaultMsg">
+      <part name="fault" element="eam:AffinityConfiguredFault" />
+   </message>
+   <message name="AgentInstallFailedFaultMsg">
+      <part name="fault" element="eam:AgentInstallFailedFault" />
+   </message>
+   <message name="AlreadyBeingManagedFaultMsg">
+      <part name="fault" element="eam:AlreadyBeingManagedFault" />
+   </message>
+   <message name="AlreadyConnectedFaultMsg">
+      <part name="fault" element="eam:AlreadyConnectedFault" />
+   </message>
+   <message name="AlreadyExistsFaultMsg">
+      <part name="fault" element="eam:AlreadyExistsFault" />
+   </message>
+   <message name="AlreadyUpgradedFaultMsg">
+      <part name="fault" element="eam:AlreadyUpgradedFault" />
+   </message>
+   <message name="AnswerFileUpdateFailedFaultMsg">
+      <part name="fault" element="eam:AnswerFileUpdateFailedFault" />
+   </message>
+   <message name="ApplicationQuiesceFaultFaultMsg">
+      <part name="fault" element="eam:ApplicationQuiesceFaultFault" />
+   </message>
+   <message name="AuthMinimumAdminPermissionFaultMsg">
+      <part name="fault" element="eam:AuthMinimumAdminPermissionFault" />
+   </message>
+   <message name="BlockedByFirewallFaultMsg">
+      <part name="fault" element="eam:BlockedByFirewallFault" />
+   </message>
+   <message name="CAMServerRefusedConnectionFaultMsg">
+      <part name="fault" element="eam:CAMServerRefusedConnectionFault" />
+   </message>
+   <message name="CannotAccessFileFaultMsg">
+      <part name="fault" element="eam:CannotAccessFileFault" />
+   </message>
+   <message name="CannotAccessLocalSourceFaultMsg">
+      <part name="fault" element="eam:CannotAccessLocalSourceFault" />
+   </message>
+   <message name="CannotAccessNetworkFaultMsg">
+      <part name="fault" element="eam:CannotAccessNetworkFault" />
+   </message>
+   <message name="CannotAccessVmComponentFaultMsg">
+      <part name="fault" element="eam:CannotAccessVmComponentFault" />
+   </message>
+   <message name="CannotAccessVmConfigFaultMsg">
+      <part name="fault" element="eam:CannotAccessVmConfigFault" />
+   </message>
+   <message name="CannotAccessVmDeviceFaultMsg">
+      <part name="fault" element="eam:CannotAccessVmDeviceFault" />
+   </message>
+   <message name="CannotAccessVmDiskFaultMsg">
+      <part name="fault" element="eam:CannotAccessVmDiskFault" />
+   </message>
+   <message name="CannotAddHostWithFTVmAsStandaloneFaultMsg">
+      <part name="fault" element="eam:CannotAddHostWithFTVmAsStandaloneFault" />
+   </message>
+   <message name="CannotAddHostWithFTVmToDifferentClusterFaultMsg">
+      <part name="fault" element="eam:CannotAddHostWithFTVmToDifferentClusterFault" />
+   </message>
+   <message name="CannotAddHostWithFTVmToNonHAClusterFaultMsg">
+      <part name="fault" element="eam:CannotAddHostWithFTVmToNonHAClusterFault" />
+   </message>
+   <message name="CannotChangeDrsBehaviorForFtSecondaryFaultMsg">
+      <part name="fault" element="eam:CannotChangeDrsBehaviorForFtSecondaryFault" />
+   </message>
+   <message name="CannotChangeHaSettingsForFtSecondaryFaultMsg">
+      <part name="fault" element="eam:CannotChangeHaSettingsForFtSecondaryFault" />
+   </message>
+   <message name="CannotCreateFileFaultMsg">
+      <part name="fault" element="eam:CannotCreateFileFault" />
+   </message>
+   <message name="CannotDecryptPasswordsFaultMsg">
+      <part name="fault" element="eam:CannotDecryptPasswordsFault" />
+   </message>
+   <message name="CannotDeleteFileFaultMsg">
+      <part name="fault" element="eam:CannotDeleteFileFault" />
+   </message>
+   <message name="CannotDisableDrsOnClustersWithVAppsFaultMsg">
+      <part name="fault" element="eam:CannotDisableDrsOnClustersWithVAppsFault" />
+   </message>
+   <message name="CannotDisableSnapshotFaultMsg">
+      <part name="fault" element="eam:CannotDisableSnapshotFault" />
+   </message>
+   <message name="CannotDisconnectHostWithFaultToleranceVmFaultMsg">
+      <part name="fault" element="eam:CannotDisconnectHostWithFaultToleranceVmFault" />
+   </message>
+   <message name="CannotModifyConfigCpuRequirementsFaultMsg">
+      <part name="fault" element="eam:CannotModifyConfigCpuRequirementsFault" />
+   </message>
+   <message name="CannotMoveFaultToleranceVmFaultMsg">
+      <part name="fault" element="eam:CannotMoveFaultToleranceVmFault" />
+   </message>
+   <message name="CannotMoveHostWithFaultToleranceVmFaultMsg">
+      <part name="fault" element="eam:CannotMoveHostWithFaultToleranceVmFault" />
+   </message>
+   <message name="CannotMoveVmWithDeltaDiskFaultMsg">
+      <part name="fault" element="eam:CannotMoveVmWithDeltaDiskFault" />
+   </message>
+   <message name="CannotMoveVmWithNativeDeltaDiskFaultMsg">
+      <part name="fault" element="eam:CannotMoveVmWithNativeDeltaDiskFault" />
+   </message>
+   <message name="CannotPowerOffVmInClusterFaultMsg">
+      <part name="fault" element="eam:CannotPowerOffVmInClusterFault" />
+   </message>
+   <message name="ClockSkewFaultMsg">
+      <part name="fault" element="eam:ClockSkewFault" />
+   </message>
+   <message name="CloneFromSnapshotNotSupportedFaultMsg">
+      <part name="fault" element="eam:CloneFromSnapshotNotSupportedFault" />
+   </message>
+   <message name="ConcurrentAccessFaultMsg">
+      <part name="fault" element="eam:ConcurrentAccessFault" />
+   </message>
+   <message name="ConnectedIsoFaultMsg">
+      <part name="fault" element="eam:ConnectedIsoFault" />
+   </message>
+   <message name="CpuCompatibilityUnknownFaultMsg">
+      <part name="fault" element="eam:CpuCompatibilityUnknownFault" />
+   </message>
+   <message name="CpuHotPlugNotSupportedFaultMsg">
+      <part name="fault" element="eam:CpuHotPlugNotSupportedFault" />
+   </message>
+   <message name="CpuIncompatibleFaultMsg">
+      <part name="fault" element="eam:CpuIncompatibleFault" />
+   </message>
+   <message name="CpuIncompatible1ECXFaultMsg">
+      <part name="fault" element="eam:CpuIncompatible1ECXFault" />
+   </message>
+   <message name="CpuIncompatible81EDXFaultMsg">
+      <part name="fault" element="eam:CpuIncompatible81EDXFault" />
+   </message>
+   <message name="CustomizationFaultFaultMsg">
+      <part name="fault" element="eam:CustomizationFaultFault" />
+   </message>
+   <message name="CustomizationPendingFaultMsg">
+      <part name="fault" element="eam:CustomizationPendingFault" />
+   </message>
+   <message name="DVPortNotSupportedFaultMsg">
+      <part name="fault" element="eam:DVPortNotSupportedFault" />
+   </message>
+   <message name="DasConfigFaultFaultMsg">
+      <part name="fault" element="eam:DasConfigFaultFault" />
+   </message>
+   <message name="DatabaseErrorFaultMsg">
+      <part name="fault" element="eam:DatabaseErrorFault" />
+   </message>
+   <message name="DatacenterMismatchFaultMsg">
+      <part name="fault" element="eam:DatacenterMismatchFault" />
+   </message>
+   <message name="DatastoreNotWritableOnHostFaultMsg">
+      <part name="fault" element="eam:DatastoreNotWritableOnHostFault" />
+   </message>
+   <message name="DeltaDiskFormatNotSupportedFaultMsg">
+      <part name="fault" element="eam:DeltaDiskFormatNotSupportedFault" />
+   </message>
+   <message name="DestinationSwitchFullFaultMsg">
+      <part name="fault" element="eam:DestinationSwitchFullFault" />
+   </message>
+   <message name="DeviceBackingNotSupportedFaultMsg">
+      <part name="fault" element="eam:DeviceBackingNotSupportedFault" />
+   </message>
+   <message name="DeviceControllerNotSupportedFaultMsg">
+      <part name="fault" element="eam:DeviceControllerNotSupportedFault" />
+   </message>
+   <message name="DeviceHotPlugNotSupportedFaultMsg">
+      <part name="fault" element="eam:DeviceHotPlugNotSupportedFault" />
+   </message>
+   <message name="DeviceNotFoundFaultMsg">
+      <part name="fault" element="eam:DeviceNotFoundFault" />
+   </message>
+   <message name="DeviceNotSupportedFaultMsg">
+      <part name="fault" element="eam:DeviceNotSupportedFault" />
+   </message>
+   <message name="DeviceUnsupportedForVmPlatformFaultMsg">
+      <part name="fault" element="eam:DeviceUnsupportedForVmPlatformFault" />
+   </message>
+   <message name="DeviceUnsupportedForVmVersionFaultMsg">
+      <part name="fault" element="eam:DeviceUnsupportedForVmVersionFault" />
+   </message>
+   <message name="DirectoryNotEmptyFaultMsg">
+      <part name="fault" element="eam:DirectoryNotEmptyFault" />
+   </message>
+   <message name="DisableAdminNotSupportedFaultMsg">
+      <part name="fault" element="eam:DisableAdminNotSupportedFault" />
+   </message>
+   <message name="DisallowedChangeByServiceFaultMsg">
+      <part name="fault" element="eam:DisallowedChangeByServiceFault" />
+   </message>
+   <message name="DisallowedDiskModeChangeFaultMsg">
+      <part name="fault" element="eam:DisallowedDiskModeChangeFault" />
+   </message>
+   <message name="DisallowedMigrationDeviceAttachedFaultMsg">
+      <part name="fault" element="eam:DisallowedMigrationDeviceAttachedFault" />
+   </message>
+   <message name="DisallowedOperationOnFailoverHostFaultMsg">
+      <part name="fault" element="eam:DisallowedOperationOnFailoverHostFault" />
+   </message>
+   <message name="DiskMoveTypeNotSupportedFaultMsg">
+      <part name="fault" element="eam:DiskMoveTypeNotSupportedFault" />
+   </message>
+   <message name="DiskNotSupportedFaultMsg">
+      <part name="fault" element="eam:DiskNotSupportedFault" />
+   </message>
+   <message name="DomainNotFoundFaultMsg">
+      <part name="fault" element="eam:DomainNotFoundFault" />
+   </message>
+   <message name="DrsDisabledOnVmFaultMsg">
+      <part name="fault" element="eam:DrsDisabledOnVmFault" />
+   </message>
+   <message name="DrsVmotionIncompatibleFaultFaultMsg">
+      <part name="fault" element="eam:DrsVmotionIncompatibleFaultFault" />
+   </message>
+   <message name="DuplicateNameFaultMsg">
+      <part name="fault" element="eam:DuplicateNameFault" />
+   </message>
+   <message name="DvsFaultFaultMsg">
+      <part name="fault" element="eam:DvsFaultFault" />
+   </message>
+   <message name="DvsNotAuthorizedFaultMsg">
+      <part name="fault" element="eam:DvsNotAuthorizedFault" />
+   </message>
+   <message name="DvsOperationBulkFaultFaultMsg">
+      <part name="fault" element="eam:DvsOperationBulkFaultFault" />
+   </message>
+   <message name="DvsScopeViolatedFaultMsg">
+      <part name="fault" element="eam:DvsScopeViolatedFault" />
+   </message>
+   <message name="EVCAdmissionFailedFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedFault" />
+   </message>
+   <message name="EVCAdmissionFailedCPUFeaturesForModeFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedCPUFeaturesForModeFault" />
+   </message>
+   <message name="EVCAdmissionFailedCPUModelFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedCPUModelFault" />
+   </message>
+   <message name="EVCAdmissionFailedCPUModelForModeFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedCPUModelForModeFault" />
+   </message>
+   <message name="EVCAdmissionFailedCPUVendorFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedCPUVendorFault" />
+   </message>
+   <message name="EVCAdmissionFailedCPUVendorUnknownFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedCPUVendorUnknownFault" />
+   </message>
+   <message name="EVCAdmissionFailedHostDisconnectedFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedHostDisconnectedFault" />
+   </message>
+   <message name="EVCAdmissionFailedHostSoftwareFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedHostSoftwareFault" />
+   </message>
+   <message name="EVCAdmissionFailedHostSoftwareForModeFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedHostSoftwareForModeFault" />
+   </message>
+   <message name="EVCAdmissionFailedVmActiveFaultMsg">
+      <part name="fault" element="eam:EVCAdmissionFailedVmActiveFault" />
+   </message>
+   <message name="EightHostLimitViolatedFaultMsg">
+      <part name="fault" element="eam:EightHostLimitViolatedFault" />
+   </message>
+   <message name="ExpiredAddonLicenseFaultMsg">
+      <part name="fault" element="eam:ExpiredAddonLicenseFault" />
+   </message>
+   <message name="ExpiredEditionLicenseFaultMsg">
+      <part name="fault" element="eam:ExpiredEditionLicenseFault" />
+   </message>
+   <message name="ExpiredFeatureLicenseFaultMsg">
+      <part name="fault" element="eam:ExpiredFeatureLicenseFault" />
+   </message>
+   <message name="ExtendedFaultFaultMsg">
+      <part name="fault" element="eam:ExtendedFaultFault" />
+   </message>
+   <message name="FailToEnableSPBMFaultMsg">
+      <part name="fault" element="eam:FailToEnableSPBMFault" />
+   </message>
+   <message name="FailToLockFaultToleranceVMsFaultMsg">
+      <part name="fault" element="eam:FailToLockFaultToleranceVMsFault" />
+   </message>
+   <message name="FaultToleranceAntiAffinityViolatedFaultMsg">
+      <part name="fault" element="eam:FaultToleranceAntiAffinityViolatedFault" />
+   </message>
+   <message name="FaultToleranceCannotEditMemFaultMsg">
+      <part name="fault" element="eam:FaultToleranceCannotEditMemFault" />
+   </message>
+   <message name="FaultToleranceCpuIncompatibleFaultMsg">
+      <part name="fault" element="eam:FaultToleranceCpuIncompatibleFault" />
+   </message>
+   <message name="FaultToleranceNeedsThickDiskFaultMsg">
+      <part name="fault" element="eam:FaultToleranceNeedsThickDiskFault" />
+   </message>
+   <message name="FaultToleranceNotLicensedFaultMsg">
+      <part name="fault" element="eam:FaultToleranceNotLicensedFault" />
+   </message>
+   <message name="FaultToleranceNotSameBuildFaultMsg">
+      <part name="fault" element="eam:FaultToleranceNotSameBuildFault" />
+   </message>
+   <message name="FaultTolerancePrimaryPowerOnNotAttemptedFaultMsg">
+      <part name="fault" element="eam:FaultTolerancePrimaryPowerOnNotAttemptedFault" />
+   </message>
+   <message name="FaultToleranceVmNotDasProtectedFaultMsg">
+      <part name="fault" element="eam:FaultToleranceVmNotDasProtectedFault" />
+   </message>
+   <message name="FcoeFaultFaultMsg">
+      <part name="fault" element="eam:FcoeFaultFault" />
+   </message>
+   <message name="FcoeFaultPnicHasNoPortSetFaultMsg">
+      <part name="fault" element="eam:FcoeFaultPnicHasNoPortSetFault" />
+   </message>
+   <message name="FileAlreadyExistsFaultMsg">
+      <part name="fault" element="eam:FileAlreadyExistsFault" />
+   </message>
+   <message name="FileBackedPortNotSupportedFaultMsg">
+      <part name="fault" element="eam:FileBackedPortNotSupportedFault" />
+   </message>
+   <message name="FileFaultFaultMsg">
+      <part name="fault" element="eam:FileFaultFault" />
+   </message>
+   <message name="FileLockedFaultMsg">
+      <part name="fault" element="eam:FileLockedFault" />
+   </message>
+   <message name="FileNameTooLongFaultMsg">
+      <part name="fault" element="eam:FileNameTooLongFault" />
+   </message>
+   <message name="FileNotFoundFaultMsg">
+      <part name="fault" element="eam:FileNotFoundFault" />
+   </message>
+   <message name="FileNotWritableFaultMsg">
+      <part name="fault" element="eam:FileNotWritableFault" />
+   </message>
+   <message name="FileTooLargeFaultMsg">
+      <part name="fault" element="eam:FileTooLargeFault" />
+   </message>
+   <message name="FilesystemQuiesceFaultFaultMsg">
+      <part name="fault" element="eam:FilesystemQuiesceFaultFault" />
+   </message>
+   <message name="FtIssuesOnHostFaultMsg">
+      <part name="fault" element="eam:FtIssuesOnHostFault" />
+   </message>
+   <message name="FullStorageVMotionNotSupportedFaultMsg">
+      <part name="fault" element="eam:FullStorageVMotionNotSupportedFault" />
+   </message>
+   <message name="GenericDrsFaultFaultMsg">
+      <part name="fault" element="eam:GenericDrsFaultFault" />
+   </message>
+   <message name="GenericVmConfigFaultFaultMsg">
+      <part name="fault" element="eam:GenericVmConfigFaultFault" />
+   </message>
+   <message name="GuestAuthenticationChallengeFaultMsg">
+      <part name="fault" element="eam:GuestAuthenticationChallengeFault" />
+   </message>
+   <message name="GuestComponentsOutOfDateFaultMsg">
+      <part name="fault" element="eam:GuestComponentsOutOfDateFault" />
+   </message>
+   <message name="GuestOperationsFaultFaultMsg">
+      <part name="fault" element="eam:GuestOperationsFaultFault" />
+   </message>
+   <message name="GuestOperationsUnavailableFaultMsg">
+      <part name="fault" element="eam:GuestOperationsUnavailableFault" />
+   </message>
+   <message name="GuestPermissionDeniedFaultMsg">
+      <part name="fault" element="eam:GuestPermissionDeniedFault" />
+   </message>
+   <message name="GuestProcessNotFoundFaultMsg">
+      <part name="fault" element="eam:GuestProcessNotFoundFault" />
+   </message>
+   <message name="HAErrorsAtDestFaultMsg">
+      <part name="fault" element="eam:HAErrorsAtDestFault" />
+   </message>
+   <message name="HostAccessRestrictedToManagementServerFaultMsg">
+      <part name="fault" element="eam:HostAccessRestrictedToManagementServerFault" />
+   </message>
+   <message name="HostConfigFailedFaultMsg">
+      <part name="fault" element="eam:HostConfigFailedFault" />
+   </message>
+   <message name="HostConfigFaultFaultMsg">
+      <part name="fault" element="eam:HostConfigFaultFault" />
+   </message>
+   <message name="HostConnectFaultFaultMsg">
+      <part name="fault" element="eam:HostConnectFaultFault" />
+   </message>
+   <message name="HostInDomainFaultMsg">
+      <part name="fault" element="eam:HostInDomainFault" />
+   </message>
+   <message name="HostIncompatibleForFaultToleranceFaultMsg">
+      <part name="fault" element="eam:HostIncompatibleForFaultToleranceFault" />
+   </message>
+   <message name="HostIncompatibleForRecordReplayFaultMsg">
+      <part name="fault" element="eam:HostIncompatibleForRecordReplayFault" />
+   </message>
+   <message name="HostInventoryFullFaultMsg">
+      <part name="fault" element="eam:HostInventoryFullFault" />
+   </message>
+   <message name="HostPowerOpFailedFaultMsg">
+      <part name="fault" element="eam:HostPowerOpFailedFault" />
+   </message>
+   <message name="HotSnapshotMoveNotSupportedFaultMsg">
+      <part name="fault" element="eam:HotSnapshotMoveNotSupportedFault" />
+   </message>
+   <message name="IDEDiskNotSupportedFaultMsg">
+      <part name="fault" element="eam:IDEDiskNotSupportedFault" />
+   </message>
+   <message name="IORMNotSupportedHostOnDatastoreFaultMsg">
+      <part name="fault" element="eam:IORMNotSupportedHostOnDatastoreFault" />
+   </message>
+   <message name="InUseFeatureManipulationDisallowedFaultMsg">
+      <part name="fault" element="eam:InUseFeatureManipulationDisallowedFault" />
+   </message>
+   <message name="InaccessibleDatastoreFaultMsg">
+      <part name="fault" element="eam:InaccessibleDatastoreFault" />
+   </message>
+   <message name="IncompatibleDefaultDeviceFaultMsg">
+      <part name="fault" element="eam:IncompatibleDefaultDeviceFault" />
+   </message>
+   <message name="IncompatibleHostForFtSecondaryFaultMsg">
+      <part name="fault" element="eam:IncompatibleHostForFtSecondaryFault" />
+   </message>
+   <message name="IncompatibleSettingFaultMsg">
+      <part name="fault" element="eam:IncompatibleSettingFault" />
+   </message>
+   <message name="IncorrectFileTypeFaultMsg">
+      <part name="fault" element="eam:IncorrectFileTypeFault" />
+   </message>
+   <message name="IncorrectHostInformationFaultMsg">
+      <part name="fault" element="eam:IncorrectHostInformationFault" />
+   </message>
+   <message name="IndependentDiskVMotionNotSupportedFaultMsg">
+      <part name="fault" element="eam:IndependentDiskVMotionNotSupportedFault" />
+   </message>
+   <message name="InsufficientAgentVmsDeployedFaultMsg">
+      <part name="fault" element="eam:InsufficientAgentVmsDeployedFault" />
+   </message>
+   <message name="InsufficientCpuResourcesFaultFaultMsg">
+      <part name="fault" element="eam:InsufficientCpuResourcesFaultFault" />
+   </message>
+   <message name="InsufficientFailoverResourcesFaultFaultMsg">
+      <part name="fault" element="eam:InsufficientFailoverResourcesFaultFault" />
+   </message>
+   <message name="InsufficientHostCapacityFaultFaultMsg">
+      <part name="fault" element="eam:InsufficientHostCapacityFaultFault" />
+   </message>
+   <message name="InsufficientHostCpuCapacityFaultFaultMsg">
+      <part name="fault" element="eam:InsufficientHostCpuCapacityFaultFault" />
+   </message>
+   <message name="InsufficientHostMemoryCapacityFaultFaultMsg">
+      <part name="fault" element="eam:InsufficientHostMemoryCapacityFaultFault" />
+   </message>
+   <message name="InsufficientMemoryResourcesFaultFaultMsg">
+      <part name="fault" element="eam:InsufficientMemoryResourcesFaultFault" />
+   </message>
+   <message name="InsufficientPerCpuCapacityFaultMsg">
+      <part name="fault" element="eam:InsufficientPerCpuCapacityFault" />
+   </message>
+   <message name="InsufficientResourcesFaultFaultMsg">
+      <part name="fault" element="eam:InsufficientResourcesFaultFault" />
+   </message>
+   <message name="InsufficientStandbyCpuResourceFaultMsg">
+      <part name="fault" element="eam:InsufficientStandbyCpuResourceFault" />
+   </message>
+   <message name="InsufficientStandbyMemoryResourceFaultMsg">
+      <part name="fault" element="eam:InsufficientStandbyMemoryResourceFault" />
+   </message>
+   <message name="InsufficientStandbyResourceFaultMsg">
+      <part name="fault" element="eam:InsufficientStandbyResourceFault" />
+   </message>
+   <message name="InsufficientStorageSpaceFaultMsg">
+      <part name="fault" element="eam:InsufficientStorageSpaceFault" />
+   </message>
+   <message name="InvalidAffinitySettingFaultFaultMsg">
+      <part name="fault" element="eam:InvalidAffinitySettingFaultFault" />
+   </message>
+   <message name="InvalidBmcRoleFaultMsg">
+      <part name="fault" element="eam:InvalidBmcRoleFault" />
+   </message>
+   <message name="InvalidBundleFaultMsg">
+      <part name="fault" element="eam:InvalidBundleFault" />
+   </message>
+   <message name="InvalidCAMCertificateFaultMsg">
+      <part name="fault" element="eam:InvalidCAMCertificateFault" />
+   </message>
+   <message name="InvalidCAMServerFaultMsg">
+      <part name="fault" element="eam:InvalidCAMServerFault" />
+   </message>
+   <message name="InvalidClientCertificateFaultMsg">
+      <part name="fault" element="eam:InvalidClientCertificateFault" />
+   </message>
+   <message name="InvalidControllerFaultMsg">
+      <part name="fault" element="eam:InvalidControllerFault" />
+   </message>
+   <message name="InvalidDasRestartPriorityForFtVmFaultMsg">
+      <part name="fault" element="eam:InvalidDasRestartPriorityForFtVmFault" />
+   </message>
+   <message name="InvalidDatastoreFaultMsg">
+      <part name="fault" element="eam:InvalidDatastoreFault" />
+   </message>
+   <message name="InvalidDatastorePathFaultMsg">
+      <part name="fault" element="eam:InvalidDatastorePathFault" />
+   </message>
+   <message name="InvalidDatastoreStateFaultMsg">
+      <part name="fault" element="eam:InvalidDatastoreStateFault" />
+   </message>
+   <message name="InvalidDeviceBackingFaultMsg">
+      <part name="fault" element="eam:InvalidDeviceBackingFault" />
+   </message>
+   <message name="InvalidDeviceOperationFaultMsg">
+      <part name="fault" element="eam:InvalidDeviceOperationFault" />
+   </message>
+   <message name="InvalidDeviceSpecFaultMsg">
+      <part name="fault" element="eam:InvalidDeviceSpecFault" />
+   </message>
+   <message name="InvalidDiskFormatFaultMsg">
+      <part name="fault" element="eam:InvalidDiskFormatFault" />
+   </message>
+   <message name="InvalidDrsBehaviorForFtVmFaultMsg">
+      <part name="fault" element="eam:InvalidDrsBehaviorForFtVmFault" />
+   </message>
+   <message name="InvalidEditionLicenseFaultMsg">
+      <part name="fault" element="eam:InvalidEditionLicenseFault" />
+   </message>
+   <message name="InvalidEventFaultMsg">
+      <part name="fault" element="eam:InvalidEventFault" />
+   </message>
+   <message name="InvalidFolderFaultMsg">
+      <part name="fault" element="eam:InvalidFolderFault" />
+   </message>
+   <message name="InvalidFormatFaultMsg">
+      <part name="fault" element="eam:InvalidFormatFault" />
+   </message>
+   <message name="InvalidGuestLoginFaultMsg">
+      <part name="fault" element="eam:InvalidGuestLoginFault" />
+   </message>
+   <message name="InvalidHostNameFaultMsg">
+      <part name="fault" element="eam:InvalidHostNameFault" />
+   </message>
+   <message name="InvalidHostStateFaultMsg">
+      <part name="fault" element="eam:InvalidHostStateFault" />
+   </message>
+   <message name="InvalidIndexArgumentFaultMsg">
+      <part name="fault" element="eam:InvalidIndexArgumentFault" />
+   </message>
+   <message name="InvalidIpmiLoginInfoFaultMsg">
+      <part name="fault" element="eam:InvalidIpmiLoginInfoFault" />
+   </message>
+   <message name="InvalidIpmiMacAddressFaultMsg">
+      <part name="fault" element="eam:InvalidIpmiMacAddressFault" />
+   </message>
+   <message name="InvalidLicenseFaultMsg">
+      <part name="fault" element="eam:InvalidLicenseFault" />
+   </message>
+   <message name="InvalidLocaleFaultMsg">
+      <part name="fault" element="eam:InvalidLocaleFault" />
+   </message>
+   <message name="InvalidLoginFaultMsg">
+      <part name="fault" element="eam:InvalidLoginFault" />
+   </message>
+   <message name="InvalidNameFaultMsg">
+      <part name="fault" element="eam:InvalidNameFault" />
+   </message>
+   <message name="InvalidNasCredentialsFaultMsg">
+      <part name="fault" element="eam:InvalidNasCredentialsFault" />
+   </message>
+   <message name="InvalidNetworkInTypeFaultMsg">
+      <part name="fault" element="eam:InvalidNetworkInTypeFault" />
+   </message>
+   <message name="InvalidNetworkResourceFaultMsg">
+      <part name="fault" element="eam:InvalidNetworkResourceFault" />
+   </message>
+   <message name="InvalidOperationOnSecondaryVmFaultMsg">
+      <part name="fault" element="eam:InvalidOperationOnSecondaryVmFault" />
+   </message>
+   <message name="InvalidPowerStateFaultMsg">
+      <part name="fault" element="eam:InvalidPowerStateFault" />
+   </message>
+   <message name="InvalidPrivilegeFaultMsg">
+      <part name="fault" element="eam:InvalidPrivilegeFault" />
+   </message>
+   <message name="InvalidProfileReferenceHostFaultMsg">
+      <part name="fault" element="eam:InvalidProfileReferenceHostFault" />
+   </message>
+   <message name="InvalidPropertyTypeFaultMsg">
+      <part name="fault" element="eam:InvalidPropertyTypeFault" />
+   </message>
+   <message name="InvalidPropertyValueFaultMsg">
+      <part name="fault" element="eam:InvalidPropertyValueFault" />
+   </message>
+   <message name="InvalidResourcePoolStructureFaultFaultMsg">
+      <part name="fault" element="eam:InvalidResourcePoolStructureFaultFault" />
+   </message>
+   <message name="InvalidSnapshotFormatFaultMsg">
+      <part name="fault" element="eam:InvalidSnapshotFormatFault" />
+   </message>
+   <message name="InvalidStateFaultMsg">
+      <part name="fault" element="eam:InvalidStateFault" />
+   </message>
+   <message name="InvalidVmConfigFaultMsg">
+      <part name="fault" element="eam:InvalidVmConfigFault" />
+   </message>
+   <message name="InventoryHasStandardAloneHostsFaultMsg">
+      <part name="fault" element="eam:InventoryHasStandardAloneHostsFault" />
+   </message>
+   <message name="IpHostnameGeneratorErrorFaultMsg">
+      <part name="fault" element="eam:IpHostnameGeneratorErrorFault" />
+   </message>
+   <message name="IscsiFaultFaultMsg">
+      <part name="fault" element="eam:IscsiFaultFault" />
+   </message>
+   <message name="IscsiFaultInvalidVnicFaultMsg">
+      <part name="fault" element="eam:IscsiFaultInvalidVnicFault" />
+   </message>
+   <message name="IscsiFaultPnicInUseFaultMsg">
+      <part name="fault" element="eam:IscsiFaultPnicInUseFault" />
+   </message>
+   <message name="IscsiFaultVnicAlreadyBoundFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicAlreadyBoundFault" />
+   </message>
+   <message name="IscsiFaultVnicHasActivePathsFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicHasActivePathsFault" />
+   </message>
+   <message name="IscsiFaultVnicHasMultipleUplinksFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicHasMultipleUplinksFault" />
+   </message>
+   <message name="IscsiFaultVnicHasNoUplinksFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicHasNoUplinksFault" />
+   </message>
+   <message name="IscsiFaultVnicHasWrongUplinkFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicHasWrongUplinkFault" />
+   </message>
+   <message name="IscsiFaultVnicInUseFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicInUseFault" />
+   </message>
+   <message name="IscsiFaultVnicIsLastPathFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicIsLastPathFault" />
+   </message>
+   <message name="IscsiFaultVnicNotBoundFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicNotBoundFault" />
+   </message>
+   <message name="IscsiFaultVnicNotFoundFaultMsg">
+      <part name="fault" element="eam:IscsiFaultVnicNotFoundFault" />
+   </message>
+   <message name="LargeRDMConversionNotSupportedFaultMsg">
+      <part name="fault" element="eam:LargeRDMConversionNotSupportedFault" />
+   </message>
+   <message name="LargeRDMNotSupportedOnDatastoreFaultMsg">
+      <part name="fault" element="eam:LargeRDMNotSupportedOnDatastoreFault" />
+   </message>
+   <message name="LegacyNetworkInterfaceInUseFaultMsg">
+      <part name="fault" element="eam:LegacyNetworkInterfaceInUseFault" />
+   </message>
+   <message name="LicenseAssignmentFailedFaultMsg">
+      <part name="fault" element="eam:LicenseAssignmentFailedFault" />
+   </message>
+   <message name="LicenseDowngradeDisallowedFaultMsg">
+      <part name="fault" element="eam:LicenseDowngradeDisallowedFault" />
+   </message>
+   <message name="LicenseEntityNotFoundFaultMsg">
+      <part name="fault" element="eam:LicenseEntityNotFoundFault" />
+   </message>
+   <message name="LicenseExpiredFaultMsg">
+      <part name="fault" element="eam:LicenseExpiredFault" />
+   </message>
+   <message name="LicenseKeyEntityMismatchFaultMsg">
+      <part name="fault" element="eam:LicenseKeyEntityMismatchFault" />
+   </message>
+   <message name="LicenseRestrictedFaultMsg">
+      <part name="fault" element="eam:LicenseRestrictedFault" />
+   </message>
+   <message name="LicenseServerUnavailableFaultMsg">
+      <part name="fault" element="eam:LicenseServerUnavailableFault" />
+   </message>
+   <message name="LicenseSourceUnavailableFaultMsg">
+      <part name="fault" element="eam:LicenseSourceUnavailableFault" />
+   </message>
+   <message name="LimitExceededFaultMsg">
+      <part name="fault" element="eam:LimitExceededFault" />
+   </message>
+   <message name="LinuxVolumeNotCleanFaultMsg">
+      <part name="fault" element="eam:LinuxVolumeNotCleanFault" />
+   </message>
+   <message name="LogBundlingFailedFaultMsg">
+      <part name="fault" element="eam:LogBundlingFailedFault" />
+   </message>
+   <message name="MaintenanceModeFileMoveFaultMsg">
+      <part name="fault" element="eam:MaintenanceModeFileMoveFault" />
+   </message>
+   <message name="MemoryHotPlugNotSupportedFaultMsg">
+      <part name="fault" element="eam:MemoryHotPlugNotSupportedFault" />
+   </message>
+   <message name="MemorySizeNotRecommendedFaultMsg">
+      <part name="fault" element="eam:MemorySizeNotRecommendedFault" />
+   </message>
+   <message name="MemorySizeNotSupportedFaultMsg">
+      <part name="fault" element="eam:MemorySizeNotSupportedFault" />
+   </message>
+   <message name="MemorySizeNotSupportedByDatastoreFaultMsg">
+      <part name="fault" element="eam:MemorySizeNotSupportedByDatastoreFault" />
+   </message>
+   <message name="MemorySnapshotOnIndependentDiskFaultMsg">
+      <part name="fault" element="eam:MemorySnapshotOnIndependentDiskFault" />
+   </message>
+   <message name="MethodAlreadyDisabledFaultFaultMsg">
+      <part name="fault" element="eam:MethodAlreadyDisabledFaultFault" />
+   </message>
+   <message name="MethodDisabledFaultMsg">
+      <part name="fault" element="eam:MethodDisabledFault" />
+   </message>
+   <message name="MigrationDisabledFaultMsg">
+      <part name="fault" element="eam:MigrationDisabledFault" />
+   </message>
+   <message name="MigrationFaultFaultMsg">
+      <part name="fault" element="eam:MigrationFaultFault" />
+   </message>
+   <message name="MigrationFeatureNotSupportedFaultMsg">
+      <part name="fault" element="eam:MigrationFeatureNotSupportedFault" />
+   </message>
+   <message name="MigrationNotReadyFaultMsg">
+      <part name="fault" element="eam:MigrationNotReadyFault" />
+   </message>
+   <message name="MismatchedBundleFaultMsg">
+      <part name="fault" element="eam:MismatchedBundleFault" />
+   </message>
+   <message name="MismatchedNetworkPoliciesFaultMsg">
+      <part name="fault" element="eam:MismatchedNetworkPoliciesFault" />
+   </message>
+   <message name="MismatchedVMotionNetworkNamesFaultMsg">
+      <part name="fault" element="eam:MismatchedVMotionNetworkNamesFault" />
+   </message>
+   <message name="MissingBmcSupportFaultMsg">
+      <part name="fault" element="eam:MissingBmcSupportFault" />
+   </message>
+   <message name="MissingControllerFaultMsg">
+      <part name="fault" element="eam:MissingControllerFault" />
+   </message>
+   <message name="MissingIpPoolFaultMsg">
+      <part name="fault" element="eam:MissingIpPoolFault" />
+   </message>
+   <message name="MissingLinuxCustResourcesFaultMsg">
+      <part name="fault" element="eam:MissingLinuxCustResourcesFault" />
+   </message>
+   <message name="MissingNetworkIpConfigFaultMsg">
+      <part name="fault" element="eam:MissingNetworkIpConfigFault" />
+   </message>
+   <message name="MissingPowerOffConfigurationFaultMsg">
+      <part name="fault" element="eam:MissingPowerOffConfigurationFault" />
+   </message>
+   <message name="MissingPowerOnConfigurationFaultMsg">
+      <part name="fault" element="eam:MissingPowerOnConfigurationFault" />
+   </message>
+   <message name="MissingWindowsCustResourcesFaultMsg">
+      <part name="fault" element="eam:MissingWindowsCustResourcesFault" />
+   </message>
+   <message name="MksConnectionLimitReachedFaultMsg">
+      <part name="fault" element="eam:MksConnectionLimitReachedFault" />
+   </message>
+   <message name="MountErrorFaultMsg">
+      <part name="fault" element="eam:MountErrorFault" />
+   </message>
+   <message name="MultipleCertificatesVerifyFaultFaultMsg">
+      <part name="fault" element="eam:MultipleCertificatesVerifyFaultFault" />
+   </message>
+   <message name="MultipleSnapshotsNotSupportedFaultMsg">
+      <part name="fault" element="eam:MultipleSnapshotsNotSupportedFault" />
+   </message>
+   <message name="NasConfigFaultFaultMsg">
+      <part name="fault" element="eam:NasConfigFaultFault" />
+   </message>
+   <message name="NasConnectionLimitReachedFaultMsg">
+      <part name="fault" element="eam:NasConnectionLimitReachedFault" />
+   </message>
+   <message name="NasSessionCredentialConflictFaultMsg">
+      <part name="fault" element="eam:NasSessionCredentialConflictFault" />
+   </message>
+   <message name="NasVolumeNotMountedFaultMsg">
+      <part name="fault" element="eam:NasVolumeNotMountedFault" />
+   </message>
+   <message name="NetworkCopyFaultFaultMsg">
+      <part name="fault" element="eam:NetworkCopyFaultFault" />
+   </message>
+   <message name="NetworkInaccessibleFaultMsg">
+      <part name="fault" element="eam:NetworkInaccessibleFault" />
+   </message>
+   <message name="NetworksMayNotBeTheSameFaultMsg">
+      <part name="fault" element="eam:NetworksMayNotBeTheSameFault" />
+   </message>
+   <message name="NicSettingMismatchFaultMsg">
+      <part name="fault" element="eam:NicSettingMismatchFault" />
+   </message>
+   <message name="NoActiveHostInClusterFaultMsg">
+      <part name="fault" element="eam:NoActiveHostInClusterFault" />
+   </message>
+   <message name="NoAvailableIpFaultMsg">
+      <part name="fault" element="eam:NoAvailableIpFault" />
+   </message>
+   <message name="NoClientCertificateFaultMsg">
+      <part name="fault" element="eam:NoClientCertificateFault" />
+   </message>
+   <message name="NoCompatibleDatastoreFaultMsg">
+      <part name="fault" element="eam:NoCompatibleDatastoreFault" />
+   </message>
+   <message name="NoCompatibleHardAffinityHostFaultMsg">
+      <part name="fault" element="eam:NoCompatibleHardAffinityHostFault" />
+   </message>
+   <message name="NoCompatibleHostFaultMsg">
+      <part name="fault" element="eam:NoCompatibleHostFault" />
+   </message>
+   <message name="NoCompatibleHostWithAccessToDeviceFaultMsg">
+      <part name="fault" element="eam:NoCompatibleHostWithAccessToDeviceFault" />
+   </message>
+   <message name="NoCompatibleSoftAffinityHostFaultMsg">
+      <part name="fault" element="eam:NoCompatibleSoftAffinityHostFault" />
+   </message>
+   <message name="NoConnectedDatastoreFaultMsg">
+      <part name="fault" element="eam:NoConnectedDatastoreFault" />
+   </message>
+   <message name="NoDiskFoundFaultMsg">
+      <part name="fault" element="eam:NoDiskFoundFault" />
+   </message>
+   <message name="NoDiskSpaceFaultMsg">
+      <part name="fault" element="eam:NoDiskSpaceFault" />
+   </message>
+   <message name="NoDisksToCustomizeFaultMsg">
+      <part name="fault" element="eam:NoDisksToCustomizeFault" />
+   </message>
+   <message name="NoGatewayFaultMsg">
+      <part name="fault" element="eam:NoGatewayFault" />
+   </message>
+   <message name="NoGuestHeartbeatFaultMsg">
+      <part name="fault" element="eam:NoGuestHeartbeatFault" />
+   </message>
+   <message name="NoHostFaultMsg">
+      <part name="fault" element="eam:NoHostFault" />
+   </message>
+   <message name="NoHostSuitableForFtSecondaryFaultMsg">
+      <part name="fault" element="eam:NoHostSuitableForFtSecondaryFault" />
+   </message>
+   <message name="NoLicenseServerConfiguredFaultMsg">
+      <part name="fault" element="eam:NoLicenseServerConfiguredFault" />
+   </message>
+   <message name="NoPeerHostFoundFaultMsg">
+      <part name="fault" element="eam:NoPeerHostFoundFault" />
+   </message>
+   <message name="NoPermissionFaultMsg">
+      <part name="fault" element="eam:NoPermissionFault" />
+   </message>
+   <message name="NoPermissionOnADFaultMsg">
+      <part name="fault" element="eam:NoPermissionOnADFault" />
+   </message>
+   <message name="NoPermissionOnHostFaultMsg">
+      <part name="fault" element="eam:NoPermissionOnHostFault" />
+   </message>
+   <message name="NoPermissionOnNasVolumeFaultMsg">
+      <part name="fault" element="eam:NoPermissionOnNasVolumeFault" />
+   </message>
+   <message name="NoSubjectNameFaultMsg">
+      <part name="fault" element="eam:NoSubjectNameFault" />
+   </message>
+   <message name="NoVcManagedIpConfiguredFaultMsg">
+      <part name="fault" element="eam:NoVcManagedIpConfiguredFault" />
+   </message>
+   <message name="NoVirtualNicFaultMsg">
+      <part name="fault" element="eam:NoVirtualNicFault" />
+   </message>
+   <message name="NoVmInVAppFaultMsg">
+      <part name="fault" element="eam:NoVmInVAppFault" />
+   </message>
+   <message name="NonADUserRequiredFaultMsg">
+      <part name="fault" element="eam:NonADUserRequiredFault" />
+   </message>
+   <message name="NonHomeRDMVMotionNotSupportedFaultMsg">
+      <part name="fault" element="eam:NonHomeRDMVMotionNotSupportedFault" />
+   </message>
+   <message name="NonPersistentDisksNotSupportedFaultMsg">
+      <part name="fault" element="eam:NonPersistentDisksNotSupportedFault" />
+   </message>
+   <message name="NotADirectoryFaultMsg">
+      <part name="fault" element="eam:NotADirectoryFault" />
+   </message>
+   <message name="NotAFileFaultMsg">
+      <part name="fault" element="eam:NotAFileFault" />
+   </message>
+   <message name="NotAuthenticatedFaultMsg">
+      <part name="fault" element="eam:NotAuthenticatedFault" />
+   </message>
+   <message name="NotEnoughCpusFaultMsg">
+      <part name="fault" element="eam:NotEnoughCpusFault" />
+   </message>
+   <message name="NotEnoughLogicalCpusFaultMsg">
+      <part name="fault" element="eam:NotEnoughLogicalCpusFault" />
+   </message>
+   <message name="NotFoundFaultMsg">
+      <part name="fault" element="eam:NotFoundFault" />
+   </message>
+   <message name="NotSupportedDeviceForFTFaultMsg">
+      <part name="fault" element="eam:NotSupportedDeviceForFTFault" />
+   </message>
+   <message name="NotSupportedHostFaultMsg">
+      <part name="fault" element="eam:NotSupportedHostFault" />
+   </message>
+   <message name="NotSupportedHostInClusterFaultMsg">
+      <part name="fault" element="eam:NotSupportedHostInClusterFault" />
+   </message>
+   <message name="NotSupportedHostInDvsFaultMsg">
+      <part name="fault" element="eam:NotSupportedHostInDvsFault" />
+   </message>
+   <message name="NotSupportedHostInHAClusterFaultMsg">
+      <part name="fault" element="eam:NotSupportedHostInHAClusterFault" />
+   </message>
+   <message name="NotUserConfigurablePropertyFaultMsg">
+      <part name="fault" element="eam:NotUserConfigurablePropertyFault" />
+   </message>
+   <message name="NumVirtualCoresPerSocketNotSupportedFaultMsg">
+      <part name="fault" element="eam:NumVirtualCoresPerSocketNotSupportedFault" />
+   </message>
+   <message name="NumVirtualCpusExceedsLimitFaultMsg">
+      <part name="fault" element="eam:NumVirtualCpusExceedsLimitFault" />
+   </message>
+   <message name="NumVirtualCpusIncompatibleFaultMsg">
+      <part name="fault" element="eam:NumVirtualCpusIncompatibleFault" />
+   </message>
+   <message name="NumVirtualCpusNotSupportedFaultMsg">
+      <part name="fault" element="eam:NumVirtualCpusNotSupportedFault" />
+   </message>
+   <message name="OperationDisabledByGuestFaultMsg">
+      <part name="fault" element="eam:OperationDisabledByGuestFault" />
+   </message>
+   <message name="OperationDisallowedOnHostFaultMsg">
+      <part name="fault" element="eam:OperationDisallowedOnHostFault" />
+   </message>
+   <message name="OperationNotSupportedByGuestFaultMsg">
+      <part name="fault" element="eam:OperationNotSupportedByGuestFault" />
+   </message>
+   <message name="OutOfBoundsFaultMsg">
+      <part name="fault" element="eam:OutOfBoundsFault" />
+   </message>
+   <message name="OvfAttributeFaultMsg">
+      <part name="fault" element="eam:OvfAttributeFault" />
+   </message>
+   <message name="OvfConnectedDeviceFaultMsg">
+      <part name="fault" element="eam:OvfConnectedDeviceFault" />
+   </message>
+   <message name="OvfConnectedDeviceFloppyFaultMsg">
+      <part name="fault" element="eam:OvfConnectedDeviceFloppyFault" />
+   </message>
+   <message name="OvfConnectedDeviceIsoFaultMsg">
+      <part name="fault" element="eam:OvfConnectedDeviceIsoFault" />
+   </message>
+   <message name="OvfConstraintFaultMsg">
+      <part name="fault" element="eam:OvfConstraintFault" />
+   </message>
+   <message name="OvfConsumerCallbackFaultFaultMsg">
+      <part name="fault" element="eam:OvfConsumerCallbackFaultFault" />
+   </message>
+   <message name="OvfConsumerCommunicationErrorFaultMsg">
+      <part name="fault" element="eam:OvfConsumerCommunicationErrorFault" />
+   </message>
+   <message name="OvfConsumerFaultFaultMsg">
+      <part name="fault" element="eam:OvfConsumerFaultFault" />
+   </message>
+   <message name="OvfConsumerInvalidSectionFaultMsg">
+      <part name="fault" element="eam:OvfConsumerInvalidSectionFault" />
+   </message>
+   <message name="OvfConsumerPowerOnFaultFaultMsg">
+      <part name="fault" element="eam:OvfConsumerPowerOnFaultFault" />
+   </message>
+   <message name="OvfConsumerUndeclaredSectionFaultMsg">
+      <part name="fault" element="eam:OvfConsumerUndeclaredSectionFault" />
+   </message>
+   <message name="OvfConsumerUndefinedPrefixFaultMsg">
+      <part name="fault" element="eam:OvfConsumerUndefinedPrefixFault" />
+   </message>
+   <message name="OvfConsumerValidationFaultFaultMsg">
+      <part name="fault" element="eam:OvfConsumerValidationFaultFault" />
+   </message>
+   <message name="OvfCpuCompatibilityFaultMsg">
+      <part name="fault" element="eam:OvfCpuCompatibilityFault" />
+   </message>
+   <message name="OvfCpuCompatibilityCheckNotSupportedFaultMsg">
+      <part name="fault" element="eam:OvfCpuCompatibilityCheckNotSupportedFault" />
+   </message>
+   <message name="OvfDiskMappingNotFoundFaultMsg">
+      <part name="fault" element="eam:OvfDiskMappingNotFoundFault" />
+   </message>
+   <message name="OvfDiskOrderConstraintFaultMsg">
+      <part name="fault" element="eam:OvfDiskOrderConstraintFault" />
+   </message>
+   <message name="OvfDuplicateElementFaultMsg">
+      <part name="fault" element="eam:OvfDuplicateElementFault" />
+   </message>
+   <message name="OvfDuplicatedElementBoundaryFaultMsg">
+      <part name="fault" element="eam:OvfDuplicatedElementBoundaryFault" />
+   </message>
+   <message name="OvfDuplicatedPropertyIdExportFaultMsg">
+      <part name="fault" element="eam:OvfDuplicatedPropertyIdExportFault" />
+   </message>
+   <message name="OvfDuplicatedPropertyIdImportFaultMsg">
+      <part name="fault" element="eam:OvfDuplicatedPropertyIdImportFault" />
+   </message>
+   <message name="OvfElementFaultMsg">
+      <part name="fault" element="eam:OvfElementFault" />
+   </message>
+   <message name="OvfElementInvalidValueFaultMsg">
+      <part name="fault" element="eam:OvfElementInvalidValueFault" />
+   </message>
+   <message name="OvfExportFaultMsg">
+      <part name="fault" element="eam:OvfExportFault" />
+   </message>
+   <message name="OvfExportFailedFaultMsg">
+      <part name="fault" element="eam:OvfExportFailedFault" />
+   </message>
+   <message name="OvfFaultFaultMsg">
+      <part name="fault" element="eam:OvfFaultFault" />
+   </message>
+   <message name="OvfHardwareCheckFaultMsg">
+      <part name="fault" element="eam:OvfHardwareCheckFault" />
+   </message>
+   <message name="OvfHardwareExportFaultMsg">
+      <part name="fault" element="eam:OvfHardwareExportFault" />
+   </message>
+   <message name="OvfHostResourceConstraintFaultMsg">
+      <part name="fault" element="eam:OvfHostResourceConstraintFault" />
+   </message>
+   <message name="OvfHostValueNotParsedFaultMsg">
+      <part name="fault" element="eam:OvfHostValueNotParsedFault" />
+   </message>
+   <message name="OvfImportFaultMsg">
+      <part name="fault" element="eam:OvfImportFault" />
+   </message>
+   <message name="OvfImportFailedFaultMsg">
+      <part name="fault" element="eam:OvfImportFailedFault" />
+   </message>
+   <message name="OvfInternalErrorFaultMsg">
+      <part name="fault" element="eam:OvfInternalErrorFault" />
+   </message>
+   <message name="OvfInvalidPackageFaultMsg">
+      <part name="fault" element="eam:OvfInvalidPackageFault" />
+   </message>
+   <message name="OvfInvalidValueFaultMsg">
+      <part name="fault" element="eam:OvfInvalidValueFault" />
+   </message>
+   <message name="OvfInvalidValueConfigurationFaultMsg">
+      <part name="fault" element="eam:OvfInvalidValueConfigurationFault" />
+   </message>
+   <message name="OvfInvalidValueEmptyFaultMsg">
+      <part name="fault" element="eam:OvfInvalidValueEmptyFault" />
+   </message>
+   <message name="OvfInvalidValueFormatMalformedFaultMsg">
+      <part name="fault" element="eam:OvfInvalidValueFormatMalformedFault" />
+   </message>
+   <message name="OvfInvalidValueReferenceFaultMsg">
+      <part name="fault" element="eam:OvfInvalidValueReferenceFault" />
+   </message>
+   <message name="OvfInvalidVmNameFaultMsg">
+      <part name="fault" element="eam:OvfInvalidVmNameFault" />
+   </message>
+   <message name="OvfMappedOsIdFaultMsg">
+      <part name="fault" element="eam:OvfMappedOsIdFault" />
+   </message>
+   <message name="OvfMissingAttributeFaultMsg">
+      <part name="fault" element="eam:OvfMissingAttributeFault" />
+   </message>
+   <message name="OvfMissingElementFaultMsg">
+      <part name="fault" element="eam:OvfMissingElementFault" />
+   </message>
+   <message name="OvfMissingElementNormalBoundaryFaultMsg">
+      <part name="fault" element="eam:OvfMissingElementNormalBoundaryFault" />
+   </message>
+   <message name="OvfMissingHardwareFaultMsg">
+      <part name="fault" element="eam:OvfMissingHardwareFault" />
+   </message>
+   <message name="OvfNoHostNicFaultMsg">
+      <part name="fault" element="eam:OvfNoHostNicFault" />
+   </message>
+   <message name="OvfNoSpaceOnControllerFaultMsg">
+      <part name="fault" element="eam:OvfNoSpaceOnControllerFault" />
+   </message>
+   <message name="OvfNoSupportedHardwareFamilyFaultMsg">
+      <part name="fault" element="eam:OvfNoSupportedHardwareFamilyFault" />
+   </message>
+   <message name="OvfPropertyFaultMsg">
+      <part name="fault" element="eam:OvfPropertyFault" />
+   </message>
+   <message name="OvfPropertyExportFaultMsg">
+      <part name="fault" element="eam:OvfPropertyExportFault" />
+   </message>
+   <message name="OvfPropertyNetworkFaultMsg">
+      <part name="fault" element="eam:OvfPropertyNetworkFault" />
+   </message>
+   <message name="OvfPropertyNetworkExportFaultMsg">
+      <part name="fault" element="eam:OvfPropertyNetworkExportFault" />
+   </message>
+   <message name="OvfPropertyQualifierFaultMsg">
+      <part name="fault" element="eam:OvfPropertyQualifierFault" />
+   </message>
+   <message name="OvfPropertyQualifierDuplicateFaultMsg">
+      <part name="fault" element="eam:OvfPropertyQualifierDuplicateFault" />
+   </message>
+   <message name="OvfPropertyQualifierIgnoredFaultMsg">
+      <part name="fault" element="eam:OvfPropertyQualifierIgnoredFault" />
+   </message>
+   <message name="OvfPropertyTypeFaultMsg">
+      <part name="fault" element="eam:OvfPropertyTypeFault" />
+   </message>
+   <message name="OvfPropertyValueFaultMsg">
+      <part name="fault" element="eam:OvfPropertyValueFault" />
+   </message>
+   <message name="OvfSystemFaultFaultMsg">
+      <part name="fault" element="eam:OvfSystemFaultFault" />
+   </message>
+   <message name="OvfToXmlUnsupportedElementFaultMsg">
+      <part name="fault" element="eam:OvfToXmlUnsupportedElementFault" />
+   </message>
+   <message name="OvfUnableToExportDiskFaultMsg">
+      <part name="fault" element="eam:OvfUnableToExportDiskFault" />
+   </message>
+   <message name="OvfUnexpectedElementFaultMsg">
+      <part name="fault" element="eam:OvfUnexpectedElementFault" />
+   </message>
+   <message name="OvfUnknownDeviceFaultMsg">
+      <part name="fault" element="eam:OvfUnknownDeviceFault" />
+   </message>
+   <message name="OvfUnknownDeviceBackingFaultMsg">
+      <part name="fault" element="eam:OvfUnknownDeviceBackingFault" />
+   </message>
+   <message name="OvfUnknownEntityFaultMsg">
+      <part name="fault" element="eam:OvfUnknownEntityFault" />
+   </message>
+   <message name="OvfUnsupportedAttributeFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedAttributeFault" />
+   </message>
+   <message name="OvfUnsupportedAttributeValueFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedAttributeValueFault" />
+   </message>
+   <message name="OvfUnsupportedDeviceBackingInfoFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedDeviceBackingInfoFault" />
+   </message>
+   <message name="OvfUnsupportedDeviceBackingOptionFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedDeviceBackingOptionFault" />
+   </message>
+   <message name="OvfUnsupportedDeviceExportFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedDeviceExportFault" />
+   </message>
+   <message name="OvfUnsupportedDiskProvisioningFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedDiskProvisioningFault" />
+   </message>
+   <message name="OvfUnsupportedElementFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedElementFault" />
+   </message>
+   <message name="OvfUnsupportedElementValueFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedElementValueFault" />
+   </message>
+   <message name="OvfUnsupportedPackageFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedPackageFault" />
+   </message>
+   <message name="OvfUnsupportedSectionFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedSectionFault" />
+   </message>
+   <message name="OvfUnsupportedSubTypeFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedSubTypeFault" />
+   </message>
+   <message name="OvfUnsupportedTypeFaultMsg">
+      <part name="fault" element="eam:OvfUnsupportedTypeFault" />
+   </message>
+   <message name="OvfWrongElementFaultMsg">
+      <part name="fault" element="eam:OvfWrongElementFault" />
+   </message>
+   <message name="OvfWrongNamespaceFaultMsg">
+      <part name="fault" element="eam:OvfWrongNamespaceFault" />
+   </message>
+   <message name="OvfXmlFormatFaultMsg">
+      <part name="fault" element="eam:OvfXmlFormatFault" />
+   </message>
+   <message name="PatchAlreadyInstalledFaultMsg">
+      <part name="fault" element="eam:PatchAlreadyInstalledFault" />
+   </message>
+   <message name="PatchBinariesNotFoundFaultMsg">
+      <part name="fault" element="eam:PatchBinariesNotFoundFault" />
+   </message>
+   <message name="PatchInstallFailedFaultMsg">
+      <part name="fault" element="eam:PatchInstallFailedFault" />
+   </message>
+   <message name="PatchIntegrityErrorFaultMsg">
+      <part name="fault" element="eam:PatchIntegrityErrorFault" />
+   </message>
+   <message name="PatchMetadataCorruptedFaultMsg">
+      <part name="fault" element="eam:PatchMetadataCorruptedFault" />
+   </message>
+   <message name="PatchMetadataInvalidFaultMsg">
+      <part name="fault" element="eam:PatchMetadataInvalidFault" />
+   </message>
+   <message name="PatchMetadataNotFoundFaultMsg">
+      <part name="fault" element="eam:PatchMetadataNotFoundFault" />
+   </message>
+   <message name="PatchMissingDependenciesFaultMsg">
+      <part name="fault" element="eam:PatchMissingDependenciesFault" />
+   </message>
+   <message name="PatchNotApplicableFaultMsg">
+      <part name="fault" element="eam:PatchNotApplicableFault" />
+   </message>
+   <message name="PatchSupersededFaultMsg">
+      <part name="fault" element="eam:PatchSupersededFault" />
+   </message>
+   <message name="PhysCompatRDMNotSupportedFaultMsg">
+      <part name="fault" element="eam:PhysCompatRDMNotSupportedFault" />
+   </message>
+   <message name="PlatformConfigFaultFaultMsg">
+      <part name="fault" element="eam:PlatformConfigFaultFault" />
+   </message>
+   <message name="PowerOnFtSecondaryFailedFaultMsg">
+      <part name="fault" element="eam:PowerOnFtSecondaryFailedFault" />
+   </message>
+   <message name="PowerOnFtSecondaryTimedoutFaultMsg">
+      <part name="fault" element="eam:PowerOnFtSecondaryTimedoutFault" />
+   </message>
+   <message name="ProfileUpdateFailedFaultMsg">
+      <part name="fault" element="eam:ProfileUpdateFailedFault" />
+   </message>
+   <message name="QuestionPendingFaultMsg">
+      <part name="fault" element="eam:QuestionPendingFault" />
+   </message>
+   <message name="QuiesceDatastoreIOForHAFailedFaultMsg">
+      <part name="fault" element="eam:QuiesceDatastoreIOForHAFailedFault" />
+   </message>
+   <message name="RDMConversionNotSupportedFaultMsg">
+      <part name="fault" element="eam:RDMConversionNotSupportedFault" />
+   </message>
+   <message name="RDMNotPreservedFaultMsg">
+      <part name="fault" element="eam:RDMNotPreservedFault" />
+   </message>
+   <message name="RDMNotSupportedFaultMsg">
+      <part name="fault" element="eam:RDMNotSupportedFault" />
+   </message>
+   <message name="RDMNotSupportedOnDatastoreFaultMsg">
+      <part name="fault" element="eam:RDMNotSupportedOnDatastoreFault" />
+   </message>
+   <message name="RDMPointsToInaccessibleDiskFaultMsg">
+      <part name="fault" element="eam:RDMPointsToInaccessibleDiskFault" />
+   </message>
+   <message name="RawDiskNotSupportedFaultMsg">
+      <part name="fault" element="eam:RawDiskNotSupportedFault" />
+   </message>
+   <message name="ReadHostResourcePoolTreeFailedFaultMsg">
+      <part name="fault" element="eam:ReadHostResourcePoolTreeFailedFault" />
+   </message>
+   <message name="ReadOnlyDisksWithLegacyDestinationFaultMsg">
+      <part name="fault" element="eam:ReadOnlyDisksWithLegacyDestinationFault" />
+   </message>
+   <message name="RebootRequiredFaultMsg">
+      <part name="fault" element="eam:RebootRequiredFault" />
+   </message>
+   <message name="RecordReplayDisabledFaultMsg">
+      <part name="fault" element="eam:RecordReplayDisabledFault" />
+   </message>
+   <message name="RemoteDeviceNotSupportedFaultMsg">
+      <part name="fault" element="eam:RemoteDeviceNotSupportedFault" />
+   </message>
+   <message name="RemoveFailedFaultMsg">
+      <part name="fault" element="eam:RemoveFailedFault" />
+   </message>
+   <message name="ReplicationConfigFaultFaultMsg">
+      <part name="fault" element="eam:ReplicationConfigFaultFault" />
+   </message>
+   <message name="ReplicationDiskConfigFaultFaultMsg">
+      <part name="fault" element="eam:ReplicationDiskConfigFaultFault" />
+   </message>
+   <message name="ReplicationFaultFaultMsg">
+      <part name="fault" element="eam:ReplicationFaultFault" />
+   </message>
+   <message name="ReplicationIncompatibleWithFTFaultMsg">
+      <part name="fault" element="eam:ReplicationIncompatibleWithFTFault" />
+   </message>
+   <message name="ReplicationInvalidOptionsFaultMsg">
+      <part name="fault" element="eam:ReplicationInvalidOptionsFault" />
+   </message>
+   <message name="ReplicationNotSupportedOnHostFaultMsg">
+      <part name="fault" element="eam:ReplicationNotSupportedOnHostFault" />
+   </message>
+   <message name="ReplicationVmConfigFaultFaultMsg">
+      <part name="fault" element="eam:ReplicationVmConfigFaultFault" />
+   </message>
+   <message name="ReplicationVmFaultFaultMsg">
+      <part name="fault" element="eam:ReplicationVmFaultFault" />
+   </message>
+   <message name="ResourceInUseFaultMsg">
+      <part name="fault" element="eam:ResourceInUseFault" />
+   </message>
+   <message name="ResourceNotAvailableFaultMsg">
+      <part name="fault" element="eam:ResourceNotAvailableFault" />
+   </message>
+   <message name="RestrictedVersionFaultMsg">
+      <part name="fault" element="eam:RestrictedVersionFault" />
+   </message>
+   <message name="RuleViolationFaultMsg">
+      <part name="fault" element="eam:RuleViolationFault" />
+   </message>
+   <message name="SSLDisabledFaultFaultMsg">
+      <part name="fault" element="eam:SSLDisabledFaultFault" />
+   </message>
+   <message name="SSLVerifyFaultFaultMsg">
+      <part name="fault" element="eam:SSLVerifyFaultFault" />
+   </message>
+   <message name="SSPIChallengeFaultMsg">
+      <part name="fault" element="eam:SSPIChallengeFault" />
+   </message>
+   <message name="SecondaryVmAlreadyDisabledFaultMsg">
+      <part name="fault" element="eam:SecondaryVmAlreadyDisabledFault" />
+   </message>
+   <message name="SecondaryVmAlreadyEnabledFaultMsg">
+      <part name="fault" element="eam:SecondaryVmAlreadyEnabledFault" />
+   </message>
+   <message name="SecondaryVmAlreadyRegisteredFaultMsg">
+      <part name="fault" element="eam:SecondaryVmAlreadyRegisteredFault" />
+   </message>
+   <message name="SecondaryVmNotRegisteredFaultMsg">
+      <part name="fault" element="eam:SecondaryVmNotRegisteredFault" />
+   </message>
+   <message name="SharedBusControllerNotSupportedFaultMsg">
+      <part name="fault" element="eam:SharedBusControllerNotSupportedFault" />
+   </message>
+   <message name="SnapshotCloneNotSupportedFaultMsg">
+      <part name="fault" element="eam:SnapshotCloneNotSupportedFault" />
+   </message>
+   <message name="SnapshotCopyNotSupportedFaultMsg">
+      <part name="fault" element="eam:SnapshotCopyNotSupportedFault" />
+   </message>
+   <message name="SnapshotDisabledFaultMsg">
+      <part name="fault" element="eam:SnapshotDisabledFault" />
+   </message>
+   <message name="SnapshotFaultFaultMsg">
+      <part name="fault" element="eam:SnapshotFaultFault" />
+   </message>
+   <message name="SnapshotIncompatibleDeviceInVmFaultMsg">
+      <part name="fault" element="eam:SnapshotIncompatibleDeviceInVmFault" />
+   </message>
+   <message name="SnapshotLockedFaultMsg">
+      <part name="fault" element="eam:SnapshotLockedFault" />
+   </message>
+   <message name="SnapshotMoveFromNonHomeNotSupportedFaultMsg">
+      <part name="fault" element="eam:SnapshotMoveFromNonHomeNotSupportedFault" />
+   </message>
+   <message name="SnapshotMoveNotSupportedFaultMsg">
+      <part name="fault" element="eam:SnapshotMoveNotSupportedFault" />
+   </message>
+   <message name="SnapshotMoveToNonHomeNotSupportedFaultMsg">
+      <part name="fault" element="eam:SnapshotMoveToNonHomeNotSupportedFault" />
+   </message>
+   <message name="SnapshotNoChangeFaultMsg">
+      <part name="fault" element="eam:SnapshotNoChangeFault" />
+   </message>
+   <message name="SnapshotRevertIssueFaultMsg">
+      <part name="fault" element="eam:SnapshotRevertIssueFault" />
+   </message>
+   <message name="SoftRuleVioCorrectionDisallowedFaultMsg">
+      <part name="fault" element="eam:SoftRuleVioCorrectionDisallowedFault" />
+   </message>
+   <message name="SoftRuleVioCorrectionImpactFaultMsg">
+      <part name="fault" element="eam:SoftRuleVioCorrectionImpactFault" />
+   </message>
+   <message name="StorageDrsDisabledOnVmFaultMsg">
+      <part name="fault" element="eam:StorageDrsDisabledOnVmFault" />
+   </message>
+   <message name="StorageDrsIolbDisabledInternallyFaultMsg">
+      <part name="fault" element="eam:StorageDrsIolbDisabledInternallyFault" />
+   </message>
+   <message name="StorageVMotionNotSupportedFaultMsg">
+      <part name="fault" element="eam:StorageVMotionNotSupportedFault" />
+   </message>
+   <message name="StorageVmotionIncompatibleFaultMsg">
+      <part name="fault" element="eam:StorageVmotionIncompatibleFault" />
+   </message>
+   <message name="SuspendedRelocateNotSupportedFaultMsg">
+      <part name="fault" element="eam:SuspendedRelocateNotSupportedFault" />
+   </message>
+   <message name="SwapDatastoreNotWritableOnHostFaultMsg">
+      <part name="fault" element="eam:SwapDatastoreNotWritableOnHostFault" />
+   </message>
+   <message name="SwapDatastoreUnsetFaultMsg">
+      <part name="fault" element="eam:SwapDatastoreUnsetFault" />
+   </message>
+   <message name="SwapPlacementOverrideNotSupportedFaultMsg">
+      <part name="fault" element="eam:SwapPlacementOverrideNotSupportedFault" />
+   </message>
+   <message name="SwitchNotInUpgradeModeFaultMsg">
+      <part name="fault" element="eam:SwitchNotInUpgradeModeFault" />
+   </message>
+   <message name="TaskInProgressFaultMsg">
+      <part name="fault" element="eam:TaskInProgressFault" />
+   </message>
+   <message name="ThirdPartyLicenseAssignmentFailedFaultMsg">
+      <part name="fault" element="eam:ThirdPartyLicenseAssignmentFailedFault" />
+   </message>
+   <message name="TimedoutFaultMsg">
+      <part name="fault" element="eam:TimedoutFault" />
+   </message>
+   <message name="TooManyConcurrentNativeClonesFaultMsg">
+      <part name="fault" element="eam:TooManyConcurrentNativeClonesFault" />
+   </message>
+   <message name="TooManyConsecutiveOverridesFaultMsg">
+      <part name="fault" element="eam:TooManyConsecutiveOverridesFault" />
+   </message>
+   <message name="TooManyDevicesFaultMsg">
+      <part name="fault" element="eam:TooManyDevicesFault" />
+   </message>
+   <message name="TooManyDisksOnLegacyHostFaultMsg">
+      <part name="fault" element="eam:TooManyDisksOnLegacyHostFault" />
+   </message>
+   <message name="TooManyGuestLogonsFaultMsg">
+      <part name="fault" element="eam:TooManyGuestLogonsFault" />
+   </message>
+   <message name="TooManyHostsFaultMsg">
+      <part name="fault" element="eam:TooManyHostsFault" />
+   </message>
+   <message name="TooManyNativeCloneLevelsFaultMsg">
+      <part name="fault" element="eam:TooManyNativeCloneLevelsFault" />
+   </message>
+   <message name="TooManyNativeClonesOnFileFaultMsg">
+      <part name="fault" element="eam:TooManyNativeClonesOnFileFault" />
+   </message>
+   <message name="TooManySnapshotLevelsFaultMsg">
+      <part name="fault" element="eam:TooManySnapshotLevelsFault" />
+   </message>
+   <message name="ToolsAlreadyUpgradedFaultMsg">
+      <part name="fault" element="eam:ToolsAlreadyUpgradedFault" />
+   </message>
+   <message name="ToolsAutoUpgradeNotSupportedFaultMsg">
+      <part name="fault" element="eam:ToolsAutoUpgradeNotSupportedFault" />
+   </message>
+   <message name="ToolsImageNotAvailableFaultMsg">
+      <part name="fault" element="eam:ToolsImageNotAvailableFault" />
+   </message>
+   <message name="ToolsImageSignatureCheckFailedFaultMsg">
+      <part name="fault" element="eam:ToolsImageSignatureCheckFailedFault" />
+   </message>
+   <message name="ToolsInstallationInProgressFaultMsg">
+      <part name="fault" element="eam:ToolsInstallationInProgressFault" />
+   </message>
+   <message name="ToolsUnavailableFaultMsg">
+      <part name="fault" element="eam:ToolsUnavailableFault" />
+   </message>
+   <message name="ToolsUpgradeCancelledFaultMsg">
+      <part name="fault" element="eam:ToolsUpgradeCancelledFault" />
+   </message>
+   <message name="UncommittedUndoableDiskFaultMsg">
+      <part name="fault" element="eam:UncommittedUndoableDiskFault" />
+   </message>
+   <message name="UnconfiguredPropertyValueFaultMsg">
+      <part name="fault" element="eam:UnconfiguredPropertyValueFault" />
+   </message>
+   <message name="UncustomizableGuestFaultMsg">
+      <part name="fault" element="eam:UncustomizableGuestFault" />
+   </message>
+   <message name="UnexpectedCustomizationFaultFaultMsg">
+      <part name="fault" element="eam:UnexpectedCustomizationFaultFault" />
+   </message>
+   <message name="UnrecognizedHostFaultMsg">
+      <part name="fault" element="eam:UnrecognizedHostFault" />
+   </message>
+   <message name="UnsharedSwapVMotionNotSupportedFaultMsg">
+      <part name="fault" element="eam:UnsharedSwapVMotionNotSupportedFault" />
+   </message>
+   <message name="UnsupportedDatastoreFaultMsg">
+      <part name="fault" element="eam:UnsupportedDatastoreFault" />
+   </message>
+   <message name="UnsupportedGuestFaultMsg">
+      <part name="fault" element="eam:UnsupportedGuestFault" />
+   </message>
+   <message name="UnsupportedVimApiVersionFaultMsg">
+      <part name="fault" element="eam:UnsupportedVimApiVersionFault" />
+   </message>
+   <message name="UnsupportedVmxLocationFaultMsg">
+      <part name="fault" element="eam:UnsupportedVmxLocationFault" />
+   </message>
+   <message name="UnusedVirtualDiskBlocksNotScrubbedFaultMsg">
+      <part name="fault" element="eam:UnusedVirtualDiskBlocksNotScrubbedFault" />
+   </message>
+   <message name="UserNotFoundFaultMsg">
+      <part name="fault" element="eam:UserNotFoundFault" />
+   </message>
+   <message name="VAppConfigFaultFaultMsg">
+      <part name="fault" element="eam:VAppConfigFaultFault" />
+   </message>
+   <message name="VAppNotRunningFaultMsg">
+      <part name="fault" element="eam:VAppNotRunningFault" />
+   </message>
+   <message name="VAppOperationInProgressFaultMsg">
+      <part name="fault" element="eam:VAppOperationInProgressFault" />
+   </message>
+   <message name="VAppPropertyFaultFaultMsg">
+      <part name="fault" element="eam:VAppPropertyFaultFault" />
+   </message>
+   <message name="VAppTaskInProgressFaultMsg">
+      <part name="fault" element="eam:VAppTaskInProgressFault" />
+   </message>
+   <message name="VMINotSupportedFaultMsg">
+      <part name="fault" element="eam:VMINotSupportedFault" />
+   </message>
+   <message name="VMOnConflictDVPortFaultMsg">
+      <part name="fault" element="eam:VMOnConflictDVPortFault" />
+   </message>
+   <message name="VMOnVirtualIntranetFaultMsg">
+      <part name="fault" element="eam:VMOnVirtualIntranetFault" />
+   </message>
+   <message name="VMotionInterfaceIssueFaultMsg">
+      <part name="fault" element="eam:VMotionInterfaceIssueFault" />
+   </message>
+   <message name="VMotionLinkCapacityLowFaultMsg">
+      <part name="fault" element="eam:VMotionLinkCapacityLowFault" />
+   </message>
+   <message name="VMotionLinkDownFaultMsg">
+      <part name="fault" element="eam:VMotionLinkDownFault" />
+   </message>
+   <message name="VMotionNotConfiguredFaultMsg">
+      <part name="fault" element="eam:VMotionNotConfiguredFault" />
+   </message>
+   <message name="VMotionNotLicensedFaultMsg">
+      <part name="fault" element="eam:VMotionNotLicensedFault" />
+   </message>
+   <message name="VMotionNotSupportedFaultMsg">
+      <part name="fault" element="eam:VMotionNotSupportedFault" />
+   </message>
+   <message name="VMotionProtocolIncompatibleFaultMsg">
+      <part name="fault" element="eam:VMotionProtocolIncompatibleFault" />
+   </message>
+   <message name="VimFaultFaultMsg">
+      <part name="fault" element="eam:VimFaultFault" />
+   </message>
+   <message name="VirtualDiskBlocksNotFullyProvisionedFaultMsg">
+      <part name="fault" element="eam:VirtualDiskBlocksNotFullyProvisionedFault" />
+   </message>
+   <message name="VirtualDiskModeNotSupportedFaultMsg">
+      <part name="fault" element="eam:VirtualDiskModeNotSupportedFault" />
+   </message>
+   <message name="VirtualEthernetCardNotSupportedFaultMsg">
+      <part name="fault" element="eam:VirtualEthernetCardNotSupportedFault" />
+   </message>
+   <message name="VirtualHardwareCompatibilityIssueFaultMsg">
+      <part name="fault" element="eam:VirtualHardwareCompatibilityIssueFault" />
+   </message>
+   <message name="VirtualHardwareVersionNotSupportedFaultMsg">
+      <part name="fault" element="eam:VirtualHardwareVersionNotSupportedFault" />
+   </message>
+   <message name="VmAlreadyExistsInDatacenterFaultMsg">
+      <part name="fault" element="eam:VmAlreadyExistsInDatacenterFault" />
+   </message>
+   <message name="VmConfigFaultFaultMsg">
+      <part name="fault" element="eam:VmConfigFaultFault" />
+   </message>
+   <message name="VmConfigIncompatibleForFaultToleranceFaultMsg">
+      <part name="fault" element="eam:VmConfigIncompatibleForFaultToleranceFault" />
+   </message>
+   <message name="VmConfigIncompatibleForRecordReplayFaultMsg">
+      <part name="fault" element="eam:VmConfigIncompatibleForRecordReplayFault" />
+   </message>
+   <message name="VmFaultToleranceConfigIssueFaultMsg">
+      <part name="fault" element="eam:VmFaultToleranceConfigIssueFault" />
+   </message>
+   <message name="VmFaultToleranceConfigIssueWrapperFaultMsg">
+      <part name="fault" element="eam:VmFaultToleranceConfigIssueWrapperFault" />
+   </message>
+   <message name="VmFaultToleranceInvalidFileBackingFaultMsg">
+      <part name="fault" element="eam:VmFaultToleranceInvalidFileBackingFault" />
+   </message>
+   <message name="VmFaultToleranceIssueFaultMsg">
+      <part name="fault" element="eam:VmFaultToleranceIssueFault" />
+   </message>
+   <message name="VmFaultToleranceOpIssuesListFaultMsg">
+      <part name="fault" element="eam:VmFaultToleranceOpIssuesListFault" />
+   </message>
+   <message name="VmFaultToleranceTooManyVMsOnHostFaultMsg">
+      <part name="fault" element="eam:VmFaultToleranceTooManyVMsOnHostFault" />
+   </message>
+   <message name="VmHostAffinityRuleViolationFaultMsg">
+      <part name="fault" element="eam:VmHostAffinityRuleViolationFault" />
+   </message>
+   <message name="VmLimitLicenseFaultMsg">
+      <part name="fault" element="eam:VmLimitLicenseFault" />
+   </message>
+   <message name="VmMonitorIncompatibleForFaultToleranceFaultMsg">
+      <part name="fault" element="eam:VmMonitorIncompatibleForFaultToleranceFault" />
+   </message>
+   <message name="VmPowerOnDisabledFaultMsg">
+      <part name="fault" element="eam:VmPowerOnDisabledFault" />
+   </message>
+   <message name="VmToolsUpgradeFaultFaultMsg">
+      <part name="fault" element="eam:VmToolsUpgradeFaultFault" />
+   </message>
+   <message name="VmValidateMaxDeviceFaultMsg">
+      <part name="fault" element="eam:VmValidateMaxDeviceFault" />
+   </message>
+   <message name="VmWwnConflictFaultMsg">
+      <part name="fault" element="eam:VmWwnConflictFault" />
+   </message>
+   <message name="VmfsAlreadyMountedFaultMsg">
+      <part name="fault" element="eam:VmfsAlreadyMountedFault" />
+   </message>
+   <message name="VmfsAmbiguousMountFaultMsg">
+      <part name="fault" element="eam:VmfsAmbiguousMountFault" />
+   </message>
+   <message name="VmfsMountFaultFaultMsg">
+      <part name="fault" element="eam:VmfsMountFaultFault" />
+   </message>
+   <message name="VmotionInterfaceNotEnabledFaultMsg">
+      <part name="fault" element="eam:VmotionInterfaceNotEnabledFault" />
+   </message>
+   <message name="VolumeEditorErrorFaultMsg">
+      <part name="fault" element="eam:VolumeEditorErrorFault" />
+   </message>
+   <message name="VramLimitLicenseFaultMsg">
+      <part name="fault" element="eam:VramLimitLicenseFault" />
+   </message>
+   <message name="VspanDestPortConflictFaultMsg">
+      <part name="fault" element="eam:VspanDestPortConflictFault" />
+   </message>
+   <message name="VspanPortConflictFaultMsg">
+      <part name="fault" element="eam:VspanPortConflictFault" />
+   </message>
+   <message name="VspanPortMoveFaultFaultMsg">
+      <part name="fault" element="eam:VspanPortMoveFaultFault" />
+   </message>
+   <message name="VspanPortPromiscChangeFaultFaultMsg">
+      <part name="fault" element="eam:VspanPortPromiscChangeFaultFault" />
+   </message>
+   <message name="VspanPortgroupPromiscChangeFaultFaultMsg">
+      <part name="fault" element="eam:VspanPortgroupPromiscChangeFaultFault" />
+   </message>
+   <message name="VspanPortgroupTypeChangeFaultFaultMsg">
+      <part name="fault" element="eam:VspanPortgroupTypeChangeFaultFault" />
+   </message>
+   <message name="VspanPromiscuousPortNotSupportedFaultMsg">
+      <part name="fault" element="eam:VspanPromiscuousPortNotSupportedFault" />
+   </message>
+   <message name="VspanSameSessionPortConflictFaultMsg">
+      <part name="fault" element="eam:VspanSameSessionPortConflictFault" />
+   </message>
+   <message name="WakeOnLanNotSupportedFaultMsg">
+      <part name="fault" element="eam:WakeOnLanNotSupportedFault" />
+   </message>
+   <message name="WakeOnLanNotSupportedByVmotionNICFaultMsg">
+      <part name="fault" element="eam:WakeOnLanNotSupportedByVmotionNICFault" />
+   </message>
+   <message name="WillLoseHAProtectionFaultMsg">
+      <part name="fault" element="eam:WillLoseHAProtectionFault" />
+   </message>
+   <message name="WillModifyConfigCpuRequirementsFaultMsg">
+      <part name="fault" element="eam:WillModifyConfigCpuRequirementsFault" />
+   </message>
+   <message name="WillResetSnapshotDirectoryFaultMsg">
+      <part name="fault" element="eam:WillResetSnapshotDirectoryFault" />
+   </message>
+   <message name="MethodFaultFaultMsg">
+      <part name="fault" element="eam:MethodFaultFault" />
+   </message>
+   <message name="RuntimeFaultFaultMsg">
+      <part name="fault" element="eam:RuntimeFaultFault" />
+   </message>
+   <message name="HostCommunicationFaultMsg">
+      <part name="fault" element="eam:HostCommunicationFault" />
+   </message>
+   <message name="HostNotConnectedFaultMsg">
+      <part name="fault" element="eam:HostNotConnectedFault" />
+   </message>
+   <message name="HostNotReachableFaultMsg">
+      <part name="fault" element="eam:HostNotReachableFault" />
+   </message>
+   <message name="InvalidArgumentFaultMsg">
+      <part name="fault" element="eam:InvalidArgumentFault" />
+   </message>
+   <message name="InvalidRequestFaultMsg">
+      <part name="fault" element="eam:InvalidRequestFault" />
+   </message>
+   <message name="InvalidTypeFaultMsg">
+      <part name="fault" element="eam:InvalidTypeFault" />
+   </message>
+   <message name="ManagedObjectNotFoundFaultMsg">
+      <part name="fault" element="eam:ManagedObjectNotFoundFault" />
+   </message>
+   <message name="MethodNotFoundFaultMsg">
+      <part name="fault" element="eam:MethodNotFoundFault" />
+   </message>
+   <message name="NotEnoughLicensesFaultMsg">
+      <part name="fault" element="eam:NotEnoughLicensesFault" />
+   </message>
+   <message name="NotImplementedFaultMsg">
+      <part name="fault" element="eam:NotImplementedFault" />
+   </message>
+   <message name="NotSupportedFaultMsg">
+      <part name="fault" element="eam:NotSupportedFault" />
+   </message>
+   <message name="RequestCanceledFaultMsg">
+      <part name="fault" element="eam:RequestCanceledFault" />
+   </message>
+   <message name="SecurityErrorFaultMsg">
+      <part name="fault" element="eam:SecurityErrorFault" />
+   </message>
+   <message name="SystemErrorFaultMsg">
+      <part name="fault" element="eam:SystemErrorFault" />
+   </message>
+   <message name="UnexpectedFaultFaultMsg">
+      <part name="fault" element="eam:UnexpectedFaultFault" />
+   </message>
+   <message name="InvalidCollectorVersionFaultMsg">
+      <part name="fault" element="eam:InvalidCollectorVersionFault" />
+   </message>
+   <message name="InvalidPropertyFaultMsg">
+      <part name="fault" element="eam:InvalidPropertyFault" />
+   </message>
+   <portType name="EamPortType">
+      <operation name="QuerySolutionId">
+         <input message="eam:QuerySolutionIdRequestMsg" />
+         <output message="eam:QuerySolutionIdResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="QueryConfig">
+         <input message="eam:QueryConfigRequestMsg" />
+         <output message="eam:QueryConfigResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="Update">
+         <input message="eam:UpdateRequestMsg" />
+         <output message="eam:UpdateResponseMsg" />
+         <fault name="InvalidAgentConfigurationFault" message="eam:InvalidAgentConfigurationFaultMsg"/>
+         <fault name="InvalidAgencyScopeFault" message="eam:InvalidAgencyScopeFaultMsg"/>
+         <fault name="InvalidUrlFault" message="eam:InvalidUrlFaultMsg"/>
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="AgencyQueryRuntime">
+         <input message="eam:AgencyQueryRuntimeRequestMsg" />
+         <output message="eam:AgencyQueryRuntimeResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="QueryAgent">
+         <input message="eam:QueryAgentRequestMsg" />
+         <output message="eam:QueryAgentResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="RegisterAgentVm">
+         <input message="eam:RegisterAgentVmRequestMsg" />
+         <output message="eam:RegisterAgentVmResponseMsg" />
+         <fault name="ManagedObjectNotFoundFault" message="eam:ManagedObjectNotFoundFaultMsg"/>
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="UnregisterAgentVm">
+         <input message="eam:UnregisterAgentVmRequestMsg" />
+         <output message="eam:UnregisterAgentVmResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="Enable">
+         <input message="eam:EnableRequestMsg" />
+         <output message="eam:EnableResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="Disable">
+         <input message="eam:DisableRequestMsg" />
+         <output message="eam:DisableResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="Uninstall">
+         <input message="eam:UninstallRequestMsg" />
+         <output message="eam:UninstallResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="DestroyAgency">
+         <input message="eam:DestroyAgencyRequestMsg" />
+         <output message="eam:DestroyAgencyResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="AddIssue">
+         <input message="eam:AddIssueRequestMsg" />
+         <output message="eam:AddIssueResponseMsg" />
+         <fault name="InvalidArgumentFault" message="eam:InvalidArgumentFaultMsg"/>
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="AgentQueryRuntime">
+         <input message="eam:AgentQueryRuntimeRequestMsg" />
+         <output message="eam:AgentQueryRuntimeResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="MarkAsAvailable">
+         <input message="eam:MarkAsAvailableRequestMsg" />
+         <output message="eam:MarkAsAvailableResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="AgentQueryConfig">
+         <input message="eam:AgentQueryConfigRequestMsg" />
+         <output message="eam:AgentQueryConfigResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="Resolve">
+         <input message="eam:ResolveRequestMsg" />
+         <output message="eam:ResolveResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="ResolveAll">
+         <input message="eam:ResolveAllRequestMsg" />
+         <output message="eam:ResolveAllResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="QueryIssue">
+         <input message="eam:QueryIssueRequestMsg" />
+         <output message="eam:QueryIssueResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="QueryAgency">
+         <input message="eam:QueryAgencyRequestMsg" />
+         <output message="eam:QueryAgencyResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="CreateAgency">
+         <input message="eam:CreateAgencyRequestMsg" />
+         <output message="eam:CreateAgencyResponseMsg" />
+         <fault name="InvalidAgentConfigurationFault" message="eam:InvalidAgentConfigurationFaultMsg"/>
+         <fault name="InvalidAgencyScopeFault" message="eam:InvalidAgencyScopeFaultMsg"/>
+         <fault name="InvalidUrlFault" message="eam:InvalidUrlFaultMsg"/>
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+      <operation name="ScanForUnknownAgentVm">
+         <input message="eam:ScanForUnknownAgentVmRequestMsg" />
+         <output message="eam:ScanForUnknownAgentVmResponseMsg" />
+         <fault name="RuntimeFault" message="eam:RuntimeFaultFaultMsg"/>
+      </operation>
+   </portType>
+   <binding name="EamBinding" type="eam:EamPortType">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+      <operation name="QuerySolutionId">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="QueryConfig">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="Update">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="InvalidAgentConfigurationFault">
+            <soap:fault name="InvalidAgentConfigurationFault" use="literal" />
+         </fault>
+         <fault name="InvalidAgencyScopeFault">
+            <soap:fault name="InvalidAgencyScopeFault" use="literal" />
+         </fault>
+         <fault name="InvalidUrlFault">
+            <soap:fault name="InvalidUrlFault" use="literal" />
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="AgencyQueryRuntime">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="QueryAgent">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="RegisterAgentVm">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="ManagedObjectNotFoundFault">
+            <soap:fault name="ManagedObjectNotFoundFault" use="literal" />
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="UnregisterAgentVm">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="Enable">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="Disable">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="Uninstall">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="DestroyAgency">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="AddIssue">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="InvalidArgumentFault">
+            <soap:fault name="InvalidArgumentFault" use="literal" />
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="AgentQueryRuntime">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="MarkAsAvailable">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="AgentQueryConfig">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="Resolve">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="ResolveAll">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="QueryIssue">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="QueryAgency">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="CreateAgency">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="InvalidAgentConfigurationFault">
+            <soap:fault name="InvalidAgentConfigurationFault" use="literal" />
+         </fault>
+         <fault name="InvalidAgencyScopeFault">
+            <soap:fault name="InvalidAgencyScopeFault" use="literal" />
+         </fault>
+         <fault name="InvalidUrlFault">
+            <soap:fault name="InvalidUrlFault" use="literal" />
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+      <operation name="ScanForUnknownAgentVm">
+         <soap:operation soapAction="urn:eam/2_5" style="document" />
+         <input>
+            <soap:body use="literal" />
+         </input>
+         <output>
+            <soap:body use="literal" />
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal" />
+         </fault>
+      </operation>
+   </binding>
+</definitions>

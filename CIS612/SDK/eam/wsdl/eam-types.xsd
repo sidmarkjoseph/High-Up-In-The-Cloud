@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+   Copyright 2005-2013 VMware, Inc.  All rights reserved.
+-->
+<schema
+   targetNamespace="urn:eam"
+   xmlns="http://www.w3.org/2001/XMLSchema"
+   xmlns:eam="urn:eam"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:vim25="urn:vim25"
+   xmlns:reflect="urn:reflect"
+   elementFormDefault="qualified"
+>
+   <import namespace="urn:vim25" schemaLocation="query-types.xsd" />
+   <import namespace="urn:vim25" schemaLocation="vim-types.xsd" />
+   <import namespace="urn:vim25" schemaLocation="core-types.xsd" />
+   <import namespace="urn:reflect" schemaLocation="reflect-types.xsd" />
+   <complexType name="AgencyConfigInfo">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+               <element name="agentConfig" type="eam:AgentConfigInfo" minOccurs="0" maxOccurs="unbounded" />
+               <element name="scope" type="eam:AgencyScope" minOccurs="0" />
+               <element name="manuallyMarkAgentVmAvailableAfterProvisioning" type="xsd:boolean" minOccurs="0" />
+               <element name="manuallyMarkAgentVmAvailableAfterPowerOn" type="xsd:boolean" minOccurs="0" />
+               <element name="optimizedDeploymentEnabled" type="xsd:boolean" minOccurs="0" />
+               <element name="agentName" type="xsd:string" minOccurs="0" />
+               <element name="agencyName" type="xsd:string" minOccurs="0" />
+               <element name="manuallyProvisioned" type="xsd:boolean" minOccurs="0" />
+               <element name="manuallyMonitored" type="xsd:boolean" minOccurs="0" />
+               <element name="bypassVumEnabled" type="xsd:boolean" minOccurs="0" />
+               <element name="agentVmNetwork" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="AgencyScope">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="AgencyComputeResourceScope">
+      <complexContent>
+         <extension base="eam:AgencyScope">
+            <sequence>
+               <element name="computeResource" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="AgentRuntimeInfo">
+      <complexContent>
+         <extension base="eam:EamObjectRuntimeInfo">
+            <sequence>
+               <element name="vmPowerState" type="vim25:VirtualMachinePowerState" />
+               <element name="receivingHeartBeat" type="xsd:boolean" />
+               <element name="host" type="vim25:ManagedObjectReference" minOccurs="0" />
+               <element name="vm" type="vim25:ManagedObjectReference" minOccurs="0" />
+               <element name="vmIp" type="xsd:string" minOccurs="0" />
+               <element name="vmName" type="xsd:string" />
+               <element name="esxAgentResourcePool" type="vim25:ManagedObjectReference" minOccurs="0" />
+               <element name="esxAgentFolder" type="vim25:ManagedObjectReference" minOccurs="0" />
+               <element name="installedBulletin" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+               <element name="agency" type="vim25:ManagedObjectReference" minOccurs="0" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="AgentConfigInfo">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+               <element name="productLineId" type="xsd:string" minOccurs="0" />
+               <element name="hostVersion" type="xsd:string" minOccurs="0" />
+               <element name="ovfPackageUrl" type="xsd:string" minOccurs="0" />
+               <element name="ovfEnvironment" type="eam:AgentOvfEnvironmentInfo" minOccurs="0" />
+               <element name="vibUrl" type="xsd:string" minOccurs="0" />
+               <element name="vibMatchingRules" type="eam:AgentVibMatchingRule" minOccurs="0" maxOccurs="unbounded" />
+               <element name="vibName" type="xsd:string" minOccurs="0" />
+               <element name="dvFilterEnabled" type="xsd:boolean" minOccurs="0" />
+               <element name="rebootHostAfterVibUninstall" type="xsd:boolean" minOccurs="0" />
+               <element name="vmciService" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAgentConfigInfo">
+      <sequence>
+         <element name="AgentConfigInfo" type="eam:AgentConfigInfo" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+   </complexType>
+   <complexType name="AgentOvfEnvironmentInfoOvfProperty">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+               <element name="key" type="xsd:string" />
+               <element name="value" type="xsd:string" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAgentOvfEnvironmentInfoOvfProperty">
+      <sequence>
+         <element name="AgentOvfEnvironmentInfoOvfProperty" type="eam:AgentOvfEnvironmentInfoOvfProperty" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+   </complexType>
+   <complexType name="AgentOvfEnvironmentInfo">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+               <element name="ovfProperty" type="eam:AgentOvfEnvironmentInfoOvfProperty" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="AgentVibMatchingRule">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+               <element name="vibNameRegex" type="xsd:string" />
+               <element name="vibVersionRegex" type="xsd:string" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAgentVibMatchingRule">
+      <sequence>
+         <element name="AgentVibMatchingRule" type="eam:AgentVibMatchingRule" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+   </complexType>
+   <simpleType name="EamObjectRuntimeInfoStatus">
+      <restriction base="xsd:string">
+         <enumeration value="green" />
+         <enumeration value="yellow" />
+         <enumeration value="red" />
+      </restriction>
+   </simpleType>
+   <simpleType name="EamObjectRuntimeInfoGoalState">
+      <restriction base="xsd:string">
+         <enumeration value="enabled" />
+         <enumeration value="disabled" />
+         <enumeration value="uninstalled" />
+      </restriction>
+   </simpleType>
+   <complexType name="EamObjectRuntimeInfo">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+               <element name="status" type="xsd:string" />
+               <element name="issue" type="eam:Issue" minOccurs="0" maxOccurs="unbounded" />
+               <element name="goalState" type="xsd:string" />
+               <element name="entity" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="EamFault">
+      <complexContent>
+         <extension base="vim25:MethodFault">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="EamRuntimeFault">
+      <complexContent>
+         <extension base="vim25:RuntimeFault">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="InvalidAgencyScope">
+      <complexContent>
+         <extension base="eam:EamFault">
+            <sequence>
+               <element name="unknownComputeResource" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="InvalidAgentConfiguration">
+      <complexContent>
+         <extension base="eam:EamFault">
+            <sequence>
+               <element name="invalidAgentConfiguration" type="eam:AgentConfigInfo" minOccurs="0" />
+               <element name="invalidField" type="xsd:string" minOccurs="0" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="EamInvalidLogin">
+      <complexContent>
+         <extension base="eam:EamRuntimeFault">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="InvalidUrl">
+      <complexContent>
+         <extension base="eam:EamFault">
+            <sequence>
+               <element name="url" type="xsd:string" />
+               <element name="malformedUrl" type="xsd:boolean" />
+               <element name="unknownHost" type="xsd:boolean" />
+               <element name="connectionRefused" type="xsd:boolean" />
+               <element name="responseCode" type="xsd:int" minOccurs="0" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="NoConnectionToVCenter">
+      <complexContent>
+         <extension base="eam:EamRuntimeFault">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="NotAuthorized">
+      <complexContent>
+         <extension base="eam:EamRuntimeFault">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="AgencyIssue">
+      <complexContent>
+         <extension base="eam:Issue">
+            <sequence>
+               <element name="agency" type="vim25:ManagedObjectReference" />
+               <element name="agencyName" type="xsd:string" />
+               <element name="solutionId" type="xsd:string" />
+               <element name="solutionName" type="xsd:string" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="AgentIssue">
+      <complexContent>
+         <extension base="eam:AgencyIssue">
+            <sequence>
+               <element name="agent" type="vim25:ManagedObjectReference" />
+               <element name="agentName" type="xsd:string" />
+               <element name="host" type="vim25:ManagedObjectReference" />
+               <element name="hostName" type="xsd:string" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="CannotAccessAgentOVF">
+      <complexContent>
+         <extension base="eam:VmNotDeployed">
+            <sequence>
+               <element name="downloadUrl" type="xsd:string" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="CannotAccessAgentVib">
+      <complexContent>
+         <extension base="eam:VibNotInstalled">
+            <sequence>
+               <element name="downloadUrl" type="xsd:string" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="ExtensibleIssue">
+      <complexContent>
+         <extension base="eam:Issue">
+            <sequence>
+               <element name="typeId" type="xsd:string" />
+               <element name="argument" type="vim25:KeyAnyValue" minOccurs="0" maxOccurs="unbounded" />
+               <element name="target" type="vim25:ManagedObjectReference" minOccurs="0" />
+               <element name="agent" type="vim25:ManagedObjectReference" minOccurs="0" />
+               <element name="agency" type="vim25:ManagedObjectReference" minOccurs="0" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="HostInMaintenanceMode">
+      <complexContent>
+         <extension base="eam:VmDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="HostInStandbyMode">
+      <complexContent>
+         <extension base="eam:VmDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="HostIssue">
+      <complexContent>
+         <extension base="eam:Issue">
+            <sequence>
+               <element name="host" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="HostPoweredOff">
+      <complexContent>
+         <extension base="eam:VmDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="IncompatibleHostVersion">
+      <complexContent>
+         <extension base="eam:VmNotDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="InsufficientIpAddresses">
+      <complexContent>
+         <extension base="eam:VmPoweredOff">
+            <sequence>
+               <element name="network" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="InsufficientResources">
+      <complexContent>
+         <extension base="eam:VmNotDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="InsufficientSpace">
+      <complexContent>
+         <extension base="eam:VmNotDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="Issue">
+      <complexContent>
+         <extension base="vim25:DynamicData">
+            <sequence>
+               <element name="key" type="xsd:int" />
+               <element name="description" type="xsd:string" />
+               <element name="time" type="xsd:dateTime" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="ArrayOfIssue">
+      <sequence>
+         <element name="Issue" type="eam:Issue" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+   </complexType>
+   <complexType name="MissingAgentIpPool">
+      <complexContent>
+         <extension base="eam:VmPoweredOff">
+            <sequence>
+               <element name="network" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="MissingDvFilterSwitch">
+      <complexContent>
+         <extension base="eam:AgentIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="NoAgentVmDatastore">
+      <complexContent>
+         <extension base="eam:VmNotDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="NoAgentVmNetwork">
+      <complexContent>
+         <extension base="eam:VmNotDeployed">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="NoCustomAgentVmNetwork">
+      <complexContent>
+         <extension base="eam:NoAgentVmNetwork">
+            <sequence>
+               <element name="customAgentVmNetwork" type="vim25:ManagedObjectReference" maxOccurs="unbounded" />
+               <element name="customAgentVmNetworkName" type="xsd:string" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="OrphanedAgency">
+      <complexContent>
+         <extension base="eam:AgencyIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="OrphanedDvFilterSwitch">
+      <complexContent>
+         <extension base="eam:HostIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="OvfInvalidFormat">
+      <complexContent>
+         <extension base="eam:VmNotDeployed">
+            <sequence>
+               <element name="error" type="vim25:LocalizedMethodFault" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="OvfInvalidProperty">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+               <element name="error" type="vim25:LocalizedMethodFault" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="UnknownAgentVm">
+      <complexContent>
+         <extension base="eam:HostIssue">
+            <sequence>
+               <element name="vm" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibCannotPutHostInMaintenanceMode">
+      <complexContent>
+         <extension base="eam:VibIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibInvalidFormat">
+      <complexContent>
+         <extension base="eam:VibNotInstalled">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibIssue">
+      <complexContent>
+         <extension base="eam:AgentIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibNotInstalled">
+      <complexContent>
+         <extension base="eam:VibIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibRequiresHostInMaintenanceMode">
+      <complexContent>
+         <extension base="eam:VibIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibRequiresHostReboot">
+      <complexContent>
+         <extension base="eam:VibIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibRequiresManualInstallation">
+      <complexContent>
+         <extension base="eam:VibIssue">
+            <sequence>
+               <element name="bulletin" type="xsd:string" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VibRequiresManualUninstallation">
+      <complexContent>
+         <extension base="eam:VibIssue">
+            <sequence>
+               <element name="bulletin" type="xsd:string" maxOccurs="unbounded" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmCorrupted">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+               <element name="missingFile" type="xsd:string" minOccurs="0" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmDeployed">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmIssue">
+      <complexContent>
+         <extension base="eam:AgentIssue">
+            <sequence>
+               <element name="vm" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmMarkedAsTemplate">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmNotDeployed">
+      <complexContent>
+         <extension base="eam:AgentIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmOrphaned">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmPoweredOff">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmPoweredOn">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmSuspended">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmWrongFolder">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+               <element name="currentFolder" type="vim25:ManagedObjectReference" />
+               <element name="requiredFolder" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+   <complexType name="VmWrongResourcePool">
+      <complexContent>
+         <extension base="eam:VmIssue">
+            <sequence>
+               <element name="currentResourcePool" type="vim25:ManagedObjectReference" />
+               <element name="requiredResourcePool" type="vim25:ManagedObjectReference" />
+            </sequence>
+         </extension>
+      </complexContent>
+   </complexType>
+</schema>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+   <!-- Load the eamri.properties files. All these properties can also be set using -D on
+      the java command-line -->
+   <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="location" value="WEB-INF/eamri.properties" />
+   </bean>
+
+   <bean id="extensionId" class="java.lang.String">
+      <constructor-arg value="${self.extensionKey}" />
+   </bean>
+
+   <bean id="simpleUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+      <property name="mappings">
+         <props>
+            <prop key="/config.html">configController</prop>
+         </props>
+      </property>
+   </bean>
+
+   <bean id="configController" class="com.vmware.eam.sample.solution.ui.ConfigController">
+      <constructor-arg ref="agentHandler" />
+      <constructor-arg ref="configModel" />
+   </bean>
+
+   <bean id="configModel" class="com.vmware.eam.sample.solution.ui.ConfigModel">
+      <constructor-arg ref="manager" />
+      <constructor-arg ref="agentHandler" />
+   </bean>
+
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/jsp/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+
+   <bean id="vimConnection" class="com.vmware.eam.sample.solution.util.VimConnection">
+      <constructor-arg value="${vc.host}" />
+      <constructor-arg value="${vc.http.proxy.port}" />
+   </bean>
+
+   <bean id="manager" class="com.vmware.eam.sample.solution.Manager">
+      <constructor-arg value="${self.extensionKey}" />
+      <constructor-arg value="${self.url.prefix}" />
+      <constructor-arg value="${self.ip}" />
+      <constructor-arg value="${vc.user}" />
+      <constructor-arg value="${vc.password}" />
+      <constructor-arg value="${vc.host}" />
+      <constructor-arg value="${vc.http.proxy.port}" />
+      <constructor-arg ref="agentHandler" />
+      <constructor-arg ref="vimConnection" />
+   </bean>
+
+   <bean id="agentHandler" class="com.vmware.eam.sample.solution.AgentHandler">
+      <constructor-arg value="${self.url.prefix}" />
+      <constructor-arg value="${self.ip}" />
+      <constructor-arg value="${ovf.url.4x}" />
+      <constructor-arg value="${ovf.url.50}" />
+      <constructor-arg value="${vib.url.4x}" />
+      <constructor-arg value="${vib.url.50}" />
+      <constructor-arg value="${vib.deploy}" />
+      <constructor-arg>
+         <map>
+            <entry>
+               <key>
+                  <value>prop1</value>
+               </key>
+               <value>String property</value>
+            </entry>
+            <entry>
+               <key>
+                  <value>prop2</value>
+               </key>
+               <value>1234</value>
+            </entry>
+            <entry>
+               <key>
+                  <value>prop3</value>
+               </key>
+               <value>A</value>
+            </entry>
+         </map>
+      </constructor-arg>
+      <constructor-arg ref="vcUtils" />
+   </bean>
+
+   <bean id="vcUtils" class="com.vmware.eam.sample.solution.util.VcUtils">
+      <constructor-arg ref="vimConnection" />
+   </bean>
+</beans>

@@ -1,0 +1,103 @@
+CHARSET "ISO-8859-1";
+
+.gwt-Grid {
+}
+
+.Header {
+  font-weight: bold;
+}
+
+.FlexList-Header {
+  background: url(imx/theader-grad.png) repeat-x;
+  table-layout: fixed;
+  border-collapse: collapse;
+  padding: 0px;
+}
+
+.FlexList-Header td {
+  border-top: 1px solid #c0c0c0;
+  border-left: 1px solid #c0c0c0;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #c0c0c0;
+  padding: 0px;
+  padding-left: 6px;
+  text-align: left;
+}
+
+.FlexList-Data {
+  table-layout: fixed;
+  border-collapse: collapse;
+  padding: 0px;
+}
+
+.FlexList-Data td {
+  padding-left: 6px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.FlexList-Data .IconLabel td {
+   padding: 0px;
+}
+
+.IconLabel img {
+  margin-right: 6px;
+}
+
+table.Box {
+  border: solid #7a7a7a 1px;
+}
+
+.Box td {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+}
+
+.Box .IconLabel td {
+	padding: 0px;
+}
+.Box-Header td {
+  padding: 0;
+  padding-left: 4px;
+  color: #0f3f6d;
+  font-weight: bold;
+  background: url(imx/bheader-grad.png) repeat-x;
+  height: 20px;
+  border-bottom: solid #7a7a7a 1px;
+}
+
+.notification {
+  border: solid #daa520 1px;
+  background-color: #ffffe0;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+form {
+  padding: 0;
+  margin: 0;
+}
+
+fieldset {
+  border: 0;
+  border-top: solid black 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-right: 10px;
+}
+legend {
+  padding: 0.2em 0.2em;
+}
+
+
+html,body,table,div,pre,form,fieldset,input,select {
+  font-family: Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+body {
+  background-color: #white;
+}

@@ -1,0 +1,1544 @@
+<?xml version="1.0" ?><!--
+   Copyright 2005-2010 VMware, Inc.  All rights reserved.
+--><definitions targetNamespace="urn:sm1" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <types>
+      <schema elementFormDefault="qualified" targetNamespace="urn:sm1" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <complexType name="DynamicArray">
+            <sequence>
+               <element minOccurs="0" name="dynamicType" type="xsd:string"/>
+               <element maxOccurs="unbounded" name="val" type="xsd:anyType"/>
+            </sequence>
+         </complexType>
+         <complexType name="DynamicData">
+            <sequence>
+               <element minOccurs="0" name="dynamicType" type="xsd:string"/>
+               <element maxOccurs="unbounded" minOccurs="0" name="dynamicProperty" type="sm1:DynamicProperty"/>
+            </sequence>
+         </complexType>
+         <complexType name="DynamicProperty">
+            <sequence>
+               <element name="name" type="xsd:string"/>
+               <element name="val" type="xsd:anyType"/>
+            </sequence>
+         </complexType>
+         <complexType name="ArrayOfDynamicProperty">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="DynamicProperty" type="sm1:DynamicProperty"/>
+            </sequence>
+         </complexType>
+         <complexType name="HostCommunication">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="HostCommunicationFault" type="sm1:HostCommunication"/>
+         <complexType name="HostNotConnected">
+            <complexContent>
+               <extension base="sm1:HostCommunication">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="HostNotConnectedFault" type="sm1:HostNotConnected"/>
+         <complexType name="HostNotReachable">
+            <complexContent>
+               <extension base="sm1:HostCommunication">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="HostNotReachableFault" type="sm1:HostNotReachable"/>
+         <complexType name="InvalidArgument">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                     <element minOccurs="0" name="invalidProperty" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidArgumentFault" type="sm1:InvalidArgument"/>
+         <complexType name="InvalidRequest">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidRequestFault" type="sm1:InvalidRequest"/>
+         <complexType name="InvalidType">
+            <complexContent>
+               <extension base="sm1:InvalidRequest">
+                  <sequence>
+                     <element minOccurs="0" name="argument" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidTypeFault" type="sm1:InvalidType"/>
+         <complexType name="ManagedObjectNotFound">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                     <element name="obj" type="sm1:ManagedObjectReference"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="ManagedObjectNotFoundFault" type="sm1:ManagedObjectNotFound"/>
+         <complexType name="MethodNotFound">
+            <complexContent>
+               <extension base="sm1:InvalidRequest">
+                  <sequence>
+                     <element name="receiver" type="sm1:ManagedObjectReference"/>
+                     <element name="method" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="MethodNotFoundFault" type="sm1:MethodNotFound"/>
+         <complexType name="NotEnoughLicenses">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="NotEnoughLicensesFault" type="sm1:NotEnoughLicenses"/>
+         <complexType name="NotImplemented">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="NotImplementedFault" type="sm1:NotImplemented"/>
+         <complexType name="NotSupported">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="NotSupportedFault" type="sm1:NotSupported"/>
+         <complexType name="RequestCanceled">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="RequestCanceledFault" type="sm1:RequestCanceled"/>
+         <complexType name="SecurityError">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="SecurityErrorFault" type="sm1:SecurityError"/>
+         <complexType name="SystemError">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                     <element name="reason" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="SystemErrorFault" type="sm1:SystemError"/>
+         <complexType name="UnexpectedFault">
+            <complexContent>
+               <extension base="sm1:RuntimeFault">
+                  <sequence>
+                     <element name="faultName" type="xsd:string"/>
+                     <element minOccurs="0" name="fault" type="sm1:LocalizedMethodFault"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="UnexpectedFaultFault" type="sm1:UnexpectedFault"/>
+         <complexType name="InvalidCollectorVersion">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidCollectorVersionFault" type="sm1:InvalidCollectorVersion"/>
+         <complexType name="InvalidProperty">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                     <element name="name" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidPropertyFault" type="sm1:InvalidProperty"/>
+         <complexType name="PropertyFilterSpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element maxOccurs="unbounded" name="propSet" type="sm1:PropertySpec"/>
+                     <element maxOccurs="unbounded" name="objectSet" type="sm1:ObjectSpec"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfPropertyFilterSpec">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="PropertyFilterSpec" type="sm1:PropertyFilterSpec"/>
+            </sequence>
+         </complexType>
+         <complexType name="PropertySpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="type" type="xsd:string"/>
+                     <element minOccurs="0" name="all" type="xsd:boolean"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="pathSet" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfPropertySpec">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="PropertySpec" type="sm1:PropertySpec"/>
+            </sequence>
+         </complexType>
+         <complexType name="ObjectSpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="obj" type="sm1:ManagedObjectReference"/>
+                     <element minOccurs="0" name="skip" type="xsd:boolean"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="selectSet" type="sm1:SelectionSpec"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfObjectSpec">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="ObjectSpec" type="sm1:ObjectSpec"/>
+            </sequence>
+         </complexType>
+         <complexType name="SelectionSpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element minOccurs="0" name="name" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfSelectionSpec">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="SelectionSpec" type="sm1:SelectionSpec"/>
+            </sequence>
+         </complexType>
+         <complexType name="TraversalSpec">
+            <complexContent>
+               <extension base="sm1:SelectionSpec">
+                  <sequence>
+                     <element name="type" type="xsd:string"/>
+                     <element name="path" type="xsd:string"/>
+                     <element minOccurs="0" name="skip" type="xsd:boolean"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="selectSet" type="sm1:SelectionSpec"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="DestroyPropertyFilterRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+            </sequence>
+         </complexType>
+         <element name="DestroyPropertyFilter" type="sm1:DestroyPropertyFilterRequestType"/>
+         <element name="DestroyPropertyFilterResponse">
+            <complexType/>
+         </element>
+         <complexType name="ObjectContent">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="obj" type="sm1:ManagedObjectReference"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="propSet" type="sm1:DynamicProperty"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="missingSet" type="sm1:MissingProperty"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfObjectContent">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="ObjectContent" type="sm1:ObjectContent"/>
+            </sequence>
+         </complexType>
+         <complexType name="UpdateSet">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="version" type="xsd:string"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="filterSet" type="sm1:PropertyFilterUpdate"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="PropertyFilterUpdate">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="filter" type="sm1:ManagedObjectReference"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="objectSet" type="sm1:ObjectUpdate"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="missingSet" type="sm1:MissingObject"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfPropertyFilterUpdate">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="PropertyFilterUpdate" type="sm1:PropertyFilterUpdate"/>
+            </sequence>
+         </complexType>
+         <simpleType name="ObjectUpdateKind">
+            <restriction base="xsd:string">
+               <enumeration value="modify"/>
+               <enumeration value="enter"/>
+               <enumeration value="leave"/>
+            </restriction>
+         </simpleType>
+         <complexType name="ObjectUpdate">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="kind" type="sm1:ObjectUpdateKind"/>
+                     <element name="obj" type="sm1:ManagedObjectReference"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="changeSet" type="sm1:PropertyChange"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="missingSet" type="sm1:MissingProperty"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfObjectUpdate">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="ObjectUpdate" type="sm1:ObjectUpdate"/>
+            </sequence>
+         </complexType>
+         <simpleType name="PropertyChangeOp">
+            <restriction base="xsd:string">
+               <enumeration value="add"/>
+               <enumeration value="remove"/>
+               <enumeration value="assign"/>
+               <enumeration value="indirectRemove"/>
+            </restriction>
+         </simpleType>
+         <complexType name="PropertyChange">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="name" type="xsd:string"/>
+                     <element name="op" type="sm1:PropertyChangeOp"/>
+                     <element minOccurs="0" name="val" type="xsd:anyType"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfPropertyChange">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="PropertyChange" type="sm1:PropertyChange"/>
+            </sequence>
+         </complexType>
+         <complexType name="MissingProperty">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="path" type="xsd:string"/>
+                     <element name="fault" type="sm1:LocalizedMethodFault"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfMissingProperty">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="MissingProperty" type="sm1:MissingProperty"/>
+            </sequence>
+         </complexType>
+         <complexType name="MissingObject">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="obj" type="sm1:ManagedObjectReference"/>
+                     <element name="fault" type="sm1:LocalizedMethodFault"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfMissingObject">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="MissingObject" type="sm1:MissingObject"/>
+            </sequence>
+         </complexType>
+         <complexType name="CreateFilterRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element name="spec" type="sm1:PropertyFilterSpec"/>
+               <element name="partialUpdates" type="xsd:boolean"/>
+            </sequence>
+         </complexType>
+         <element name="CreateFilter" type="sm1:CreateFilterRequestType"/>
+         <element name="CreateFilterResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="sm1:ManagedObjectReference"/>
+               </sequence>
+            </complexType>
+         </element>
+         <complexType name="RetrievePropertiesRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element maxOccurs="unbounded" name="specSet" type="sm1:PropertyFilterSpec"/>
+            </sequence>
+         </complexType>
+         <element name="RetrieveProperties" type="sm1:RetrievePropertiesRequestType"/>
+         <element name="RetrievePropertiesResponse">
+            <complexType>
+               <sequence>
+                  <element maxOccurs="unbounded" minOccurs="0" name="returnval" type="sm1:ObjectContent"/>
+               </sequence>
+            </complexType>
+         </element>
+         <complexType name="CheckForUpdatesRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element minOccurs="0" name="version" type="xsd:string"/>
+            </sequence>
+         </complexType>
+         <element name="CheckForUpdates" type="sm1:CheckForUpdatesRequestType"/>
+         <element name="CheckForUpdatesResponse">
+            <complexType>
+               <sequence>
+                  <element minOccurs="0" name="returnval" type="sm1:UpdateSet"/>
+               </sequence>
+            </complexType>
+         </element>
+         <complexType name="WaitForUpdatesRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element minOccurs="0" name="version" type="xsd:string"/>
+            </sequence>
+         </complexType>
+         <element name="WaitForUpdates" type="sm1:WaitForUpdatesRequestType"/>
+         <element name="WaitForUpdatesResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="sm1:UpdateSet"/>
+               </sequence>
+            </complexType>
+         </element>
+         <complexType name="CancelWaitForUpdatesRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+            </sequence>
+         </complexType>
+         <element name="CancelWaitForUpdates" type="sm1:CancelWaitForUpdatesRequestType"/>
+         <element name="CancelWaitForUpdatesResponse">
+            <complexType/>
+         </element>
+         <complexType name="LocalizedMethodFault">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="fault" type="sm1:MethodFault"/>
+                     <element minOccurs="0" name="localizedMessage" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="MethodFault">
+            <sequence>
+               <element minOccurs="0" name="dynamicType" type="xsd:string"/>
+               <element maxOccurs="unbounded" minOccurs="0" name="dynamicProperty" type="sm1:DynamicProperty"/>
+            </sequence>
+         </complexType>
+         <element name="MethodFaultFault" type="sm1:MethodFault"/>
+         <complexType name="RuntimeFault">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="RuntimeFaultFault" type="sm1:RuntimeFault"/>
+         <complexType name="AuthHeader">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="vcSessionCookie" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="DbConnectionSpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="url" type="xsd:string"/>
+                     <element name="username" type="xsd:string"/>
+                     <element name="password" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <simpleType name="EntityReferenceEntityType">
+            <restriction base="xsd:string">
+               <enumeration value="datacenter"/>
+               <enumeration value="resourcePool"/>
+               <enumeration value="cluster"/>
+               <enumeration value="vm"/>
+               <enumeration value="datastore"/>
+               <enumeration value="host"/>
+               <enumeration value="vmFile"/>
+               <enumeration value="scsiPath"/>
+               <enumeration value="scsiTarget"/>
+               <enumeration value="scsiVolume"/>
+               <enumeration value="scsiAdapter"/>
+               <enumeration value="nasMount"/>
+            </restriction>
+         </simpleType>
+         <complexType name="EntityReference">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="id" type="xsd:string"/>
+                     <element minOccurs="0" name="type" type="sm1:EntityReferenceEntityType"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="QueryListRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element minOccurs="0" name="contextEntity" type="sm1:EntityReference"/>
+               <element name="queryEntityType" type="sm1:EntityReferenceEntityType"/>
+               <element minOccurs="0" name="querySpec" type="sm1:QuerySpec"/>
+            </sequence>
+         </complexType>
+         <element name="QueryList" type="sm1:QueryListRequestType"/>
+         <element name="QueryListResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="sm1:QueryResult"/>
+               </sequence>
+            </complexType>
+         </element>
+         <complexType name="QueryTopologyRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element name="entity" type="sm1:EntityReference"/>
+            </sequence>
+         </complexType>
+         <element name="QueryTopology" type="sm1:QueryTopologyRequestType"/>
+         <element name="QueryTopologyResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="sm1:Map"/>
+               </sequence>
+            </complexType>
+         </element>
+         <complexType name="SyncRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+            </sequence>
+         </complexType>
+         <element name="Sync" type="sm1:SyncRequestType"/>
+         <element name="SyncResponse">
+            <complexType/>
+         </element>
+         <complexType name="ConfigureSyncIntervalRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element name="interval" type="xsd:int"/>
+            </sequence>
+         </complexType>
+         <element name="ConfigureSyncInterval" type="sm1:ConfigureSyncIntervalRequestType"/>
+         <element name="ConfigureSyncIntervalResponse">
+            <complexType/>
+         </element>
+         <complexType name="UpdateVcDbConnectionInfoRequestType">
+            <sequence>
+               <element name="_this" type="sm1:ManagedObjectReference"/>
+               <element minOccurs="0" name="dbConnectionSpec" type="sm1:DbConnectionSpec"/>
+            </sequence>
+         </complexType>
+         <element name="UpdateVcDbConnectionInfo" type="sm1:UpdateVcDbConnectionInfoRequestType"/>
+         <element name="UpdateVcDbConnectionInfoResponse">
+            <complexType/>
+         </element>
+         <complexType name="Task">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="AuthConnectionFailed">
+            <complexContent>
+               <extension base="sm1:AuthenticationFailed">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="AuthConnectionFailedFault" type="sm1:AuthConnectionFailed"/>
+         <complexType name="AuthenticationFailed">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="AuthenticationFailedFault" type="sm1:AuthenticationFailed"/>
+         <complexType name="DbConfigFailed">
+            <complexContent>
+               <extension base="sm1:ServiceInitializationFailed">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="DbConfigFailedFault" type="sm1:DbConfigFailed"/>
+         <complexType name="EntityNotFound">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                     <element name="entity" type="sm1:EntityReference"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="EntityNotFoundFault" type="sm1:EntityNotFound"/>
+         <complexType name="InvalidEntity">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element minOccurs="0" name="entity" type="sm1:EntityReference"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidEntityFault" type="sm1:InvalidEntity"/>
+         <complexType name="InvalidEntityType">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element name="entityType" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidEntityTypeFault" type="sm1:InvalidEntityType"/>
+         <complexType name="InvalidFilterSpec">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element name="filterSpec" type="sm1:FilterSpec"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidFilterSpecFault" type="sm1:InvalidFilterSpec"/>
+         <complexType name="InvalidListQuery">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element minOccurs="0" name="entityType" type="sm1:EntityReferenceEntityType"/>
+                     <element name="relatedEntityType" type="sm1:EntityReferenceEntityType"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidListQueryFault" type="sm1:InvalidListQuery"/>
+         <complexType name="InvalidQuerySpec">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element name="querySpec" type="sm1:QuerySpec"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidQuerySpecFault" type="sm1:InvalidQuerySpec"/>
+         <complexType name="InvalidSession">
+            <complexContent>
+               <extension base="sm1:AuthenticationFailed">
+                  <sequence>
+                     <element name="sessionCookie" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidSessionFault" type="sm1:InvalidSession"/>
+         <complexType name="InvalidSortSpec">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element name="sortSpec" type="sm1:SortSpec"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidSortSpecFault" type="sm1:InvalidSortSpec"/>
+         <complexType name="InvalidSyncInterval">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element name="interval" type="xsd:int"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidSyncIntervalFault" type="sm1:InvalidSyncInterval"/>
+         <complexType name="InvalidTopologyQuery">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                     <element name="entityType" type="sm1:EntityReferenceEntityType"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="InvalidTopologyQueryFault" type="sm1:InvalidTopologyQuery"/>
+         <complexType name="MultipleSortSpecsNotSupported">
+            <complexContent>
+               <extension base="sm1:InvalidArgument">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="MultipleSortSpecsNotSupportedFault" type="sm1:MultipleSortSpecsNotSupported"/>
+         <complexType name="NoPermission">
+            <complexContent>
+               <extension base="sm1:AuthenticationFailed">
+                  <sequence>
+                     <element minOccurs="0" name="entity" type="sm1:EntityReference"/>
+                     <element name="privilegeId" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="NoPermissionFault" type="sm1:NoPermission"/>
+         <complexType name="ProviderSyncFailed">
+            <complexContent>
+               <extension base="sm1:ServiceInitializationFailed">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="ProviderSyncFailedFault" type="sm1:ProviderSyncFailed"/>
+         <complexType name="ProxyRegistrationFailed">
+            <complexContent>
+               <extension base="sm1:ServiceInitializationFailed">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="ProxyRegistrationFailedFault" type="sm1:ProxyRegistrationFailed"/>
+         <complexType name="QueryExecutionFailed">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="QueryExecutionFailedFault" type="sm1:QueryExecutionFailed"/>
+         <complexType name="ServiceInitializationFailed">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="ServiceInitializationFailedFault" type="sm1:ServiceInitializationFailed"/>
+         <complexType name="ServiceNotInitialized">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="ServiceNotInitializedFault" type="sm1:ServiceNotInitialized"/>
+         <complexType name="SessionCookieNotFound">
+            <complexContent>
+               <extension base="sm1:AuthenticationFailed">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="SessionCookieNotFoundFault" type="sm1:SessionCookieNotFound"/>
+         <complexType name="SoapHeaderNotFound">
+            <complexContent>
+               <extension base="sm1:AuthenticationFailed">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="SoapHeaderNotFoundFault" type="sm1:SoapHeaderNotFound"/>
+         <complexType name="SyncInProgress">
+            <complexContent>
+               <extension base="sm1:ProviderSyncFailed">
+                  <sequence>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="SyncInProgressFault" type="sm1:SyncInProgress"/>
+         <complexType name="UnsupportedDbType">
+            <complexContent>
+               <extension base="sm1:DbConfigFailed">
+                  <sequence>
+                     <element name="dbType" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="UnsupportedDbTypeFault" type="sm1:UnsupportedDbType"/>
+         <complexType name="UnsupportedDbUrl">
+            <complexContent>
+               <extension base="sm1:DbConfigFailed">
+                  <sequence>
+                     <element name="dbUrl" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="UnsupportedDbUrlFault" type="sm1:UnsupportedDbUrl"/>
+         <complexType name="UnsupportedOperation">
+            <complexContent>
+               <extension base="sm1:MethodFault">
+                  <sequence>
+                     <element name="operation" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <element name="UnsupportedOperationFault" type="sm1:UnsupportedOperation"/>
+         <simpleType name="FilterSpecComparisonOperator">
+            <restriction base="xsd:string">
+               <enumeration value="equal"/>
+               <enumeration value="notEqual"/>
+               <enumeration value="greaterThanOrEqual"/>
+               <enumeration value="lessThanOrEqual"/>
+               <enumeration value="contains"/>
+               <enumeration value="notContains"/>
+               <enumeration value="beginsWith"/>
+               <enumeration value="endsWith"/>
+            </restriction>
+         </simpleType>
+         <simpleType name="FilterSpecLogicalOperator">
+            <restriction base="xsd:string">
+               <enumeration value="or"/>
+               <enumeration value="and"/>
+            </restriction>
+         </simpleType>
+         <complexType name="FilterSpecConstraint">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element minOccurs="0" name="propertyName" type="xsd:string"/>
+                     <element minOccurs="0" name="propertyValue" type="xsd:string"/>
+                     <element minOccurs="0" name="comparisonOperator" type="sm1:FilterSpecComparisonOperator"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="childConstraint" type="sm1:FilterSpecConstraint"/>
+                     <element minOccurs="0" name="childConstraintLogicalOperator" type="sm1:FilterSpecLogicalOperator"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfFilterSpecConstraint">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="FilterSpecConstraint" type="sm1:FilterSpecConstraint"/>
+            </sequence>
+         </complexType>
+         <complexType name="FilterSpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="constraint" type="sm1:FilterSpecConstraint"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="Metadata">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="numRows" type="xsd:int"/>
+                     <element name="totalRows" type="xsd:int"/>
+                     <element minOccurs="0" name="lastUpdateTime" type="xsd:dateTime"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="propertyName" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="QueryResult">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element maxOccurs="unbounded" minOccurs="0" name="row" type="sm1:RowData"/>
+                     <element name="metadata" type="sm1:Metadata"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="QuerySpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="maxCount" type="xsd:int"/>
+                     <element name="offset" type="xsd:int"/>
+                     <element minOccurs="0" name="filterSpec" type="sm1:FilterSpec"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="sortSpec" type="sm1:SortSpec"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="RowData">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element maxOccurs="unbounded" name="column" nillable="true" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfRowData">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="RowData" type="sm1:RowData"/>
+            </sequence>
+         </complexType>
+         <complexType name="SortSpec">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="propertyName" type="xsd:string"/>
+                     <element name="ascending" type="xsd:boolean"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfSortSpec">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="SortSpec" type="sm1:SortSpec"/>
+            </sequence>
+         </complexType>
+         <simpleType name="EdgeStatus">
+            <restriction base="xsd:string">
+               <enumeration value="up"/>
+               <enumeration value="degraded"/>
+               <enumeration value="down"/>
+               <enumeration value="unknown"/>
+               <enumeration value="notReported"/>
+            </restriction>
+         </simpleType>
+         <complexType name="Edge">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="sourceEntity" type="sm1:EntityReference"/>
+                     <element name="destEntity" type="sm1:EntityReference"/>
+                     <element name="status" type="sm1:EdgeStatus"/>
+                     <element name="direct" type="xsd:boolean"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfEdge">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="Edge" type="sm1:Edge"/>
+            </sequence>
+         </complexType>
+         <complexType name="Map">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element maxOccurs="unbounded" minOccurs="0" name="node" type="sm1:Node"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="edge" type="sm1:Edge"/>
+                     <element minOccurs="0" name="lastUpdateTime" type="xsd:dateTime"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <simpleType name="NodeStatus">
+            <restriction base="xsd:string">
+               <enumeration value="up"/>
+               <enumeration value="degraded"/>
+               <enumeration value="down"/>
+               <enumeration value="unknown"/>
+               <enumeration value="notReported"/>
+            </restriction>
+         </simpleType>
+         <complexType name="Node">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="entity" type="sm1:EntityReference"/>
+                     <element name="name" type="xsd:string"/>
+                     <element name="status" type="sm1:NodeStatus"/>
+                     <element maxOccurs="unbounded" minOccurs="0" name="property" type="sm1:NodeProperty"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfNode">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="Node" type="sm1:Node"/>
+            </sequence>
+         </complexType>
+         <complexType name="NodeProperty">
+            <complexContent>
+               <extension base="sm1:DynamicData">
+                  <sequence>
+                     <element name="name" type="xsd:string"/>
+                     <element minOccurs="0" name="value" type="xsd:string"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType>
+         <complexType name="ArrayOfNodeProperty">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="NodeProperty" type="sm1:NodeProperty"/>
+            </sequence>
+         </complexType>
+         <complexType name="ManagedObjectReference">
+            <simpleContent>
+               <extension base="xsd:string">
+                  <attribute name="type" type="xsd:string"/>
+               </extension>
+            </simpleContent>
+         </complexType>
+         <complexType name="ArrayOfString">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="string" type="xsd:string"/>
+            </sequence>
+         </complexType>
+         <complexType name="ArrayOfAnyType">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="anyType" type="xsd:anyType"/>
+            </sequence>
+         </complexType>
+         <complexType name="ArrayOfManagedObjectReference">
+            <sequence>
+               <element maxOccurs="unbounded" minOccurs="0" name="ManagedObjectReference" type="sm1:ManagedObjectReference"/>
+            </sequence>
+         </complexType>
+         <element name="versionURI" type="xsd:string"/>
+      <element name="AuthHeader" type="sm1:AuthHeader"/></schema>
+   </types>
+   <message name="HostCommunicationFaultMsg">
+      <part element="sm1:HostCommunicationFault" name="fault"/>
+   </message>
+   <message name="HostNotConnectedFaultMsg">
+      <part element="sm1:HostNotConnectedFault" name="fault"/>
+   </message>
+   <message name="HostNotReachableFaultMsg">
+      <part element="sm1:HostNotReachableFault" name="fault"/>
+   </message>
+   <message name="InvalidArgumentFaultMsg">
+      <part element="sm1:InvalidArgumentFault" name="fault"/>
+   </message>
+   <message name="InvalidRequestFaultMsg">
+      <part element="sm1:InvalidRequestFault" name="fault"/>
+   </message>
+   <message name="InvalidTypeFaultMsg">
+      <part element="sm1:InvalidTypeFault" name="fault"/>
+   </message>
+   <message name="ManagedObjectNotFoundFaultMsg">
+      <part element="sm1:ManagedObjectNotFoundFault" name="fault"/>
+   </message>
+   <message name="MethodNotFoundFaultMsg">
+      <part element="sm1:MethodNotFoundFault" name="fault"/>
+   </message>
+   <message name="NotEnoughLicensesFaultMsg">
+      <part element="sm1:NotEnoughLicensesFault" name="fault"/>
+   </message>
+   <message name="NotImplementedFaultMsg">
+      <part element="sm1:NotImplementedFault" name="fault"/>
+   </message>
+   <message name="NotSupportedFaultMsg">
+      <part element="sm1:NotSupportedFault" name="fault"/>
+   </message>
+   <message name="RequestCanceledFaultMsg">
+      <part element="sm1:RequestCanceledFault" name="fault"/>
+   </message>
+   <message name="SecurityErrorFaultMsg">
+      <part element="sm1:SecurityErrorFault" name="fault"/>
+   </message>
+   <message name="SystemErrorFaultMsg">
+      <part element="sm1:SystemErrorFault" name="fault"/>
+   </message>
+   <message name="UnexpectedFaultFaultMsg">
+      <part element="sm1:UnexpectedFaultFault" name="fault"/>
+   </message>
+   <message name="InvalidCollectorVersionFaultMsg">
+      <part element="sm1:InvalidCollectorVersionFault" name="fault"/>
+   </message>
+   <message name="InvalidPropertyFaultMsg">
+      <part element="sm1:InvalidPropertyFault" name="fault"/>
+   </message>
+   <message name="DestroyPropertyFilterRequestMsg">
+      <part element="sm1:DestroyPropertyFilter" name="parameters"/>
+   </message>
+   <message name="DestroyPropertyFilterResponseMsg">
+      <part element="sm1:DestroyPropertyFilterResponse" name="parameters"/>
+   </message>
+   <message name="CreateFilterRequestMsg">
+      <part element="sm1:CreateFilter" name="parameters"/>
+   </message>
+   <message name="CreateFilterResponseMsg">
+      <part element="sm1:CreateFilterResponse" name="parameters"/>
+   </message>
+   <message name="RetrievePropertiesRequestMsg">
+      <part element="sm1:RetrieveProperties" name="parameters"/>
+   </message>
+   <message name="RetrievePropertiesResponseMsg">
+      <part element="sm1:RetrievePropertiesResponse" name="parameters"/>
+   </message>
+   <message name="CheckForUpdatesRequestMsg">
+      <part element="sm1:CheckForUpdates" name="parameters"/>
+   </message>
+   <message name="CheckForUpdatesResponseMsg">
+      <part element="sm1:CheckForUpdatesResponse" name="parameters"/>
+   </message>
+   <message name="WaitForUpdatesRequestMsg">
+      <part element="sm1:WaitForUpdates" name="parameters"/>
+   </message>
+   <message name="WaitForUpdatesResponseMsg">
+      <part element="sm1:WaitForUpdatesResponse" name="parameters"/>
+   </message>
+   <message name="CancelWaitForUpdatesRequestMsg">
+      <part element="sm1:CancelWaitForUpdates" name="parameters"/>
+   </message>
+   <message name="CancelWaitForUpdatesResponseMsg">
+      <part element="sm1:CancelWaitForUpdatesResponse" name="parameters"/>
+   </message>
+   <message name="MethodFaultFaultMsg">
+      <part element="sm1:MethodFaultFault" name="fault"/>
+   </message>
+   <message name="RuntimeFaultFaultMsg">
+      <part element="sm1:RuntimeFaultFault" name="fault"/>
+   </message>
+   <message name="QueryListRequestMsg">
+      <part element="sm1:QueryList" name="parameters"/>
+   </message>
+   <message name="QueryListResponseMsg">
+      <part element="sm1:QueryListResponse" name="parameters"/>
+   </message>
+   <message name="QueryTopologyRequestMsg">
+      <part element="sm1:QueryTopology" name="parameters"/>
+   </message>
+   <message name="QueryTopologyResponseMsg">
+      <part element="sm1:QueryTopologyResponse" name="parameters"/>
+   </message>
+   <message name="SyncRequestMsg">
+      <part element="sm1:Sync" name="parameters"/>
+   </message>
+   <message name="SyncResponseMsg">
+      <part element="sm1:SyncResponse" name="parameters"/>
+   </message>
+   <message name="ConfigureSyncIntervalRequestMsg">
+      <part element="sm1:ConfigureSyncInterval" name="parameters"/>
+   </message>
+   <message name="ConfigureSyncIntervalResponseMsg">
+      <part element="sm1:ConfigureSyncIntervalResponse" name="parameters"/>
+   </message>
+   <message name="UpdateVcDbConnectionInfoRequestMsg">
+      <part element="sm1:UpdateVcDbConnectionInfo" name="parameters"/>
+   </message>
+   <message name="UpdateVcDbConnectionInfoResponseMsg">
+      <part element="sm1:UpdateVcDbConnectionInfoResponse" name="parameters"/>
+   </message>
+   <message name="AuthConnectionFailedFaultMsg">
+      <part element="sm1:AuthConnectionFailedFault" name="fault"/>
+   </message>
+   <message name="AuthenticationFailedFaultMsg">
+      <part element="sm1:AuthenticationFailedFault" name="fault"/>
+   </message>
+   <message name="DbConfigFailedFaultMsg">
+      <part element="sm1:DbConfigFailedFault" name="fault"/>
+   </message>
+   <message name="EntityNotFoundFaultMsg">
+      <part element="sm1:EntityNotFoundFault" name="fault"/>
+   </message>
+   <message name="InvalidEntityFaultMsg">
+      <part element="sm1:InvalidEntityFault" name="fault"/>
+   </message>
+   <message name="InvalidEntityTypeFaultMsg">
+      <part element="sm1:InvalidEntityTypeFault" name="fault"/>
+   </message>
+   <message name="InvalidFilterSpecFaultMsg">
+      <part element="sm1:InvalidFilterSpecFault" name="fault"/>
+   </message>
+   <message name="InvalidListQueryFaultMsg">
+      <part element="sm1:InvalidListQueryFault" name="fault"/>
+   </message>
+   <message name="InvalidQuerySpecFaultMsg">
+      <part element="sm1:InvalidQuerySpecFault" name="fault"/>
+   </message>
+   <message name="InvalidSessionFaultMsg">
+      <part element="sm1:InvalidSessionFault" name="fault"/>
+   </message>
+   <message name="InvalidSortSpecFaultMsg">
+      <part element="sm1:InvalidSortSpecFault" name="fault"/>
+   </message>
+   <message name="InvalidSyncIntervalFaultMsg">
+      <part element="sm1:InvalidSyncIntervalFault" name="fault"/>
+   </message>
+   <message name="InvalidTopologyQueryFaultMsg">
+      <part element="sm1:InvalidTopologyQueryFault" name="fault"/>
+   </message>
+   <message name="MultipleSortSpecsNotSupportedFaultMsg">
+      <part element="sm1:MultipleSortSpecsNotSupportedFault" name="fault"/>
+   </message>
+   <message name="NoPermissionFaultMsg">
+      <part element="sm1:NoPermissionFault" name="fault"/>
+   </message>
+   <message name="ProviderSyncFailedFaultMsg">
+      <part element="sm1:ProviderSyncFailedFault" name="fault"/>
+   </message>
+   <message name="ProxyRegistrationFailedFaultMsg">
+      <part element="sm1:ProxyRegistrationFailedFault" name="fault"/>
+   </message>
+   <message name="QueryExecutionFailedFaultMsg">
+      <part element="sm1:QueryExecutionFailedFault" name="fault"/>
+   </message>
+   <message name="ServiceInitializationFailedFaultMsg">
+      <part element="sm1:ServiceInitializationFailedFault" name="fault"/>
+   </message>
+   <message name="ServiceNotInitializedFaultMsg">
+      <part element="sm1:ServiceNotInitializedFault" name="fault"/>
+   </message>
+   <message name="SessionCookieNotFoundFaultMsg">
+      <part element="sm1:SessionCookieNotFoundFault" name="fault"/>
+   </message>
+   <message name="SoapHeaderNotFoundFaultMsg">
+      <part element="sm1:SoapHeaderNotFoundFault" name="fault"/>
+   </message>
+   <message name="SyncInProgressFaultMsg">
+      <part element="sm1:SyncInProgressFault" name="fault"/>
+   </message>
+   <message name="UnsupportedDbTypeFaultMsg">
+      <part element="sm1:UnsupportedDbTypeFault" name="fault"/>
+   </message>
+   <message name="UnsupportedDbUrlFaultMsg">
+      <part element="sm1:UnsupportedDbUrlFault" name="fault"/>
+   </message>
+   <message name="UnsupportedOperationFaultMsg">
+      <part element="sm1:UnsupportedOperationFault" name="fault"/>
+   </message>
+   <portType name="smPortType">
+      <operation name="DestroyPropertyFilter">
+         <input message="sm1:DestroyPropertyFilterRequestMsg"/>
+         <output message="sm1:DestroyPropertyFilterResponseMsg"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="CreateFilter">
+         <input message="sm1:CreateFilterRequestMsg"/>
+         <output message="sm1:CreateFilterResponseMsg"/>
+         <fault message="sm1:InvalidPropertyFaultMsg" name="InvalidPropertyFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="RetrieveProperties">
+         <input message="sm1:RetrievePropertiesRequestMsg"/>
+         <output message="sm1:RetrievePropertiesResponseMsg"/>
+         <fault message="sm1:InvalidPropertyFaultMsg" name="InvalidPropertyFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="CheckForUpdates">
+         <input message="sm1:CheckForUpdatesRequestMsg"/>
+         <output message="sm1:CheckForUpdatesResponseMsg"/>
+         <fault message="sm1:InvalidCollectorVersionFaultMsg" name="InvalidCollectorVersionFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="WaitForUpdates">
+         <input message="sm1:WaitForUpdatesRequestMsg"/>
+         <output message="sm1:WaitForUpdatesResponseMsg"/>
+         <fault message="sm1:InvalidCollectorVersionFaultMsg" name="InvalidCollectorVersionFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="CancelWaitForUpdates">
+         <input message="sm1:CancelWaitForUpdatesRequestMsg"/>
+         <output message="sm1:CancelWaitForUpdatesResponseMsg"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="QueryList">
+         <input message="sm1:QueryListRequestMsg"/>
+         <output message="sm1:QueryListResponseMsg"/>
+         <fault message="sm1:InvalidArgumentFaultMsg" name="InvalidArgumentFault"/>
+         <fault message="sm1:EntityNotFoundFaultMsg" name="EntityNotFoundFault"/>
+         <fault message="sm1:AuthenticationFailedFaultMsg" name="AuthenticationFailedFault"/>
+         <fault message="sm1:ServiceNotInitializedFaultMsg" name="ServiceNotInitializedFault"/>
+         <fault message="sm1:QueryExecutionFailedFaultMsg" name="QueryExecutionFailedFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="QueryTopology">
+         <input message="sm1:QueryTopologyRequestMsg"/>
+         <output message="sm1:QueryTopologyResponseMsg"/>
+         <fault message="sm1:InvalidArgumentFaultMsg" name="InvalidArgumentFault"/>
+         <fault message="sm1:EntityNotFoundFaultMsg" name="EntityNotFoundFault"/>
+         <fault message="sm1:AuthenticationFailedFaultMsg" name="AuthenticationFailedFault"/>
+         <fault message="sm1:ServiceNotInitializedFaultMsg" name="ServiceNotInitializedFault"/>
+         <fault message="sm1:QueryExecutionFailedFaultMsg" name="QueryExecutionFailedFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="Sync">
+         <input message="sm1:SyncRequestMsg"/>
+         <output message="sm1:SyncResponseMsg"/>
+         <fault message="sm1:AuthenticationFailedFaultMsg" name="AuthenticationFailedFault"/>
+         <fault message="sm1:ServiceNotInitializedFaultMsg" name="ServiceNotInitializedFault"/>
+         <fault message="sm1:ProviderSyncFailedFaultMsg" name="ProviderSyncFailedFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="ConfigureSyncInterval">
+         <input message="sm1:ConfigureSyncIntervalRequestMsg"/>
+         <output message="sm1:ConfigureSyncIntervalResponseMsg"/>
+         <fault message="sm1:InvalidArgumentFaultMsg" name="InvalidArgumentFault"/>
+         <fault message="sm1:AuthenticationFailedFaultMsg" name="AuthenticationFailedFault"/>
+         <fault message="sm1:ServiceNotInitializedFaultMsg" name="ServiceNotInitializedFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+      <operation name="UpdateVcDbConnectionInfo">
+         <input message="sm1:UpdateVcDbConnectionInfoRequestMsg"/>
+         <output message="sm1:UpdateVcDbConnectionInfoResponseMsg"/>
+         <fault message="sm1:InvalidArgumentFaultMsg" name="InvalidArgumentFault"/>
+         <fault message="sm1:AuthenticationFailedFaultMsg" name="AuthenticationFailedFault"/>
+         <fault message="sm1:ServiceInitializationFailedFaultMsg" name="ServiceInitializationFailedFault"/>
+         <fault message="sm1:RuntimeFaultFaultMsg" name="RuntimeFault"/>
+      </operation>
+   </portType>
+   <binding name="smBinding" type="sm1:smPortType">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <operation name="DestroyPropertyFilter">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="CreateFilter">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidPropertyFault">
+            <soap:fault name="InvalidPropertyFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="RetrieveProperties">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidPropertyFault">
+            <soap:fault name="InvalidPropertyFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="CheckForUpdates">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidCollectorVersionFault">
+            <soap:fault name="InvalidCollectorVersionFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="WaitForUpdates">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidCollectorVersionFault">
+            <soap:fault name="InvalidCollectorVersionFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="CancelWaitForUpdates">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="QueryList">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidArgumentFault">
+            <soap:fault name="InvalidArgumentFault" use="literal"/>
+         </fault>
+         <fault name="EntityNotFoundFault">
+            <soap:fault name="EntityNotFoundFault" use="literal"/>
+         </fault>
+         <fault name="AuthenticationFailedFault">
+            <soap:fault name="AuthenticationFailedFault" use="literal"/>
+         </fault>
+         <fault name="ServiceNotInitializedFault">
+            <soap:fault name="ServiceNotInitializedFault" use="literal"/>
+         </fault>
+         <fault name="QueryExecutionFailedFault">
+            <soap:fault name="QueryExecutionFailedFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="QueryTopology">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidArgumentFault">
+            <soap:fault name="InvalidArgumentFault" use="literal"/>
+         </fault>
+         <fault name="EntityNotFoundFault">
+            <soap:fault name="EntityNotFoundFault" use="literal"/>
+         </fault>
+         <fault name="AuthenticationFailedFault">
+            <soap:fault name="AuthenticationFailedFault" use="literal"/>
+         </fault>
+         <fault name="ServiceNotInitializedFault">
+            <soap:fault name="ServiceNotInitializedFault" use="literal"/>
+         </fault>
+         <fault name="QueryExecutionFailedFault">
+            <soap:fault name="QueryExecutionFailedFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="Sync">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="AuthenticationFailedFault">
+            <soap:fault name="AuthenticationFailedFault" use="literal"/>
+         </fault>
+         <fault name="ServiceNotInitializedFault">
+            <soap:fault name="ServiceNotInitializedFault" use="literal"/>
+         </fault>
+         <fault name="ProviderSyncFailedFault">
+            <soap:fault name="ProviderSyncFailedFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="ConfigureSyncInterval">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidArgumentFault">
+            <soap:fault name="InvalidArgumentFault" use="literal"/>
+         </fault>
+         <fault name="AuthenticationFailedFault">
+            <soap:fault name="AuthenticationFailedFault" use="literal"/>
+         </fault>
+         <fault name="ServiceNotInitializedFault">
+            <soap:fault name="ServiceNotInitializedFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+      <operation name="UpdateVcDbConnectionInfo">
+         <soap:operation soapAction="" style="document"/>
+         <input>
+            <soap:body use="literal"/>
+         <soap:header message="sm1:AuthHeaderMsg" part="request_header" use="literal" xmlns:sm1="urn:sm1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/></input>
+         <output>
+            <soap:body use="literal"/>
+         </output>
+         <fault name="InvalidArgumentFault">
+            <soap:fault name="InvalidArgumentFault" use="literal"/>
+         </fault>
+         <fault name="AuthenticationFailedFault">
+            <soap:fault name="AuthenticationFailedFault" use="literal"/>
+         </fault>
+         <fault name="ServiceInitializationFailedFault">
+            <soap:fault name="ServiceInitializationFailedFault" use="literal"/>
+         </fault>
+         <fault name="RuntimeFault">
+            <soap:fault name="RuntimeFault" use="literal"/>
+         </fault>
+      </operation>
+   </binding>
+<message name="AuthHeaderMsg"><part element="sm1:AuthHeader" name="request_header" xmlns:sm1="urn:sm1"/></message></definitions>

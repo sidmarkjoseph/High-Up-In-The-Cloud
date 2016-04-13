@@ -1,0 +1,245 @@
+<html>
+<head>
+<!--
+19-Mar-2009 kwiseth; sms documentation attribute spec
+25-Mar-2009; 
+-->
+
+
+<title>vSphere vCenter Storage Monitoring Service API Reference Documentation | Using QueryList Operation</title>
+
+<script language="JavaScript" src="./commonRes.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="doc-style.css"/>
+
+
+<style type="text/css">
+.code {    
+	font-size: 11px; font-family: 
+	"Courier New", Courier, monospace;
+	}
+.codelgr {    
+  font-size: 12px; font-family: 
+	"Courier New", Courier, monospace;
+	}
+
+.BoldRedText {
+	FONT-WEIGHT: bold; COLOR: #CC0000; TEXT-DECORATION: none
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3366AA;
+  margin-top: 25px;
+  padding-bottom: 10px;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+}
+h3 {
+  margin-top: 25px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  
+}
+
+table {
+  border-collapse:collapse;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  width:100%;
+  margin-right: 4px; 
+  margin-left: 4px;
+}
+
+table.navcontainer, topnavcontainer {
+border:0; margin-right: 2px; margin-left: 2px; padding:0;vertical-align:bottom;
+
+}
+
+table.nested {
+  border-collapse:collapse;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+th {
+  background-color: #555555;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-align: center;
+  vertical-align:middle;
+  
+}
+th.nested {
+border:0; padding:0; text-align: center;
+}
+
+
+td {
+  font-size: 11px;
+  vertical-align: top;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+td.yes {font-size: 18px;}
+td.no {font-size: 12px;}
+
+
+
+a.white:link {color: #ffffff}
+a.white:visited {color: #ffffff}
+a.white:hover {color: #ffffff; cursor:hand;}
+a.white:active {color: #ffffff}
+
+a.noline:link {color: #3366AA; text-decoration:none; }
+a.noline:visited {color: #3366AA; text-decoration:none;}
+a.noline:hover {color: #3366AA; cursor:hand; text-decoration:none;}
+a.noline:active {color: #3366AA; text-decoration:none;}
+
+
+p {font-size:12px; margin: 12px 72px 5px 0px; }
+p.nolead {margin: 3px 72px 5px 0px}
+
+.back {
+	font-size:9px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA; 
+}
+.back:link {color: #ffffff; text-decoration: none;}
+.back:visited {color: #ffffff}
+.back:hover {color: #ffffff; cursor:hand;}
+.back:active {color: #ffffff}
+
+.back2 {
+	font-size:11px; text-transform: none; FONT-WEIGHT: bold; COLOR: #3366AA; 
+}
+
+
+.top {
+	font-size:10px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA;
+}
+
+ul {
+  font-size: 12px;
+  vertical-align: top;
+}
+ul.small{font-size: 11px;}
+
+
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<p class="back">Overview | <a href="result-contextEntity_relationships.html">1</a> |<a href="result-entities.html">
+ 2
+</a> | <a href="result-enumerations.html">3</a></p>
+
+
+
+
+
+<!-- ///*** start of content area ***/// -->
+
+<a name="toppage"></a>
+
+<h1>Using the QueryList Operation</h1>
+
+<p>The SMS API <a href="sms.ServiceInstance.html#queryList" target="_blank">QueryList</a> operation returns
+a <a href="sms.list.QueryResult.html">QueryResult</a> data object that contains the properties of all instances
+of the entity type specified in the query. 
+</p>
+
+<ol>
+<li><a href="result-contextEntity_relationships.html">Relationship Matrix</a></li>
+<li><a href="result-entities.html">Entity Properties</a></li>
+<li><a href="result-enumerations.html">Enumeration List</a></li>
+
+</ol>
+
+
+
+<h2>QueryList Operation Parameters</h2>
+<p>
+The <a href="sms.ServiceInstance.html#queryList" target="_blank">QueryList</a> operation supports queries on these entities:
+</p>
+
+<ul>
+<li>datacenter</li>
+<li>resourcePool
+</li><li>cluster
+</li><li>host
+</li><li>datastore
+</li><li>virtual machine
+</li><li>storagePod
+</li></ul>
+
+
+<p>
+Specify the entity by passing its value using the <span class="codelgr">queryEntityType</span> parameter. The <span class="codelgr">queryEntityType</span> parameter is required. You must also pass the managed object reference of the <a href="sms.ServiceInstance.html">ServiceInstance</a> in the method invocation. 
+
+</p>
+<p><a href="sms.ServiceInstance.html#queryList" target="_blank">QueryList</a> supports two optional parameters, <span class="codelgr">querySpec</span> and <span class="codelgr">contextEntity</span>.</p>
+<ul>
+<li>Use the <span class="codelgr">contextEntity</span> parameter to obtain results for a specified managed entity only. </li>
+<li>Use the <span class="codelgr">querySpec</span> parameter to specify additional constraints for the result set, including a maximum number of rows and sort criteria. 
+</li></ul>
+<p>
+
+
+<img src="QueryList_returns_QueryResult.png" alt="QueryList returns QueryResult data object" width="915" height="375" border="0"></img>
+
+</p>
+
+
+<h2>QueryResult Data Object</h2>
+<p><a href="sms.ServiceInstance.html#queryList" target="_blank">QueryList</a> returns a result set in the form of a <a href="sms.list.QueryResult.html">QueryResult</a> data object.  <a href="sms.list.QueryResult.html">QueryResult</a> is a complex object consisting of two other data objects that comprise its <span class="codelgr">metadata</span> and <span class="codelgr">row</span> properties:
+
+</p>
+<ul><li>
+The <span class="codelgr">metadata</span> property is an instance of a <a href="sms.list.Metadata.html">Metadata</a> data object.</li>
+
+<li>The <span class="codelgr">row</span> property is an array of <a href="sms.list.RowData.html">RowData</a> data objects.</li>
+</ul>
+
+
+
+<p>
+An instance of a Metadata data object has properties describing the number of rows in the result set. A Metadata data object also has a propertyName property that consists of an array of strings identifying the column names in the result set. 
+</p>
+The propertyName value is an array of strings that contains the column names in the result set (QueryResult). 
+
+This result comprises a two-dimensional table. 
+
+Use the propertyName strings to decode the RowData objects in the QueryResult object. Each propertyName corresponds to a column in the RowData object in the same order.
+
+<p>
+<map name="smsref03" id="smsref03">
+<area shape="rect" coords="580, 0, 739, 119" href="sms.list.Metadata.html" alt="Metadata page"/>
+<area shape="rect" coords="580, 140, 700, 219" href="sms.list.RowData.html" alt="RowData page"/></map>
+
+</p>
+
+<p>
+<img src="QueryResult_Data_Object.png" alt="" width="345" height="235" border="0" usemap="#smsref03"></img>
+</p>
+
+
+
+<p class="mini"><script language="javascript" type="text/javascript">document.write(ID_Copyright);</script><br/>
+<script language="javascript" type="text/javascript">document.write(ID_VersionInformation);</script></p>
+</p>
+
+
+
+</body>
+</html>

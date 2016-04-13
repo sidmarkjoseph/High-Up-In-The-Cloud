@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/tr/1999/REC-html401-19991224/loose.dtd">
+<html><head>
+<title>VMware Storage Policy SDK Readme</title>
+<!--
+28June2013 - initial version.
+-->
+<meta content="VMware, Inc. All rights reserved." name="copyright"></meta>
+<link rel="stylesheet" type="text/css" href="../vsphere-ws/docresources/template.css"></link>
+<style type="text/css">
+
+h4 {
+	padding: 0;
+	font-size: 12px;
+	font-weight: bold;
+	border-top: 1px solid #dedede;
+	background-color:#E6EDF6;
+}
+
+
+.Parameter {
+	margin: 0 0 7px 0;
+	width: 100%;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.Code
+    {
+	font-size: 11px; font-family: 
+	"Courier New", Courier, monospace; 
+	}
+	
+.Console
+    {
+	font-size: 11px; font-family: 
+	"Courier New", Courier, monospace; 
+	color: #ffffff;
+	font-weight: bold;
+	background: #000000;
+	}
+.Caption {
+	font-size:11px; line-height:12px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #000000; TEXT-DECORATION: none
+}
+.Exp {
+	font-size:11px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA;
+}
+.Large { font-size: 16px; FONT-WEIGHT: bold; }
+
+.TableText {
+	FONT-SIZE: 11px;
+}
+
+.TableHead {
+	FONT-SIZE: 10px; font-weight: bold;
+}
+
+.BoldRedText {
+	FONT-WEIGHT: bold; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.BoldBlue {
+	FONT-WEIGHT: bold; COLOR: #3366AA; TEXT-DECORATION: none
+}
+.Miniscule {font-size: 9px;
+           }
+
+.Nav {font-size: 11px; COLOR: #3366AA;
+           }
+.Large { font-size: 16px; FONT-WEIGHT: bold; }
+</style>
+
+
+</head>
+<body>
+	
+<table cellpadding="0" cellspacing="5" id="main-table">
+<tr><td id="main-body" align="left">
+<!-- ///*** start of content area ***/// -->
+
+
+<table width="100%" cellpadding="5">
+<tr>
+<td><h1>VMware Storage Policy SDK Readme</h1></td>
+<td align="right">
+<img src="../vsphere-ws/docresources/vmware.gif" alt="VMware logo" width="187" height="72" border="0"></img>
+</td>
+</tr>
+</table>
+
+<p class="Nav">
+<img src="../vsphere-ws/docresources/page.gif" alt="JAXWS SPBM Samples Readme" width="13" height="16" border="0"></img> &nbsp;
+<a href="./java/JAXWS/readme_java.html" title="Go to the Readme for the Java samples...">Readme for Java Samples</a>
+<br />
+<img src="../vsphere-ws/docresources/page.gif" alt="vSphere Management SDK Readme" width="13" height="16" border="0"></img> &nbsp;
+<a href="../vSphereManagementSDKReadme.html" title="Go to the Readme for the vSphere Management SDK...">Readme for the vSphere Management SDK</a>
+</p>
+<hr/>
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="50%" vAlign="top">
+
+<p>Welcome to the <strong>VMware Storage Policy SDK</strong>. This Readme contains these topics:</p>
+  	
+	 <ul>
+	  <li><a href="#spbmclientapi" target="_top">What is the VMware Storage Policy API?</a></li>
+	  <li><a href="#packagecontents" target="_top">What&#146;s in the SDK Package?</a></li>
+	  <li><a href="#resources" target="_top">VMware Resources</a></li>
+	 </ul>
+	 
+</td><td vAlign="top" align="right">
+
+<!--caveat about state of document -->
+<table cellpadding="5" cellspacing="0" width="450" border="0">
+<tr><td colspan="2" align="left"><span class="Exp">Note:&nbsp;&nbsp;</span> Information in this document may not be current. For up-to-date information, check these VMware Web sites:</td></tr>
+<tr><td colspan="2" align="left"><table cellpadding="5" cellspacing="0" width="100%" border="1" class="light-blue-shade">
+<tr><td vAlign="top" colspan="2" align="left"></td></tr>
+<tr class="Caps"><td vAlign="top" width="45%" class="Caption" align="left">Beta or Pre-release Products</td>
+
+<td vAlign="top"><a href="http://communities.vmware.com/community/beta">VMware Beta Community</a></td></tr>
+
+<tr class="Caps"><td class="Caption">Released SDK Products</td><td vAlign="top"><a href="http://www.vmware.com/support/developer/vc-sdk/index.html">VMware vSphere Web Services SDK</a>
+</td></tr></table>
+</td></tr></table>
+<!--conclude caveat about state of links -->
+
+</td></tr></table>
+
+<a name="ssoclientapi"></a>
+<h2><strong>What is the VMware Storage Policy API?</strong></h2>
+<p>
+A VMware Storage Policy client uses the Storage Policy API
+to connect to the Storage Policy Server
+for the purpose of managing vCenter storage profiles.
+</p>
+<p>
+For information about how to use the Storage Policy API, see the
+<i>VMware Storage Policy Programming Guide</i>.
+For access to the guide, use the link to the vSphere Document Center on the 
+<a href="http://www.vmware.com/support/developer/vc-sdk/">vSphere Web Services SDK Documentation page</a>.
+</p>
+	 
+<a name="packagecontents"></a>    
+<h2><strong>What&#146;s in the SDK Package?</strong></h2>
+<p>The VMware Storage Policy SDK provides:
+</p>
+<ul>
+<li>Sample code that demonstrates how to use the VMware Storage Policy API.
+See the readme file for the java samples
+(<a href="java/JAXWS/readme_java.html" title="See the Java Samples Readme for more information...">readme_java</a>)
+for information about building and using the samples.</li>
+<li>Web Services Definition Language (WSDL) definitions that describe the API for accessing
+the VMware Storage Policy Server. The SDK contains the <code>pbmService.wsdl</code> file
+and the supporting schema files.
+</li><br />
+<li>Shell scripts to run the sample applications. <br /><br />
+<li>
+Compiled client-side libraries (pbm.jar, ssoclient.jar, vim25.jar, and various samples .jar files)
+for testing and development purposes.</li>
+</ul>
+
+<p>
+The VMware Storage Policy SDK is contained in the <code>SDK\spbm</code> directory
+in the vSphere Management SDK.
+</p>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;VMware-vSphere-SDK-<i>x</i>.<i>y</i>.<i>z</i>-<i>build</i></code><br />
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDK</code><br />
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spbm</code><br /><br />
+<p>
+The following table contains a brief description of the contents of the VMware Storage Policy SDK.
+</p>
+
+<h3>Directory structure (under \SDK\spbm): </h3>
+
+<table cellpadding="5" cellspacing="0" border="1" width="90%" class="TableText">
+<tr><th width="15%">Directory</th><th width="60%">Contents</th><th width="25%">Documentation</th></tr>
+
+<tr>
+<td>docs</td>
+<td>Root directory for documentation.</td>
+<td>
+Storage Policy <a href="docs/pbm-apiref/index.html">API Reference</a>.<br />
+<a href="docs/java/JAXWS/samples/javadoc/index.html">JAXWS samples documentation</a><br />
+</td>
+</tr>
+<tr>
+<td>java\JAXWS</td>
+<td>Root directory for the JAXWS files.
+Contains batch files, .jar files, and samples.
+</td>
+<td><a href="java/JAXWS/readme_java.html">Readme for Java samples</a></td>
+</tr>
+
+<tr>
+<td>wsdl</td>
+<td>
+WSDL files for the VMware Storage Policy API:
+<ul>
+<li>pbmService.wsdl - Contains the VMware Storage Policy API definitions. </li>
+<li>Schema files that support the VMware Storage Policy API definitions.</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
+<a name="resources"></a>
+<h2><strong>VMware Resources</strong></h2>
+<ul>
+<li><a href="http://www.vmware.com/communities/content/developer/">Developer Center</a></li>
+<li><a href="http://kb.vmware.com/">Knowledge Base</a></li>
+<li><a href="http://www.vmware.com/communities/content/vmug/index.html">User Groups</a> </li>
+<li><a href="http://communities.vmware.com">VMware Communities</a> </li>
+</ul>
+<p>
+For <strong>released product information</strong>, including known issues, 
+see the <a href="http://www.vmware.com/support/developer/vc-sdk/index.html">VMware Infrastructure SDK</a> page.
+Be sure to read the Release Notes for the most recent information.
+</p>
+
+<hr />
+<table border="0" width="100%">
+<tr>
+<td>
+<p class="Miniscule">Copyright &copy; 2013 VMware, Inc.  All rights not expressly granted herein are reserved.</p>
+</td>
+<td align="right"><p class="Miniscule">Last updated: 1 Jul 2013&nbsp;|&nbsp; VMware Storage Policy SDK</p></td>
+</tr>
+</table>
+
+</td></tr></table>
+
+</body></html>

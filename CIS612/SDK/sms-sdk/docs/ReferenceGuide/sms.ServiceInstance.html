@@ -1,0 +1,789 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="sms.ServiceInstance" name="sms.ServiceInstance"></a>
+<h1>Managed Object -  
+						SmsServiceInstance</h1>
+<dl>
+<dt>See also</dt>
+<dd>
+<a href="sms.DbConnectionSpec.html">DbConnectionSpec</a>, <a href="sms.EntityReference.html">EntityReference</a>, <a href="sms.EntityReference.EntityType.html">EntityReferenceEntityType</a>, <a href="sms.topology.Map.html">Map</a>, <a href="sms.list.QueryResult.html">QueryResult</a>, <a href="sms.list.QuerySpec.html">QuerySpec</a>, <a href="sms.AboutInfo.html">SmsAboutInfo</a>, <a href="sms.StorageManager.html">SmsStorageManager</a>
+</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         Service interface for the Storage Monitoring Service.
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#configureSyncInterval">ConfigureSyncInterval</a>, <a href="#queryAboutInfo">QueryAboutInfo</a>, <a href="#queryList">QueryList</a>, <a href="#queryStorageManager">QueryStorageManager</a>, <a href="#queryTopology">QueryTopology</a>, <a href="#sync">Sync</a>, <a href="#updateVcDbConnectionInfo">UpdateVcDbConnectionInfo</a></td>
+</tr>
+</table>
+<br>
+<a id="configureSyncInterval" name="configureSyncInterval"></a>
+<h1>ConfigureSyncInterval</h1>
+<B>Deprecated.</B><I>
+         As of SMS API 4.0, this API is deprecated.
+      </I>
+<p></p>
+         Sets the frequency with which the service cache is
+ automatically synced with provider information. The interval
+ is specified in seconds with a minimum value of 300 (5
+ minutes).
+
+ NOTE: In certain concurrent invocation scenarios, it is
+ possible that the sync timer will not be scheduled with the
+ latest configured value until one further sync cycle has
+ completed.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>StorageViews.ConfigureService</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="sms.ServiceInstance.html">SmsServiceInstance</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>interval</strong></td><td>xsd:int</td><td>
+<p></p>
+         sync interval in seconds (>= 300).
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if specified interval is not within valid range sms.fault.InvalidSyncInterval.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ConfigureSyncInterval-textarea');expandcontent(this, 'ConfigureSyncInterval-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ConfigureSyncInterval-div">
+<textarea cols="20" rows="10" name="ConfigureSyncInterval-textarea" wrap="off" readonly="1" id="ConfigureSyncInterval-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="ConfigureSyncInterval" type="sms:ConfigureSyncIntervalRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="ConfigureSyncIntervalResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryAboutInfo" name="queryAboutInfo"></a>
+<h1>QueryAboutInfo</h1>
+<p></p>
+         Retrieves information about the service.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>StorageViews.View</dd>
+<dt>Since </dt>
+<dd>SMS API 2.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="sms.ServiceInstance.html">SmsServiceInstance</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="sms.AboutInfo.html">SmsAboutInfo</a></td><td>AboutInfo information about the system</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryAboutInfo-textarea');expandcontent(this, 'QueryAboutInfo-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryAboutInfo-div">
+<textarea cols="20" rows="10" name="QueryAboutInfo-textarea" wrap="off" readonly="1" id="QueryAboutInfo-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryAboutInfo" type="sms:QueryAboutInfoRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryAboutInfoResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="sms:SmsAboutInfo"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryList" name="queryList"></a>
+<h1>QueryList</h1>
+<B>Deprecated.</B><I>
+         As of SMS API 4.0, this API is deprecated.
+      </I>
+<p></p>
+         Returns a result set (an instance of the <a href="sms.list.QueryResult.html">QueryResult</a> data object) containing <a
+ href="result-entities.html">properties</a> of all entity
+ instances of the specified entity type.  If the optional
+ contextEntity parameter is supplied, the result set is
+ limited to those entities related to the specified entity.
+ See this <a href="result-contextEntity_relationships.html">
+ matrix for lists of possible relationships.</a> You can apply
+ additional constraints to the results by using the <a href="sms.list.QuerySpec.html">QuerySpec</a> input parameter.</p>
+ <p>This operation supports
+ these entities:
+ </p>
+ <ul>
+    <li>datacenter</li>
+    <li>resourcePool</li>
+    <li>storagePod</li>
+    <li>cluster</li>
+    <li>host</li>
+    <li>datastore</li>
+    <li>vm</li>
+ </ul>
+ <p>
+ See <a href="using_QueryList_operation.html">Using the QueryList Operation
+  </a>for more information.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>StorageViews.View</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="sms.ServiceInstance.html">SmsServiceInstance</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>contextEntity</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="sms.EntityReference.html">EntityReference</a></td><td>
+<p></p>
+         Limits result set from the
+                      query to storage attributes associated
+                      with the specified entity.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>queryEntityType</strong></td><td><a href="sms.EntityReference.EntityType.html">EntityReferenceEntityType</a></td><td>
+<p></p>
+         Type of entities to query.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>querySpec</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="sms.list.QuerySpec.html">QuerySpec</a></td><td>
+<p></p>
+         Additional constraints (range, filtering,
+                  sorting, and so on) to be applied on the result
+                  set.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="sms.list.QueryResult.html">QueryResult</a></td><td>data object containing results from the query and supporting metadata.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="sms.fault.EntityNotFound.html">EntityNotFound</a></td><td>Thrown if the specified entity does not exist.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if invalid input is provided. Examples include:<br> sms.fault.InvalidEntity - invalid entity reference<br> sms.fault.InvalidEntityType- invalid entity type.<br> sms.fault.InvalidEntityType - null or invalid query entity type.<br> sms.fault.InvalidQuerySpec - illegal values for maxCount and offset fields in QuerySpec.<br> <a href="sms.fault.MultipleSortSpecsNotSupported.html">MultipleSortSpecsNotSupported</a> - multiple sort specs are specified.<br> sms.fault.InvalidSortSpec - invalid property value in SortSpec.<br> sms.fault.InvalidListQuery - query for given entity types is not supported.<br></td>
+</tr>
+<tr class="r1">
+<td><a href="sms.fault.QueryExecutionFault.html">QueryExecutionFault</a></td><td>Thrown if an error is encountered while processing the query request.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryList-textarea');expandcontent(this, 'QueryList-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryList-div">
+<textarea cols="20" rows="10" name="QueryList-textarea" wrap="off" readonly="1" id="QueryList-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryList" type="sms:QueryListRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryListResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="sms:QueryResult"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryStorageManager" name="queryStorageManager"></a>
+<h1>QueryStorageManager</h1>
+<p></p>
+         Retrieves Storage Manager managed object.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>StorageViews.View</dd>
+<dt>Since </dt>
+<dd>SMS API 2.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="sms.ServiceInstance.html">SmsServiceInstance</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="sms.StorageManager.html">SmsStorageManager</a></td><td>A managed object <a href="sms.StorageManager.html">SmsStorageManager</a> reference.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryStorageManager-textarea');expandcontent(this, 'QueryStorageManager-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryStorageManager-div">
+<textarea cols="20" rows="10" name="QueryStorageManager-textarea" wrap="off" readonly="1" id="QueryStorageManager-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryStorageManager" type="sms:QueryStorageManagerRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryStorageManagerResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:ManagedObjectReference"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryTopology" name="queryTopology"></a>
+<h1>QueryTopology</h1>
+<B>Deprecated.</B><I>
+         As of SMS API 2.0, this API is deprecated.
+      </I>
+<p></p>
+         Returns the entities that are related to the given entity as
+ a list of nodes and edges, which can be used to construct a
+ topological map of the relationships.
+ Entities supported by this operation: datacenter, cluster,
+ host, datastore and vm.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>StorageViews.View</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="sms.ServiceInstance.html">SmsServiceInstance</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>entity</strong></td><td><a href="sms.EntityReference.html">EntityReference</a></td><td>
+<p></p>
+         entity for which topology map is required.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="sms.topology.Map.html">Map</a></td><td>structure with list of nodes and edges to construct the topology.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="sms.fault.EntityNotFound.html">EntityNotFound</a></td><td>Thrown if the specified entity does not exist.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if invalid input is provided:<br> sms.fault.InvalidEntity, sms.fault.InvalidEntityType - entity is null or contains invalid id/type.<br> sms.fault.InvalidTopologyQuery - query is not supported for given entity type.</td>
+</tr>
+<tr class="r1">
+<td><a href="sms.fault.QueryExecutionFault.html">QueryExecutionFault</a></td><td>Thrown if an error is encountered while processing the query request.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryTopology-textarea');expandcontent(this, 'QueryTopology-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryTopology-div">
+<textarea cols="20" rows="10" name="QueryTopology-textarea" wrap="off" readonly="1" id="QueryTopology-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryTopology" type="sms:QueryTopologyRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="QueryTopologyResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="sms:Map"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="sync" name="sync"></a>
+<h1>Sync</h1>
+<B>Deprecated.</B><I>
+         As of SMS API 4.0, this API is deprecated.
+      </I>
+<p></p>
+         Synchronizes the service cache from provider information
+ (like the VirtualCenter database provider).
+      <dl>
+<dt>Required Privileges</dt>
+<dd>StorageViews.View</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="sms.ServiceInstance.html">SmsServiceInstance</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="sms.fault.DbConfigFailed.html">DbConfigFailed</a></td><td>Thrown if database configuration fails.</td>
+</tr>
+<tr class="r0">
+<td><a href="sms.fault.ProviderSyncFailed.html">ProviderSyncFailed</a></td><td>Thrown if an error is encountered while executing the sync operation for a provider.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('Sync-textarea');expandcontent(this, 'Sync-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="Sync-div">
+<textarea cols="20" rows="10" name="Sync-textarea" wrap="off" readonly="1" id="Sync-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="Sync" type="sms:SyncRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="SyncResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="updateVcDbConnectionInfo" name="updateVcDbConnectionInfo"></a>
+<h1>UpdateVcDbConnectionInfo</h1>
+<B>Deprecated.</B><I>
+         As of SMS API 4.0, this API is deprecated.
+      </I>
+<p></p>
+         Updates the connection information for the VirtualCenter
+ database. The credentials and connection url can be
+ explicitly specified using a <a href="sms.DbConnectionSpec.html">DbConnectionSpec</a>
+ argument. Alternately, a null argument may be passed to force
+ the service to refresh the connection information from the
+ local registry. NOTE: The operation re-initializes the
+ service after configuring the database information. This is
+ akin to the service being restarted.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>StorageViews.ConfigureService</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="sms.ServiceInstance.html">SmsServiceInstance</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>dbConnectionSpec</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="sms.DbConnectionSpec.html">DbConnectionSpec</a></td><td>
+<p></p>
+         database connection information.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if DbConnectionSpec.url is null/empty or if it is in an unknown format sms.fault.UnsupportedDbUrl.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('UpdateVcDbConnectionInfo-textarea');expandcontent(this, 'UpdateVcDbConnectionInfo-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="UpdateVcDbConnectionInfo-div">
+<textarea cols="20" rows="10" name="UpdateVcDbConnectionInfo-textarea" wrap="off" readonly="1" id="UpdateVcDbConnectionInfo-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="UpdateVcDbConnectionInfo" type="sms:UpdateVcDbConnectionInfoRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sms="urn:sms" xmlns:vim25="urn:vim25" name="UpdateVcDbConnectionInfoResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

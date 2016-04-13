@@ -1,0 +1,375 @@
+﻿<!--
+  ~ *******************************************************
+  ~ Copyright VMware, Inc. 2013.  All Rights Reserved.
+  ~ *******************************************************
+  ~
+  ~ DISCLAIMER. THIS PROGRAM IS PROVIDED TO YOU "AS IS" WITHOUT
+  ~ WARRANTIES OR CONDITIONS # OF ANY KIND, WHETHER ORAL OR WRITTEN,
+  ~ EXPRESS OR IMPLIED. THE AUTHOR SPECIFICALLY # DISCLAIMS ANY IMPLIED
+  ~ WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY # QUALITY,
+  ~ NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+  -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>VMware Storage Policy SDK JAX-WS Samples Readme</title>
+
+<meta content="VMware, Inc. All rights reserved." name="copyright"></meta>
+<link rel="stylesheet" type="text/css" href="../../../vsphere-ws/docresources/template.css"></link>
+<style type="text/css">
+
+h4 {
+	padding: 0;
+	font-size: 12px;
+	font-weight: bold;
+	border-top: 1px solid #dedede;
+	background-color:#E6EDF6;
+}
+
+
+.Parameter {
+	margin: 0 0 7px 0;
+	width: 100%;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.Code
+    {
+	font-size: 11px; font-family: 
+	"Courier New", Courier, monospace; 
+	}
+	
+.Console
+    {
+	font-size: 11px; font-family: 
+	"Courier New", Courier, monospace; 
+	color: #ffffff;
+	font-weight: bold;
+	background: #000000;
+	}
+.Caption {
+	font-size:11px; line-height:12px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #000000; TEXT-DECORATION: none
+}
+.Exp {
+	font-size:11px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA;
+}
+.Large { font-size: 16px; FONT-WEIGHT: bold; }
+
+.TableText {
+	FONT-SIZE: 11px;
+}
+
+.TableHead {
+	FONT-SIZE: 10px; font-weight: bold;
+}
+
+.BoldRedText {
+	FONT-WEIGHT: bold; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.BoldBlue {
+	FONT-WEIGHT: bold; COLOR: #3366AA; TEXT-DECORATION: none
+}
+.Miniscule {font-size: 9px;
+           }
+
+.Nav {font-size: 11px; COLOR: #3366AA;
+           }
+.Large { font-size: 16px; FONT-WEIGHT: bold; }
+</style>
+
+</head>
+<body>
+
+<table cellpadding="5" cellspacing="5" id="main-table">
+<tr><td id="main-body" align="left">
+
+<!-- ///*** start of content area ***/// -->
+
+<table width="100%" cellpadding="5">
+<tr>
+<td><h1>VMware Storage Policy SDK: JAX-WS Samples Readme</h1></td>
+<td align="right">
+<img src="../../../vsphere-ws/docresources/vmware.gif" alt="VMware logo" width="187" height="72" border="0"></img>
+</td>
+</tr>
+</table>
+
+<p class="Nav">
+<img src="../../../vsphere-ws/docresources/page.gif" alt="Back to the VMware Storage Policy SDK Readme" width="13" height="16" border="0"></img> &nbsp;
+<a href="../../SPBM-SDK-README.html" title="Go back to the VMware Storage Policy SDK Readme...">VMware Storage Policy SDK Readme</a>
+</p>
+
+<hr />
+<p>
+This document describes the VMware Storage Policy SDK samples that use the JAX-WS bindings
+for the vSphere API.  The examples have been developed to work with the JAX-WS bundled with
+the JDK 1.6.
+</p>
+
+The following sections describe how to build and run the vSphere Web Services SDK
+JAX-WS samples.
+
+<ul>
+<li><a href="#sample_directories">Sample Directories</a></li>
+<li><a href="#sample_structure">Sample Program Structure</a></li>
+<li><a href="#build_samples">Building the Sample Programs</a></li>
+<li><a href="#run_samples">Running the Sample Programs</a></li>
+<li><a href="#samples_doc">Sample Documentation</a></li>
+</ul>
+
+<a name="sample_directories"></a>
+<h2>Sample Directories</h2>
+
+<p>
+The VMware Storage Policy SDK samples are located
+in the following vSphere Management SDK directory:
+</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>.../SDK/spbm/java/JAXWS/samples/com/vmware/spbm/samples/</code>
+</p>
+<p>
+The following table contains a brief description of the samples.
+</p>
+<table border="1" cellpadding="5">
+<tr><th>Sample</th><th>Description</th></tr>
+<tr>
+<td>AboutInfo.java</td>
+<td>Demonstrates how to retrieve information about the Storage Policy service.</td>
+</tr>
+<tr>
+<td>CheckCompliance.java</td>
+<td>Demonstrates how to check compliance of a profile with its associated entity.</td>
+</tr>
+
+<tr>
+<td>CreateProfile.java</td>
+<td>Demonstrates how to create a requirements profile based on tag-defined capabilities.</td>
+</tr>
+
+
+<tr>
+<td>CreateVSANProfile.java</td>
+<td>Demonstrates how to create a requirements profile based on VSAN-defined capabilities.</td>
+</tr>
+
+<tr>
+<td>DeleteProfile.java</td>
+<td>Demonstrates how to delete an existing storage profile.</td>
+</tr>
+
+<tr>
+<td>EditProfile.java</td>
+<td>Demonstrates how to add a subprofile to a storage profile.</td>
+</tr>
+
+<tr>
+<td>ListProfiles.java</td>
+<td>Demonstrates how to retrieve the list of storage profiles and display profile metadata.</td>
+</tr>
+
+<tr>
+<td>ViewProfiles.java</td>
+<td>Demonstrates how to display the contents of a storage profile.</td>
+</tr>
+
+<tr>
+<td>VMClone.java</td>
+<td>Demonstrates how to associate a storage profile with a virtual machine clone.</td>
+</tr>
+
+<tr>
+<td>VMCreate.java</td>
+<td>Demonstrates how to create a virtual machine and associate a storage profile with it.</td>
+</tr>
+
+</table>
+
+<p>
+The VMware Storage Policy SDK also contains sample connection code that is located in the
+following directory:
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>SDK/spbm/java/JAXWS/samples/com/vmware/spbm/connection/</code>
+</p>
+<p>
+The connection class samples demonstrate how to use the vCenter session cookie to establish
+a connection with the Storage Policy service.
+</p>
+
+
+<a name="sample_structure"></a>
+<h2>Sample Program Structure</h2>
+<p>
+
+Every VMware Storage Policy SDK application performs the following basic tasks:
+
+<ul>
+<li>Obtains the vCenter session cookie.</li>
+<li>Uses the vCenter session cookie to establish an SPBM session.</li>
+<li>Calls methods to manage storage profiles.</li>
+</ul>
+
+<p>
+The samples use custom Java annotations to organize these tasks. These annotations
+are <code>@Before</code>, <code>@Action</code>, and <code>@After</code>.
+The SDK sample code includes a samples framework that runs the samples and executes the sample code.
+</p>
+<ul>
+<li>Each sample extends the class <code>ConnectedServiceBase</code>
+(<code>.../SDK/spbm/java/JAXWS/samples/com/vmware/spbm/connection/ConnectedServiceBase.java</code>).
+This class contains the <code>@Before</code> and <code>@After</code> declarations.
+The <code>@Before</code> code connects to the vCenter Server,
+and obtains access to the vSphere methods.
+The <code>@After</code> code disconnects from the Server. <br /> <br /> </li>
+<li>Each sample file contains the <code>@Action</code> declaration, which contains the code
+that performs the capability of the particular sample.
+<p>
+For example, the <code>AboutInfo</code> sample 
+contains the <code>@Action</code> code. This code retrieves the current time
+from the vCenter Server, and it retrieves the Storage Policy service name and version, and the
+storage vendor providers from the Storage Policy server.
+</p>
+</li>
+</ul>
+
+
+<a name="build_samples"></a>
+<h2>Building the Sample Programs</h2>
+<p>
+To build the sample programs, you must define the <code>JAVA_HOME environment variable
+and execute the build script to generate client stubs and compile the samples.
+</p>
+
+<h3>JAVA_HOME Environment Variable</h3>
+<p>
+You must set the JAVA_HOME environment variable to the base directory of a JDK 1.6, preferably b22.
+</p>
+
+<h3>Build Scripts</h3>
+<p>
+The following table shows the build files located in the
+<code>SDK/spbm/java/JAX-WS/</code> directory.
+</p>
+<table border="1" cellpadding="5">
+
+<tr><th>Build Task</th><th>Files</th></tr>
+<tr><td>Generate JAX-WS client stubs and compile samples.</td>
+    <td>build.bat</tr>
+<tr><td>System property specification.</td><td>sample.properties</td></tr>
+<tr><td>Run a sample.</td><td>run.bat<br />run.sh</td></tr>
+</table>
+<br /><br />
+<h4>Converting Shell Scripts for Linux</h4>
+<p>
+The shell script (run.sh) has DOS-style line endings.
+These do not work when running these scripts on Linux. Use the Linux command
+<code>dos2unix</code> to convert this file before you use it.
+</p>
+<p>
+To run these scripts, set the Execute permission on the files:
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>chmod a+x *.sh</code>
+</p>
+
+<a name="build"></a>
+<h2><strong>Building Sample Programs</strong></h2>
+<p>
+The build script (build.bat) generates Storage Policy API Java stubs from
+the Storage Policy API WSDL, compiles the generated stubs, and compiles the sample programs.
+You can specify the following command line options to control stub generation and
+compilation.
+</p>
+<ul>
+<li><strong><code>build -w</code></strong>&nbsp;&nbsp;- Compiles sample programs but does
+not generate or compile stubs.</li>
+<li><strong><code>build -c</code></strong>&nbsp;&nbsp; - Compiles stubs and sample programs;
+does not generate stubs.</li>
+</ul>
+
+<h4>WSDL File Dependency</h4>
+<p>
+JAX-WS requires a WSDL file for stub generation and compilation.
+To manage this dependency, the build script performs the following operations:
+</p>
+<ul>
+<li>Uses the JDK tool <code>wsimport</code> to generate the Storage Policy Web services Java stubs
+from the Storage Policy API WSDL file (<code>pbmService.wsdl</code>).
+</li>
+<li>Specifies the <code>-wsdlLocation</code> command line option to <code>wsimport</code>
+to identify the WSDL file location.
+</li>
+<li>Copies the WSDL file and related schema files into the <code>pbm.jar</code> file.
+</li>
+</ul>
+
+<p>
+To compile Java code that imports the generated stubs and uses the <code>pbm.jar</code> built
+by the build script, the WSDL file must be in the same location that was specified in the
+<code>-wsdlLocation</code> command line option. To establish this location, the build
+script modifies the pbmService class to reference the WSDL location inside the JAR file.
+You only need to add the <code>pbm.jar</code> file to your class path.
+</p>
+
+
+<a name="run_sample"></a>
+<h2>Running a Sample</h2>
+<p>
+The samples framework is designed to execute any of the samples provided in the kit.
+To run a sample, you must specify authentication parameters and server URLs.
+</p>
+<ul>
+<li>Username and password for authentication with the VMware SSO Server.</li>
+<li>URLs for the VMware SSO Server and vCenter Server.</li>
+</ul>
+<p>
+You can specify these in the sample properties file:
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;.../SDK/vsphere-ws/java/JAXWS/samples.properties 
+</code>
+</p>
+<p>
+You can specify the vCenter Server URL, username and password in the <code>sample.properties</code>
+file, or you can specify them on the command line when you execute a sample program.
+These properties are declared as input options, using the <code>@Option</code> declarations
+and implementation in the following files:
+</p>
+<p>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;/SDK/spbm/java/JAXWS/samples/com/vmware/spbm/connection/Connection.java<br />
+&nbsp;&nbsp;&nbsp;&nbsp;/SDK/spbm/java/JAXWS/samples/com/vmware/spbm/connection/SsoConnection.java<br />
+</code>
+</p>
+<p>
+When you execute a sample, the samples framework will resolve the input values from the appropriate source.
+</p>
+
+
+<a name="samples_doc"></a>
+<h2><strong>Samples Documentation</strong></h2>
+<p>
+To print help about a sample, specify --help on the command line.
+</p>
+<p>
+You can also find information about the samples in the 
+<a href="../../docs/java/JAXWS/samples/javadoc/index.html">JAX-WS Samples Reference Documentation</a>.
+Each package has a class summary that describes one or more samples.
+</p>
+
+
+
+<hr />
+<table border="0" width="100%">
+<tr>
+<td>
+<p class="Miniscule">Copyright &copy; 2013 VMware, Inc.  All rights not expressly granted herein are reserved.</p>
+</td>
+<td align="right"><p class="Miniscule">Last updated: 1 Jul 2013&nbsp;|&nbsp; VMware Storage Policy SDK</p></td>
+</tr>
+</table>
+
+</td></tr></table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+   Copyright 2005-2010 VMware, Inc.  All rights reserved.
+-->
+<definitions targetNamespace="urn:sm1Service"
+   xmlns="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:interface="urn:sm1"
+>
+   <import location="sm.wsdl" namespace="urn:sm1" />
+   <service name="smService">
+      <port binding="interface:smBinding" name="smPort">
+         <soap:address location="http://localhost/sms/services/smService" />
+      </port>
+   </service>
+</definitions>

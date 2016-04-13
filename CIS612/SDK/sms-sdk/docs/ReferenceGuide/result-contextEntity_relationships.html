@@ -1,0 +1,1445 @@
+<html>
+<head>
+<!--
+19-Mar-2009 kwiseth; sms documentation attribute spec
+27-Mar-2009; strip out extraneous information. wonderful.
+-->
+
+
+<title>vSphere vCenter Storage Monitoring Service API Reference Documentation</title>
+
+<script language="JavaScript" src="./commonRes.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="doc-style.css"/>
+
+
+<style type="text/css">
+.code {
+	font-family:
+	"Courier New", Courier, monospace;
+	}
+.codelgr {
+  font-size: 12px; font-family:
+	"Courier New", Courier, monospace;
+	}
+
+.BoldRedText {
+	FONT-WEIGHT: bold; COLOR: #CC0000; TEXT-DECORATION: none
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3366AA;
+  margin-top: 25px;
+  padding-bottom: 10px;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+}
+h3 {
+  margin-top: 25px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+
+}
+
+table {
+  border-collapse:collapse;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  width:100%;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+table.navcontainer, topnavcontainer {
+border:0; margin-right: 2px; margin-left: 2px; padding:0;vertical-align:bottom;
+
+}
+
+table.nested {
+  border-collapse:collapse;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+th {
+  background-color: #555555;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-align: center;
+  vertical-align:middle;
+
+}
+th.nested {
+border:0; padding:0; text-align: center;
+}
+
+
+td {
+  font-size: 11px;
+  vertical-align: top;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+td.yes {font-size: 18px; background-color: #E6EDF6; font-size:11px; text-transform: uppercase; FONT-WEIGHT: bold;}
+td.no {font-size: 12px; background-color: #ffffcc; font-size:11px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #000000;
+}
+
+
+
+
+a.white:link {color: #ffffff}
+a.white:visited {color: #ffffff}
+a.white:hover {color: #ffffff; cursor:hand;}
+a.white:active {color: #ffffff}
+
+a.noline:link {color: #3366AA; text-decoration:none; }
+a.noline:visited {color: #3366AA; text-decoration:none;}
+a.noline:hover {color: #3366AA; cursor:hand; text-decoration:none;}
+a.noline:active {color: #3366AA; text-decoration:none;}
+
+
+p {font-size:12px; margin: 12px 72px 5px 0px; }
+p.nolead {margin: 3px 72px 5px 0px}
+
+.back {
+	font-size:9px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA;
+}
+.back:link {color: #ffffff; text-decoration: none;}
+.back:visited {color: #ffffff}
+.back:hover {color: #ffffff; cursor:hand;}
+.back:active {color: #ffffff}
+
+.back2 {
+	font-size:11px; text-transform: none; FONT-WEIGHT: bold; COLOR: #3366AA;
+}
+
+
+.top {
+	font-size:10px; text-transform: uppercase; FONT-WEIGHT: bold; COLOR: #3366AA;
+}
+
+ul {
+  font-size: 12px;
+  vertical-align: top;
+}
+ul.small{font-size: 11px;}
+
+
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<p class="back"><a href="using_QueryList_operation.html">Overview</a> | <a href="result-contextEntity_relationships.html">1</a> |<a href="result-entities.html">
+ 2
+</a> | <a href="result-enumerations.html">3</a></p>
+
+
+<!-- ///*** start of content area ***/// -->
+
+
+
+
+<a name="relationshipproperties"></a>
+<h1>Matrix of Possible Relationships Contained in Return Type</h1>
+
+
+
+<table class="nested" width="75%" border="1">
+
+
+<tr><th width="120">&nbsp;</th><th width="120">VM</th><th width="120">Data store</th><th width="120">Host</th><th width="120">Resource Pool</th><th width="120">Cluster</th><th width="120">Data center</th><th width="120">VM File</th><th width="120">SCSI volume</th><th width="120">SCSI Path </th><th width="120">SCSI Adapter</th><th width="100">SCSI Target</th><th width="100">NAS Mount</th></tr>
+
+<tr><th>VM</th>  <td class="no">~</td>  <td class="yes"><a href="#vm-datastore"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="yes"><a href="#vm-vmFile"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#vm-scsiVolume"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#vm-scsiPath"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#vm-scsiAdapter"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#vm-scsiTarget"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#vm-nasMount"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td></tr>
+<tr>  <th>Datastore </th>  <td class="yes"><a href="#datastore-vm"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="yes"><a href="#datastore-host"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datastore-resourcePool"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datastore-cluster"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="yes"><a href="#datastore-vmFile"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datastore-scsiVolume"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datastore-scsiPath"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datastore-scsiAdapter"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datastore-scsiTarget"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datastore-nasMount"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td></tr>
+<tr><th>Cluster </th>  <td class="yes"><a href="#cluster-vm"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#cluster-datastore"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#cluster-host"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#cluster-resourcePool"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="yes"><a href="#cluster-scsiVolume"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#cluster-scsiPath"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#cluster-scsiAdapter"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#cluster-scsiTarget"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#cluster-nasMount"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td></tr>
+<tr><th>Resource Pool </th>  <td class="yes"><a href="#resourcePool-vm"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#resourcePool-datastore"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="yes"><a href="#resourcePool-scsiVolume"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#resourcePool-scsiPath"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#resourcePool-scsiAdapter"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#resourcePool-scsiTarget"> <img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#resourcePool-nasMount"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td></tr>
+<tr><th>Host </th>  <td class="yes"><a href="#host-vm"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#host-datastore"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="yes"><a href="#host-scsiVolume"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#host-scsiPath"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#host-scsiAdapter"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#host-scsiTarget"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#host-nasMount"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td></tr>
+<tr><th>Datacenter </th>  <td class="yes"><a href="#datacenter-vm"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-datastore"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-host"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-resourcePool"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-cluster"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="no">~</td>  <td class="yes"><a href="#datacenter-scsiVolume"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-scsiPath"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-scsiAdapter"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-scsiTarget"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="yes"><a href="#datacenter-nasMount"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td></tr>
+<tr><th>Storage Pod </th>  <td class="no"></td>  <td class="yes"><a href="#storagePod-datastore"><img src="checkmarkblue.gif" alt="click here to display properties..." border="0"></img></a></td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no">~</td>  <td class="no"></td>  <td class="no"></td>  <td class="no"></td>  <td class="no"></td>  <td class="no"></td></tr>
+
+</table>
+
+
+
+
+<a name="vm-datastore"></a>
+
+
+<h2 id="VM.3ADatastore">VM : Datastore</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>name</td><td>string</td><td></td><td>Datastore name</td></tr>
+<tr><td>datastoreType</td><td><a href="result-enumerations.html#datastoreType">enum(Datastore Volume Type)</a></td><td></td><td>File system type</td></tr>
+<tr><td>entityStatus</td><td><a href="result-enumerations.html#datastoreStatus">enum(Datastore Status)</a></td><td></td><td>Connectivity status of the Datastore on the Virtual Machine's Host</td></tr>
+<tr><td>entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Multipathing Status of Datastore on the Virtual Machine's Host. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>capacity</td><td>long</td><td>byte</td><td>Datastore capacity</td></tr>
+<tr><td>freeSpace</td><td>long</td><td>byte</td><td>Space available on the Datastore</td></tr>
+<tr><td>percentFree</td><td>double</td><td>percent</td><td>% Space available on the Datastore</td></tr>
+<tr><td>entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+<tr><td>entityProvisioned</td><td>long</td><td>byte</td><td>Total provisioned space for the Virtual Machine on the Datastore</td></tr>
+<tr><td>entityUncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space for the Virtual Machine on the Datastore</td></tr>
+<tr><td>entityNumVmDisk</td><td>long</td><td></td><td>Number of Virtual Disks used by the Virtual Machine, present on this Datastore</td></tr>
+</table>
+
+<a name="vm-vmFile"></a>
+
+<h2 id="VM.3AVMFile">VM : VM File</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>name</td><td>string</td><td></td><td>File name</td></tr>
+<tr><td>path</td><td>string</td><td></td><td>File path</td></tr>
+<tr><td>type</td><td><a href="result-enumerations.html#vmFileType">enum(VM File Type)</a></td><td></td><td>File type</td></tr>
+<tr><td>datastore</td><td>string</td><td></td><td>Datastore name</td></tr>
+<tr><td>size</td><td>long</td><td>byte</td><td>File size</td></tr>
+<tr><td>numVm</td><td>long</td><td></td><td>Number of VMs sharing the file</td></tr>
+</table>
+
+<a name="vm-scsiVolume"></a>
+
+<h2 id="VM.3ASCSIVolume">VM : SCSI Volume</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>scsiId</td><td>string</td><td></td><td>Volume UUID</td></tr>
+<tr><td>status</td><td><a href="result-enumerations.html#scsiVolumeStatus">enum(Status of SCSI Volume)</a></td><td></td><td>Status of the volume</td></tr>
+<tr><td>size</td><td>long</td><td>byte</td><td>Size of the volume</td></tr>
+<tr><td>vendor</td><td>string</td><td></td><td>Volume manufacturer</td></tr>
+</table>
+<a name="vm-scsiPath"></a>
+<h2 id="VM.3ASCSIPath">VM : SCSI Path</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>runtimeName</td><td>string</td><td>Runtime Name of the SCSI path</td></tr>
+<tr><td>lunNum</td><td>long</td><td>Logical Unit Number for the SCSI path</td></tr>
+<tr><td>adapter</td><td>string</td><td>Adapter</td></tr>
+<tr><td>adapterType</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>volumeId</td><td>string</td><td>SCSI volume visible on the path</td></tr>
+<tr><td>wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>targetPortWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>targetNodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>targetIscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>targetIscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+<tr><td>status</td><td><a href="result-enumerations.html#scsiPathStatus">enum(SCSI Path Usage)</a></td><td>SCSI path status</td></tr>
+<tr><td>activityState</td><td><a href="result-enumerations.html#scsiPathActivityState">enum(SCSI Path Activity State)</a></td><td>Indicates whether the path is currently active</td></tr>
+<tr><td>preferred</td><td><a href="result-enumerations.html#scsiPathPreferred">enum(SCSI Path Preferred)</a></td><td>Path policy</td></tr>
+</table>
+
+<a name="vm-scsiAdapter"></a>
+<h2 id="VM.3ASCSIAdapter">VM : SCSI Adapter</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>name</td><td>string</td><td>SCSI Adapter name</td></tr>
+<tr><td>type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>status</td><td><a href="result-enumerations.html#scsiAdapterStatus">enum(SCSI Adapter Status)</a></td><td>SCSI adapter status</td></tr>
+<tr><td>model</td><td>string</td><td>SCSI adapter model</td></tr>
+<tr><td>wwn</td><td>string</td><td>Node and Port WWN of fibre channel adapter</td></tr>
+<tr><td>portWwn</td><td>string</td><td>Port WWN of fibre channel adapter</td></tr>
+<tr><td>nodeWwn</td><td>string</td><td>Node WWN of fibre channel adapter</td></tr>
+<tr><td>iscsiName</td><td>string</td><td>ISCSI name of adapter</td></tr>
+<tr><td>iscsiAlias</td><td>string</td><td>ISCSI alias of adapter</td></tr>
+<tr><td>driver</td><td>string</td><td>Driver Name</td></tr>
+<tr><td>pci</td><td>string</td><td>The Peripheral Connect Interface (PCI) ID of the device representing the adapter</td></tr>
+</table>
+
+<a name="vm-scsiTarget"></a>
+<h2 id="VM.3ASCSITarget">VM : SCSI Target</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI target type</td></tr>
+<tr><td>wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>portWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>nodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>iscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>iscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+</table>
+
+<a name="vm-nasMount"></a>
+
+<h2 id="VM.3ANASMount">VM : NAS Mount</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>remoteHost</td><td>string</td><td>Host name of the NAS sub system</td></tr>
+<tr><td>remotePath</td><td>string</td><td>Path on the NAS sub system</td></tr>
+<tr><td>userName</td><td>string</td><td>User name</td></tr>
+<tr><td>type</td><td><a href="result-enumerations.html#nasMountType">enum(NAS Mount Type)</a></td><td>Type of NAS mount</td></tr>
+<tr><td>datastore</td><td>string</td><td>Datastore for the NAS mount</td></tr>
+</table>
+
+<a name="datastore-vm"></a>
+
+<h2 id="Datastore.3AVM">Datastore : VM</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>name</td><td>string</td><td></td><td>Virtual Machine name</td></tr>
+<tr><td>host</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>resourcePool</td><td>string</td><td></td><td>Resource Pool name</td></tr>
+<tr><td>entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Multipathing Status of Datastore on the Virtual Machine's Host. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+<tr><td>entityProvisioned</td><td>long</td><td>byte</td><td>Total provisioned space on the Datastore for the Virtual Machine</td></tr>
+<tr><td>entityUncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space on the Datastore for the Virtual Machine</td></tr>
+<tr><td>entityNumVmDisk</td><td>long</td><td></td><td>Number of Virtual Disks used by this Virtual Machine, present on the Datastore</td></tr>
+</table>
+
+<a name="datastore-host"></a>
+
+<h2 id="Datastore.3AHost">Datastore : Host</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>name</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Multipathing Status of Datastore on the Host. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>
+percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>
+entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>
+percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+</table>
+
+<a name="datastore-resourcePool"></a>
+<h2 id="Datastore.3AResourcePool">Datastore : Resource Pool</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Resource Pool</td></tr>
+<tr><td>
+path</td><td>string</td><td></td><td>Resource Pool path</td></tr>
+<tr><td>
+host</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate Multipathing Status of Datastore across all Hosts. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>
+percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>
+entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>
+percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+</table>
+
+<a name="datastore-cluster"></a>
+<h2 id="Datastore.3ACluster">Datastore : Cluster</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate Multipathing Status of Datastore across all Hosts. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>
+percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>
+entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>
+percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+</table>
+
+<a name="datastore-vmFile"></a>
+<h2 id="Datastore.3AVMFile">Datastore : VM File</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>File name</td></tr>
+<tr><td>
+path</td><td>string</td><td></td><td>File path</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#vmFileType">enum(VM File Type)</a></td><td></td><td>File type</td></tr>
+<tr><td>
+datastore</td><td>string</td><td></td><td>Datastore name</td></tr>
+<tr><td>
+size</td><td>long</td><td>byte</td><td>File size</td></tr>
+<tr><td>
+numVm</td><td>long</td><td></td><td>Number of VMs sharing the file</td></tr>
+</table>
+
+<a name="datastore-scsiVolume"></a>
+<h2 id="Datastore.3ASCSIVolume">Datastore : SCSI Volume</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+scsiId</td><td>string</td><td></td><td>Volume UUID</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiVolumeStatus">enum(Status of SCSI Volume)</a></td><td></td><td>Status of the volume</td></tr>
+<tr><td>
+size</td><td>long</td><td>byte</td><td>Size of the volume</td></tr>
+<tr><td>
+vendor</td><td>string</td><td></td><td>Volume manufacturer</td></tr>
+</table>
+<a name="datastore-scsiPath"></a>
+<h2 id="Datastore.3ASCSIPath">Datastore : SCSI Path</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+runtimeName</td><td>string</td><td>Runtime Name of the SCSI path</td></tr>
+<tr><td>
+lunNum</td><td>long</td><td>Logical Unit Number for the SCSI path</td></tr>
+<tr><td>
+adapter</td><td>string</td><td>Adapter name</td></tr>
+<tr><td>
+adapterType</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+volumeId</td><td>string</td><td>SCSI volume visible on the path</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetPortWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetNodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+targetIscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+targetIscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiPathStatus">enum(SCSI Path Usage)</a></td><td>SCSI path status</td></tr>
+<tr><td>
+activityState</td><td><a href="result-enumerations.html#scsiPathActivityState">enum(SCSI Path Activity State)</a></td><td>Indicates whether the path is currently active</td></tr>
+<tr><td>
+preferred</td><td><a href="result-enumerations.html#scsiPathPreferred">enum(SCSI Path Preferred)</a></td><td>Path policy</td></tr>
+</table>
+<a name="datastore-scsiAdapter"></a>
+<h2 id="Datastore.3ASCSIAdapter">Datastore : SCSI Adapter</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td>SCSI adapter name</td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiAdapterStatus">enum(SCSI Adapter Status)</a></td><td>SCSI adapter status</td></tr>
+<tr><td>
+model</td><td>string</td><td>SCSI adapter model</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel adapter</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of adapter</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of adapter</td></tr>
+<tr><td>
+driver</td><td>string</td><td>Driver Name</td></tr>
+<tr><td>
+pci</td><td>string</td><td>The Peripheral Connect Interface (PCI) ID of the device representing the adapter</td></tr>
+</table>
+<a name="datastore-scsiTarget"></a>
+<h2 id="Datastore.3ASCSITarget">Datastore : SCSI Target</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI target type</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+</table>
+<a name="datastore-nasMount"></a>
+<h2 id="Datastore.3ANASMount">Datastore : NAS Mount</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+remoteHost</td><td>string</td><td>Host name of the NAS sub system</td></tr>
+<tr><td>
+remotePath</td><td>string</td><td>Path on the NAS sub system</td></tr>
+<tr><td>
+userName</td><td>string</td><td>User name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#nasMountType">enum(NAS Mount Type)</a></td><td>NAS mount type</td></tr>
+<tr><td>
+datastore</td><td>string</td><td>Datastore for the NAS mount</td></tr>
+</table>
+
+<a name="cluster-vm"></a>
+<h2 id="Cluster.3AVM">Cluster : VM</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Virtual Machine name</td></tr>
+<tr><td>
+host</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+resourcePool</td><td>string</td><td></td><td>Resource Pool name</td></tr>
+<tr><td>
+multipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate multipathing status across all Datastores used by this Virtual Machine. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by this Virtual Machine</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total space used by swap files</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by files such as configuration, suspend data, NVRAM, screenshots and others, on the Datastore. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared files</td></tr>
+<tr><td>
+provisioned</td><td>long</td><td>byte</td><td>Total provisioned space for the Virtual Machine</td></tr>
+<tr><td>
+uncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space for the Virtual Machine</td></tr>
+<tr><td>
+numVmDisk</td><td>long</td><td></td><td>Number of Virtual Disks used by this Virtual Machine</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Virtual Machine</td></tr>
+</table>
+<a name="cluster-datastore"></a>
+<h2 id="Cluster.3ADatastore">Cluster : Datastore</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Datastore name</td></tr>
+<tr><td>
+datastoreType</td><td><a href="result-enumerations.html#datastoreType">enum(Datastore Volume Type)</a></td><td></td><td>File system type</td></tr>
+<tr><td>
+entityStatus</td><td><a href="result-enumerations.html#datastoreStatus">enum(Datastore Status)</a></td><td></td><td>Aggregate connectivity status of the Datastore across all Hosts</td></tr>
+<tr><td>
+entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate Multipathing Status of Datastore across all Hosts. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+capacity</td><td>long</td><td>byte</td><td>Datastore capacity</td></tr>
+<tr><td>
+freeSpace</td><td>long</td><td>byte</td><td>Space available on the Datastore</td></tr>
+<tr><td>
+percentFree</td><td>double</td><td>percent</td><td>% Space available on the Datastore</td></tr>
+<tr><td>
+entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>
+percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>
+entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>
+percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+</table>
+
+<a name="cluster-host"></a>
+<h2 id="Cluster.3AHost">Cluster : Host</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by Virtual Machines in the Host</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+configuredDisk</td><td>long</td><td>byte</td><td>Total size of disks created for Virtual Machines on this Host</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by all Virtual Machines on this Host</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others, on this Host</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files in this Host</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by Virtual Machines on this Host</td></tr>
+</table>
+<a name="cluster-resourcePool"></a>
+<h2 id="Cluster.3AResourcePool">Cluster : Resource Pool</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Resource Pool name</td></tr>
+<tr><td>
+path</td><td>string</td><td></td><td>Resource Pool path</td></tr>
+<tr><td>
+host</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by Virtual Machines in the Resource Pool</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+configuredDisk</td><td>long</td><td>byte</td><td>Total size of disks created for Virtual Machines on this Resource Pool</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by all Virtual Machines on this Resource Pool</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others, on this Resource Pool</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files in this Resource Pool</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Resource Pool's Virtual Machines</td></tr>
+</table>
+
+<a name="cluster-scsiVolume"></a>
+<h2 id="Cluster.3ASCSIVolume">Cluster : SCSI Volume</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+scsiId</td><td>string</td><td></td><td>Volume UUID</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiVolumeStatus">enum(Status of SCSI Volume)</a></td><td></td><td>Status of the volume</td></tr>
+<tr><td>
+size</td><td>long</td><td>byte</td><td>Size of the volume</td></tr>
+<tr><td>
+vendor</td><td>string</td><td></td><td>Volume manufacturer</td></tr>
+</table>
+
+<a name="cluster-scsiPath"></a>
+<h2 id="Cluster.3ASCSIPath">Cluster : SCSI Path</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+runtimeName</td><td>string</td><td>Runtime Name of the SCSI path</td></tr>
+<tr><td>
+lunNum</td><td>long</td><td>Logical Unit Number for the SCSI path</td></tr>
+<tr><td>
+adapter</td><td>string</td><td>SCSI adapter name</td></tr>
+<tr><td>
+adapterType</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+volumeId</td><td>string</td><td>SCSI volume visible on the path</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetPortWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetNodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+targetIscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+targetIscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiPathStatus">enum(SCSI Path Usage)</a></td><td>SCSI path status</td></tr>
+<tr><td>
+activityState</td><td><a href="result-enumerations.html#scsiPathActivityState">enum(SCSI Path Activity State)</a></td><td>Indicates whether the path is currently active</td></tr>
+<tr><td>
+preferred</td><td><a href="result-enumerations.html#scsiPathPreferred">enum(SCSI Path Preferred)</a></td><td>Path policy</td></tr>
+</table>
+
+<a name="cluster-scsiAdapter"></a>
+<h2 id="Cluster.3ASCSIAdapter">Cluster : SCSI Adapter</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td>SCSI adaptre name</td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiAdapterStatus">enum(SCSI Adapter Status)</a></td><td>SCSI adapter status</td></tr>
+<tr><td>
+model</td><td>string</td><td>SCSI adapter model</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel adapter</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of adapter</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of adapter</td></tr>
+<tr><td>
+driver</td><td>string</td><td>Driver Name</td></tr>
+<tr><td>
+pci</td><td>string</td><td>The Peripheral Connect Interface (PCI) ID of the device representing the adapter</td></tr>
+</table>
+<a name="cluster-scsiTarget"></a>
+<h2 id="Cluster.3ASCSITarget">Cluster : SCSI Target</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI target type</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+</table>
+
+<a name="cluster-nasMount"></a>
+<h2 id="Cluster.3ANASMount">Cluster : NAS Mount</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+remoteHost</td><td>string</td><td>Host name of the NAS sub system</td></tr>
+<tr><td>
+remotePath</td><td>string</td><td>Path on the NAS sub system</td></tr>
+<tr><td>
+userName</td><td>string</td><td>User name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#nasMountType">enum(NAS Mount Type)</a></td><td>NAS mount type</td></tr>
+<tr><td>
+datastore</td><td>string</td><td>Datastore for the NAS mount</td></tr>
+</table>
+
+<a name="resourcePool-vm"></a>
+<h2 id="ResourcePool.3AVM">Resource Pool : VM</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Virtual Machine name</td></tr>
+<tr><td>
+host</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+multipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate multipathing status on the Virtual Machine's Host. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by the Virtual Machine</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by the Virtual Machine</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files</td></tr>
+<tr><td>
+provisioned</td><td>long</td><td>byte</td><td>Total provisioned space for the Virtual Machine</td></tr>
+<tr><td>
+uncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space for the Virtual Machine</td></tr>
+<tr><td>
+numVmDisk</td><td>long</td><td></td><td>Number of Virtual Disks used by this Virtual Machine</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Virtual Machine</td></tr>
+</table>
+<a name="resourcePool-datastore"></a>
+
+<h2 id="ResourcePool.3ADatastore">Resource Pool : Datastore</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Datastore name</td></tr>
+<tr><td>
+datastoreType</td><td><a href="result-enumerations.html#datastoreType">enum(Datastore Volume Type)</a></td><td></td><td>File system type</td></tr>
+<tr><td>
+entityStatus</td><td><a href="result-enumerations.html#datastoreStatus">enum(Datastore Status)</a></td><td></td><td>Aggregate connectivity status of the Datastore across all Hosts</td></tr>
+<tr><td>
+entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate Multipathing Status of Datastore across all Hosts. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+capacity</td><td>long</td><td>byte</td><td>Datastore capacity</td></tr>
+<tr><td>
+freeSpace</td><td>long</td><td>byte</td><td>Space available on the Datastore</td></tr>
+<tr><td>
+percentFree</td><td>double</td><td>percent</td><td>% Space available on the Datastore</td></tr>
+<tr><td>
+entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disks on the Datastore</td></tr>
+<tr><td>
+percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>
+percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>
+entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>
+percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+</table>
+
+<a name="resourcePool-scsiVolume"></a>
+<h2 id="ResourcePool.3ASCSIVolume">Resource Pool : SCSI Volume</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+scsiId</td><td>string</td><td></td><td>Volume UUID</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiVolumeStatus">enum(Status of SCSI Volume)</a></td><td></td><td>Status of the volume</td></tr>
+<tr><td>
+size</td><td>long</td><td>byte</td><td>Size of the volume</td></tr>
+<tr><td>
+vendor</td><td>string</td><td></td><td>Volume manufacturer</td></tr>
+</table>
+
+<a name="resourcePool-scsiPath"></a>
+
+<h2 id="ResourcePool.3ASCSIPath">Resource Pool : SCSI Path</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+runtimeName</td><td>string</td><td>Runtime Name of the SCSI path</td></tr>
+<tr><td>
+lunNum</td><td>long</td><td>Logical Unit Number for the SCSI path</td></tr>
+<tr><td>
+adapter</td><td>string</td><td>SCSI adapter name</td></tr>
+<tr><td>
+adapterType</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+volumeId</td><td>string</td><td>SCSI volume visible on the path</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetPortWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetNodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+targetIscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+targetIscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiPathStatus">enum(SCSI Path Usage)</a></td><td>SCSI path status</td></tr>
+<tr><td>
+activityState</td><td><a href="result-enumerations.html#scsiPathActivityState">enum(SCSI Path Activity State)</a></td><td>Indicates whether the path is currently active</td></tr>
+<tr><td>
+preferred</td><td><a href="result-enumerations.html#scsiPathPreferred">enum(SCSI Path Preferred)</a></td><td>Path policy</td></tr>
+</table>
+<a name="resourcePool-scsiAdapter"></a>
+<h2 id="ResourcePool.3ASCSIAdapter">Resource Pool : SCSI Adapter</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td>SCSI adapter name</td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiAdapterStatus">enum(SCSI Adapter Status)</a></td><td>SCSI adapter status</td></tr>
+<tr><td>
+model</td><td>string</td><td>SCSI adapter model</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel adapter</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of adapter</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of adapter</td></tr>
+<tr><td>
+driver</td><td>string</td><td>Driver Name</td></tr>
+<tr><td>
+pci</td><td>string</td><td>The Peripheral Connect Interface (PCI) ID of the device representing the adapter</td></tr>
+</table>
+
+<a name="resourcePool-scsiTarget"></a>
+<h2 id="ResourcePool.3ASCSITarget">Resource Pool : SCSI Target</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI target type</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+</table>
+<a name="resourcePool-nasMount"></a>
+<h2 id="ResourcePool.3ANASMount">Resource Pool : NAS Mount</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+remoteHost</td><td>string</td><td>Host name of the NAS sub system</td></tr>
+<tr><td>
+remotePath</td><td>string</td><td>Path on the NAS sub system</td></tr>
+<tr><td>
+userName</td><td>string</td><td>User name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#nasMountType">enum(NAS Mount Type)</a></td><td>NAS mount type</td></tr>
+<tr><td>
+datastore</td><td>string</td><td>Datastore for the NAS mount</td></tr>
+</table>
+
+<a name="host-vm"></a>
+<h2 id="Host.3AVM">Host : VM</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Virtual Machine name</td></tr>
+<tr><td>
+cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+resourcePool</td><td>string</td><td></td><td>Resource Pool name</td></tr>
+<tr><td>
+multipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate multipathing status. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by the Virtual Machine</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by the Virtual Machine</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files</td></tr>
+<tr><td>
+provisioned</td><td>long</td><td>byte</td><td>Total provisioned space for the Virtual Machine</td></tr>
+<tr><td>
+uncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space for the Virtual Machine</td></tr>
+<tr><td>
+numVmDisk</td><td>long</td><td></td><td>Number of Virtual Disks used by this Virtual Machine</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Virtual Machine</td></tr>
+</table>
+<a name="host-datastore"></a>
+<h2 id="Host.3ADatastore">Host : Datastore</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Datastore name</td></tr>
+<tr><td>
+datastoreType</td><td><a href="result-enumerations.html#datastoreType">enum(Datastore Volume Type)</a></td><td></td><td>File system type</td></tr>
+<tr><td>
+entityStatus</td><td><a href="result-enumerations.html#datastoreStatus">enum(Datastore Status)</a></td><td></td><td>Connectivity status of the Datastore on the Host</td></tr>
+<tr><td>
+entityMultipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Multipathing Status of the Datastore on the Host. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+capacity</td><td>long</td><td>byte</td><td>Datastore capacity</td></tr>
+<tr><td>
+freeSpace</td><td>long</td><td>byte</td><td>Space available on the Datastore</td></tr>
+<tr><td>
+percentFree</td><td>double</td><td>percent</td><td>% Space available on the Datastore</td></tr>
+<tr><td>
+entityUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+entitySnapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+entityDiskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+entitySwap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>
+percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>
+entityOtherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+entityShared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>
+percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+</table>
+
+<a name="host-scsiVolume"></a>
+<h2 id="Host.3ASCSIVolume">Host : SCSI Volume</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+scsiId</td><td>string</td><td></td><td>Volume UUID</td></tr>
+<tr><td>
+canonicalName</td><td>string</td><td></td><td>The name of the object in canonical format</td></tr>
+<tr><td>
+runtimeName</td><td>string</td><td></td><td>Runtime Name</td></tr>
+<tr><td>
+lunNum</td><td>long</td><td></td><td>Logical Unit Number for the SCSI Volume on the Host</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiVolumeStatus">enum(Status of SCSI Volume)</a></td><td></td><td>Status of the volume</td></tr>
+<tr><td>
+entityStatus</td><td><a href="result-enumerations.html#scsiVolumeStatus">enum(Status of SCSI Volume)</a></td><td></td><td>Connectivity status of the SCSI Volume on the Host</td></tr>
+<tr><td>
+size</td><td>long</td><td>byte</td><td>Size of the volume</td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>User assigned name for the volume</td></tr>
+<tr><td>
+vendor</td><td>string</td><td></td><td>Volume manufacturer</td></tr>
+</table>
+
+<a name="host-scsiPath"></a>
+<h2 id="Host.3ASCSIPath">Host : SCSI Path</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+runtimeName</td><td>string</td><td>Runtime Name of the SCSI Path</td></tr>
+<tr><td>
+lunNum</td><td>long</td><td>Logical Unit Number for the SCSI Path on the Host</td></tr>
+<tr><td>
+adapter</td><td>string</td><td>SCSI adapter name</td></tr>
+<tr><td>
+adapterType</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+volumeId</td><td>string</td><td>SCSI volume visible on the path</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetPortWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetNodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+targetIscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+targetIscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiPathStatus">enum(SCSI Path Usage)</a></td><td>SCSI path status</td></tr>
+<tr><td>
+activityState</td><td><a href="result-enumerations.html#scsiPathActivityState">enum(SCSI Path Activity State)</a></td><td>Indicates whether the path is currently active</td></tr>
+<tr><td>
+preferred</td><td><a href="result-enumerations.html#scsiPathPreferred">enum(SCSI Path Preferred)</a></td><td>Path policy</td></tr>
+</table>
+
+<a name="host-scsiAdapter"></a>
+<h2 id="Host.3ASCSIAdapter">Host : SCSI Adapter</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>SCSI adapter name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td></td><td>SCSI adapter type</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiAdapterStatus">enum(SCSI Adapter Status)</a></td><td></td><td>SCSI adapter status</td></tr>
+<tr><td>
+model</td><td>string</td><td></td><td>SCSI adapter model</td></tr>
+<tr><td>
+wwn</td><td>string</td><td></td><td>Node and Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td></td><td>Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td></td><td>Node WWN of fibre channel adapter</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td></td><td>ISCSI name of adapter</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td></td><td>ISCSI alias of adapter</td></tr>
+<tr><td>
+driver</td><td>string</td><td></td><td>Driver Name</td></tr>
+<tr><td>
+pci</td><td>string</td><td></td><td>The Peripheral Connect Interface (PCI) ID of the device representing the adapter</td></tr>
+</table>
+
+<h2 id="Host.3ASCSITarget">Host : SCSI Target</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI target type</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+</table>
+<a name="host-nasMount"></a>
+<h2 id="Host.3ANASMount">Host : NAS Mount</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+remoteHost</td><td>string</td><td>Host name of the NAS sub system</td></tr>
+<tr><td>
+remotePath</td><td>string</td><td>Path on the NAS sub system</td></tr>
+<tr><td>
+userName</td><td>string</td><td>User name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#nasMountType">enum(NAS Mount Type)</a></td><td>NAS mount type</td></tr>
+<tr><td>
+datastore</td><td>string</td><td>Datastore for the NAS mount</td></tr>
+</table>
+<a name="datacenter-vm"></a>
+<h2 id="Datacenter.3AVM">Datacenter : VM</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Virtual Machine name</td></tr>
+<tr><td>
+host</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+resourcePool</td><td>string</td><td></td><td>Resource Pool name</td></tr>
+<tr><td>
+multipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate multipathing status on the Virtual Machine's Host. Fully redundant means 2 HBAs and 2 Targets exist among paths.</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by the Virtual Machine</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by the Virtual Machine</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files</td></tr>
+<tr><td>
+provisioned</td><td>long</td><td>byte</td><td>Total provisioned space for the Virtual Machine</td></tr>
+<tr><td>
+uncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space for the Virtual Machine</td></tr>
+<tr><td>
+numVmDisk</td><td>long</td><td></td><td>Number of Virtual Disks used by this Virtual Machine</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Virtual Machine</td></tr>
+</table>
+<a name="datacenter-datastore"></a>
+<h2 id="Datacenter.3ADatastore">Datacenter : Datastore</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Datastore name</td></tr>
+<tr><td>
+datastoreType</td><td><a href="result-enumerations.html#datastoreType">enum(Datastore Volume Type)</a></td><td></td><td>File system type</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#datastoreStatus">enum(Datastore Status)</a></td><td></td><td>Aggregate connectivity status across all hosts using the Datastore</td></tr>
+<tr><td>
+multipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate multipathing status across all hosts using the Datastore</td></tr>
+<tr><td>
+capacity</td><td>long</td><td>byte</td><td>Datastore capacity</td></tr>
+<tr><td>
+freeSpace</td><td>long</td><td>byte</td><td>Space available on the Datastore</td></tr>
+<tr><td>
+percentFree</td><td>double</td><td>percent</td><td>% Space available on the Datastore</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+percentUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Machine files</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+percentSnapshot</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+percentDiskUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by Virtual Disks</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total space used on the Datastore by swap files</td></tr>
+<tr><td>
+percentSwap</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by swap files</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+percentOtherUsed</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by files such as configuration, suspend data, NVRAM, screenshots and others. This does not include Virtual Disks, snapshots or swap files</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used on the Datastore by shared files</td></tr>
+<tr><td>
+percentShared</td><td>double</td><td>percent</td><td>Percentage of space used on the Datastore by shared files</td></tr>
+<tr><td>
+provisioned</td><td>long</td><td>byte</td><td>Total provisioned space on the Datastore</td></tr>
+<tr><td>
+uncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space on the Datastore</td></tr>
+<tr><td>
+nonVmUsed</td><td>long</td><td>byte</td><td>Total space used by files on this Datastore that don't belong to any Virtual Machine</td></tr>
+<tr><td>
+numVm</td><td>long</td><td></td><td>Number of Virtual Machines using this Datastore</td></tr>
+<tr><td>
+numVmDisk</td><td>long</td><td></td><td>Number of Virtual Disks present on this Datastore</td></tr>
+</table>
+<a name="datacenter-host"></a>
+<h2 id="Datacenter.3AHost">Datacenter : Host</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by Virtual Machines in the Host</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+configuredDisk</td><td>long</td><td>byte</td><td>Total size of disks created for Virtual Machines on this Host</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by all Virtual Machines on this Host</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others, on this Host</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files in this Host</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Host's Virtual Machines</td></tr>
+</table>
+<a name="datacenter-resourcePool"></a>
+<h2 id="Datacenter.3AResourcePool">Datacenter : Resource Pool</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Resource Pool name</td></tr>
+<tr><td>
+path</td><td>string</td><td></td><td>Resource Pool path</td></tr>
+<tr><td>
+host</td><td>string</td><td></td><td>Host name</td></tr>
+<tr><td>
+cluster</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by Virtual Machines in the Resource Pool</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+configuredDisk</td><td>long</td><td>byte</td><td>Total size of disks created for Virtual Machines on this Resource Pool</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by all Virtual Machines on this Resource Pool</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others, on this Resource Pool</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files in this Resource Pool</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Resource Pool's Virtual Machines</td></tr>
+</table>
+<a name="datacenter-cluster"></a>
+
+<h2 id="Datacenter.3ACluster">Datacenter : Cluster</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Cluster name</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used by Virtual Machines in the Cluster</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used by snapshot files</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Disk files</td></tr>
+<tr><td>
+configuredDisk</td><td>long</td><td>byte</td><td>Total size of disks created for Virtual Machines on this Cluster</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total swap space used by all Virtual Machines on this Cluster</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used by Virtual Machine files such as configuration, suspend data, NVRAM, screenshots and others, on this Cluster</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used by shared Virtual Machine files in this Cluster</td></tr>
+<tr><td>
+numDatastore</td><td>long</td><td></td><td>Number of Datastores used by this Cluster's Virtual Machines</td></tr>
+</table>
+<a name="datacenter-scsiVolume"></a>
+<h2 id="Datacenter.3ASCSIVolume">Datacenter : SCSI Volume</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+scsiId</td><td>string</td><td></td><td>Volume UUID</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiVolumeStatus">enum(Status of SCSI Volume)</a></td><td></td><td>Status of the volume</td></tr>
+<tr><td>
+size</td><td>long</td><td>byte</td><td>Size of the volume</td></tr>
+<tr><td>
+vendor</td><td>string</td><td></td><td>Volume manufacturer</td></tr>
+</table>
+<a name="datacenter-scsiPath"></a>
+<h2 id="Datacenter.3ASCSIPath">Datacenter : SCSI Path</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+runtimeName</td><td>string</td><td>Runtime Name of the SCSI path</td></tr>
+<tr><td>
+lunNum</td><td>long</td><td>Logical Unit Number for the SCSI path</td></tr>
+<tr><td>
+adapter</td><td>string</td><td>SCSI adapter name</td></tr>
+<tr><td>
+adapterType</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+volumeId</td><td>string</td><td>SCSI volume visible on the path</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetPortWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+targetNodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+targetIscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+targetIscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiPathStatus">enum(SCSI Path Usage)</a></td><td>SCSI path status</td></tr>
+<tr><td>
+activityState</td><td><a href="result-enumerations.html#scsiPathActivityState">enum(SCSI Path Activity State)</a></td><td>Indicates whether the path is currently active</td></tr>
+<tr><td>
+preferred</td><td><a href="result-enumerations.html#scsiPathPreferred">enum(SCSI Path Preferred)</a></td><td>Path policy</td></tr>
+</table>
+<a name="datacenter-scsiAdapter"></a>
+<h2 id="Datacenter.3ASCSIAdapter">Datacenter : SCSI Adapter</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td>SCSI adapter name</td></tr>
+<tr><td>
+host</td><td>string</td><td>Host name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI adapter type</td></tr>
+<tr><td>
+status</td><td><a href="result-enumerations.html#scsiAdapterStatus">enum(SCSI Adapter Status)</a></td><td>SCSI adapter status</td></tr>
+<tr><td>
+model</td><td>string</td><td>SCSI adapter model</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel adapter</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel adapter</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of adapter</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of adapter</td></tr>
+<tr><td>
+driver</td><td>string</td><td>Driver Name</td></tr>
+<tr><td>
+pci</td><td>string</td><td>The Peripheral Connect Interface (PCI) ID of the device representing the adapter</td></tr>
+</table>
+<a name="datacenter-scsiTarget"></a>
+<h2 id="Datacenter.3ASCSITarget">Datacenter : SCSI Target</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.html#scsiAdapterType">enum(SCSI Adapter Type)</a></td><td>SCSI target type</td></tr>
+<tr><td>
+wwn</td><td>string</td><td>Node and Port WWN of fibre channel target</td></tr>
+<tr><td>
+portWwn</td><td>string</td><td>Port WWN of fibre channel target</td></tr>
+<tr><td>
+nodeWwn</td><td>string</td><td>Node WWN of fibre channel target</td></tr>
+<tr><td>
+iscsiName</td><td>string</td><td>ISCSI name of target</td></tr>
+<tr><td>
+iscsiAlias</td><td>string</td><td>ISCSI alias of target</td></tr>
+</table>
+<a name="datacenter-nasMount"></a>
+
+<h2 id="Datacenter.3ANASMount">Datacenter : NAS Mount</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+remoteHost</td><td>string</td><td>Host name of the NAS sub system</td></tr>
+<tr><td>
+remotePath</td><td>string</td><td>Path on the NAS sub system</td></tr>
+<tr><td>
+userName</td><td>string</td><td>User name</td></tr>
+<tr><td>
+type</td><td><a href="result-enumerations.htmlresult-enumerations.html#nasMountType">enum(NAS Mount Type)</a></td><td>NAS mount type</td></tr>
+<tr><td>
+datastore</td><td>string</td><td>Datastore for the NAS mount</td></tr>
+</table>
+
+<a name="storagePod-datastore"></a>
+
+<h2 id="StoragePod.3ADatastore">StoragePod : Datastore</h2>
+<table><tr><td><strong>Property Name</strong></td><td><strong>Type</strong></td><td><strong>Unit</strong></td><td><strong>Description</strong></td></tr>
+<tr><td>
+name</td><td>string</td><td></td><td>Datastore name.</td></tr>
+<tr><td>
+datstoreType</td><td><a href="result-enumerations.html#datastoreType">enum(Datastore Volume Type)</a></td><td></td><td>File system type</td></tr>
+<tr><td>status</td><td><a href="result-enumerations.html#datastoreStatus">enum(Datastore Status)</a></td><td></td><td>Aggregate connectivity status across all hosts using the datastore.</td></tr>
+<tr><td>multipathingStatus</td><td><a href="result-enumerations.html#multipathingStatus">enum(Multipathing Status)</a></td><td></td><td>Aggregate multipathing status across all hosts using the datastore.</td></tr>
+<tr><td>
+capacity</td><td>long</td><td>byte</td><td>Datastore capacity.</td></tr>
+<tr><td>
+freeSpace</td><td>long</td><td>byte</td><td>Space available on the datastore.</td></tr>
+<tr><td>
+percentFree</td><td>double</td><td>percent</td><td>Percent space available on the datastore.</td></tr>
+<tr><td>
+used</td><td>long</td><td>byte</td><td>Total space used on the datastore by virtual machine files.</td></tr>
+<tr><td>
+snapshot</td><td>long</td><td>byte</td><td>Total space used on the datastore by snapshot files.</td></tr>
+<tr><td>
+diskUsed</td><td>long</td><td>byte</td><td>Total space used on the datstore by virtual disks.</td></tr>
+<tr><td>
+swap</td><td>long</td><td>byte</td><td>Total space used on the datastore by swap files.</td></tr>
+<tr><td>
+otherUsed</td><td>long</td><td>byte</td><td>Total space used on the datastore by files
+such as configuration, suspend data, NVRAM, screenshots and others. This does not include
+space used for virtual disk, snapshot, or swap files.</td></tr>
+<tr><td>
+shared</td><td>long</td><td>byte</td><td>Total space used on the datastore by shared files.</td></tr>
+<tr><td>
+provisioned</td><td>long</td><td>byte</td><td>Total provisioned space on the datastore.</td></tr>
+<tr><td>
+uncommitted</td><td>long</td><td>byte</td><td>Total uncommitted space on the datastore.</td></tr>
+<tr><td>
+nonVmUsed</td><td>long</td><td>byte</td><td>Total space used by files on the datastore
+that do not belong to any virtual machine.</td></tr>
+<tr><td>
+numVM</td><td>long</td><td></td><td>Number of virtual machines using this datastore.</td></tr>
+<tr><td>
+numVmDisk</td><td>long</td><td></td><td>Number of virtual disks present on this datastore.</td></tr>
+<tr><td>
+systemCapability</td><td>string</td><td></td><td>System capability of the datastore.</td></tr>
+<tr><td>
+customCapability</td><td>string</td><td></td><td>User-defined capability of the datastore.</td></tr>
+</table>
+
+<p class="mini"><script language="javascript" type="text/javascript">document.write(ID_Copyright);</script><br/>
+<script language="javascript" type="text/javascript">document.write(ID_VersionInformation);</script></p>
+</p>
+
+</body>
+</html>
+
